@@ -1,0 +1,80 @@
+component-definition:
+  uuid: 8a9a32e4-e847-4f59-8282-b1cbc8d4e98f
+  metadata:
+    title: UDS Package Mattermost
+    last-modified: "2023-12-01T20:09:06Z"
+    version: "20231201"
+    oscal-version: 1.1.1
+    parties:
+      - uuid: f3cf70f8-ba44-4e55-9ea3-389ef24847d3
+        type: organization
+        name: Defense Unicorns
+        links:
+          - href: https://defenseunicorns.com
+            rel: website
+  components:
+    - uuid: 9f1c741f-caf0-4d67-8ffe-b0f180132f46
+      type: software
+      title: Mattermost
+      description: |
+        Mattermost is an open-source, self-hostable online chat service designed for team communication and collaboration.
+      purpose: Provides users with secure team communication and collaboration capabilities.
+      responsible-roles:
+        - role-id: provider
+          party-uuids:
+            - f3cf70f8-ba44-4e55-9ea3-389ef24847d3
+      control-implementations:
+        - uuid: d2afb4c4-2cd8-5305-a6cc-d1bc7b388d0c
+          source: https://raw.githubusercontent.com/GSA/fedramp-automation/93ca0e20ff5e54fc04140613476fba80f08e3c7d/dist/content/rev5/baselines/json/FedRAMP_rev5_HIGH-baseline-resolved-profile_catalog.json
+          description: Controls partially implemented by Mattermost for inheritance by applications that adheres to FedRAMP High Baseline and DoD IL 6.
+          implemented-requirements:
+            - uuid: 889dce9c-d83f-48a3-a62a-3f50e311761a
+              control-id: au-2
+              description: >-
+                Mattermost creates event logs.  
+            - uuid: ce2c791e-f47e-45d3-9bba-dcd7a372ddd3
+              control-id: au-3
+              description: >-
+                Mattermost creates event logs.  
+            - uuid: 2ef78f64-d9ac-4292-a5f1-6c627734d39c
+              control-id: au-3.1
+              description: >-
+                Mattermost creates event logs.  
+            - uuid: 1041d516-56b9-4652-886e-bd5bad38f789
+              control-id: au-8
+              description: >-
+                Mattermost event logs contain NIST compliant timestamps.
+            - uuid: 05c85212-6f2a-480d-b812-b3e2c5bba3e7
+              control-id: cp-2
+              description: >-
+                Mattermost partially addresses this control by aiding in the communication of the contingency plan, updates, and execution.
+              props:
+                - name: implemented
+                  ns: https://lula.dev/ns/oscal
+                  value: partially
+            - uuid: 1f53aad7-b772-476c-bf9c-6406daef7cb1
+              control-id: ir-8
+              description: >-
+                Mattermost partially meets this control by providing a secure communication platform for coordination of the incident response plan.
+              props:
+                - name: implemented
+                  ns: https://lula.dev/ns/oscal
+                  value: partially
+            - uuid: 4d4a3721-ea7b-4f20-8059-aee0f6a4b432
+              control-id: pl-2
+              description: >-
+                Mattermost partially meets this control by providing a secure communication platform for coordination of the system security and privacy plans.
+              props:
+                - name: implemented
+                  ns: https://lula.dev/ns/oscal
+                  value: partially
+            - uuid: dab3bce5-b7e9-4387-9fce-73fe2731721a
+              control-id: cm-3.6
+              description: >-
+                Mattermost utilizes the underlying istio for FIPs encryption in transit. Mattermost stores data in an encrypted PostgreSQL database.
+  back-matter:
+    resources:
+      - uuid: 1f88a599-61ea-4667-a453-8374d03cdeb0
+        title: UDS Package Mattermost
+        rlinks:
+          - href: https://github.com/defenseunicorns/uds-package-mattermost

@@ -1,0 +1,26 @@
+kind: UDSBundle
+metadata:
+  name: mattermost-test
+  description: A UDS bundle for deploying Mattermost and it's dependencies on a development cluster
+  # x-release-please-start-version
+  version: 9.3.0-uds.0
+  # x-release-please-end
+
+packages:
+  - name: dev-minio
+    repository: ghcr.io/defenseunicorns/packages/uds/dev-minio
+    ref: 5.0.13-0
+  
+  - name: dev-postgres
+    repository: ghcr.io/defenseunicorns/packages/uds/dev-postgres
+    ref: 12.6.6-0
+  
+  - name: dev-secrets
+    path: ../
+    ref: 0.1.0
+  
+  - name: mattermost
+    path: ../
+    # x-release-please-start-version
+    ref: 9.3.0-uds.0
+    # x-release-please-end

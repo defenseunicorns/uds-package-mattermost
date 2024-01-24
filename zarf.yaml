@@ -1,0 +1,110 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/defenseunicorns/zarf/main/zarf.schema.json
+kind: ZarfPackageConfig
+metadata:
+  name: mattermost
+  description: "UDS mattermost package deployed via flux"
+  # x-release-please-start-version
+  version: "9.3.0-uds.0"
+  # x-release-please-end
+  architecture: amd64
+
+variables:
+  - name: MATTERMOST_ENTERPRISE_ENABLED
+    default: "false"
+  - name: MATTERMOST_ENTERPRISE_LICENSE
+    default: ""
+    autoIndent: true
+  - name: MATTERMOST_BUCKET_SUFFIX
+    default: ""
+  - name: MATTERMOST_FILE_STORE_ENDPOINT
+    default: "minio"
+  - name: MATTERMOST_VOLUMES
+    default: "[]"
+    autoIndent: true
+  - name: MATTERMOST_VOLUME_MOUNTS
+    default: "[]"
+    autoIndent: true
+  - name: MATTERMOST_SSO_ENABLED
+    default: "false"
+  - name: MATTERMOST_SSO_CLIENT_ID
+    default: ""
+  - name: MATTERMOST_SSO_CLIENT_SECRET
+    default: ""
+  - name: MATTERMOST_SSO_AUTH_ENDPOINT
+    default: ""
+  - name: MATTERMOST_SSO_TOKEN_ENDPOINT
+    default: ""
+  - name: MATTERMOST_SSO_USER_API_ENDPOINT
+    default: ""
+  - name: MATTERMOST_SSO_EMAIL_SIGNUP_ENABLED
+    default: "false"
+  - name: MATTERMOST_SSO_EMAIL_SIGNIN_ENABLED
+    default: "false"
+  - name: MATTERMOST_SSO_USERNAME_SIGNIN_ENABLED
+    default: "false"
+  - name: DOMAIN
+    default: "uds.dev"
+
+components:
+  - name: mattermost
+    required: true
+    description: "Deploy Mattermost"
+    only:
+      flavor: registry1
+    charts:
+      - name: mattermost-operator
+        namespace: mattermost-operator
+        url: https://repo1.dso.mil/big-bang/product/packages/mattermost-operator.git
+        gitPath: chart
+        version: 1.20.1-bb.0
+        valuesFiles:
+          - values/mattermost-operator-values.yaml
+      - name: mattermost
+        namespace: mattermost
+        url: https://repo1.dso.mil/big-bang/product/packages/mattermost.git
+        gitPath: chart
+        version: 9.3.0-bb.2
+        valuesFiles:
+          - values/mattermost-values.yaml
+      - name: uds-mattermost-config
+        namespace: mattermost
+        version: 0.1.0
+        localPath: chart
+    images:
+      - "registry1.dso.mil/ironbank/opensource/mattermost/mattermost-operator:v1.20.1"
+      - "registry1.dso.mil/ironbank/opensource/mattermost/mattermost:v9.3.0"
+      - "registry1.dso.mil/ironbank/opensource/postgres/postgresql12:12.17"
+
+  - name: mattermost
+    required: true
+    description: "Deploy Mattermost"
+    only:
+      flavor: upstream-ce
+    charts:
+      - name: mattermost-operator
+        namespace: mattermost-operator
+        url: https://helm.mattermost.com
+        gitPath: chart
+        version: 0.3.5
+        valuesFiles:
+          - values/mattermost-operator-values.yaml
+          - values/mattermost-operator-upstream.yaml
+      - name: mattermost-team-edition
+        namespace: mattermost
+        url: https://helm.mattermost.com
+        gitPath: chart
+        version: 6.6.46
+        valuesFiles:
+          - values/mattermost-values.yaml
+          - values/mattermost-upstream.yaml
+          - values/mattermost-ce.yaml
+      - name: uds-mattermost-config
+        namespace: mattermost
+        version: 0.1.0
+        localPath: chart
+    images:
+      - appropriate/curl:latest
+      - bats/bats:v1.1.0
+      - busybox:1.31.1
+      - mattermost/mattermost-operator:v1.20.1
+      - mattermost/mattermost-team-edition:9.4.1

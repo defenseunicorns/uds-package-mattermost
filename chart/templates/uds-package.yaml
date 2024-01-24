@@ -1,0 +1,20 @@
+apiVersion: uds.dev/v1alpha1
+kind: Package
+metadata:
+  name: mattermost
+  namespace: {{ .Release.Namespace }}
+spec:
+  network:
+    expose:
+      - service: mattermost
+        podLabels:
+          app: mattermost
+        gateway: tenant
+        host: mattermost
+        port: 8065
+    allow:
+      # Todo: wide open for hitting in-cluster or external postgres/s3
+      - direction: Egress
+        podLabels:
+          app: mattermost
+        remoteGenerated: Anywhere

@@ -1,0 +1,10 @@
+tasks:
+  - name: mattermost-package
+    actions:
+      - description: Deploy the UDS Mattermost Zarf Package
+        cmd: zarf package deploy zarf-package-mattermost-${UDS_ARCH}-*.tar.zst --confirm --no-progress
+
+  - name: mattermost-test-bundle
+    actions:
+      - description: Deploy the UDS bundle with Mattermost and its dependencies
+        cmd: UDS_CONFIG=bundle/uds-config.yaml uds deploy bundle/uds-bundle-mattermost-test-${UDS_ARCH}-*.tar.zst --confirm --no-progress
