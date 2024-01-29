@@ -2,6 +2,9 @@
 hostname: ###ZARF_VAR_DOMAIN###
 domain: ###ZARF_VAR_DOMAIN###
 
+ingress:
+  host: mattermost.###ZARF_VAR_DOMAIN###
+
 enterprise:
   enabled: ###ZARF_VAR_MATTERMOST_ENTERPRISE_ENABLED###
   license: |
