@@ -1,60 +1,18 @@
 tasks:
   - name: health-check
     actions:
-      - description: Mattermost Exporter Health Check
+      - description: Mattermost Operator Health Check
         wait:
           cluster:
             kind: Deployment
-            name: mattermost-mattermost-exporter
-            namespace: mattermost
+            name: mattermost-operator
+            namespace: mattermost-operator
 
-      - description: Mattermost Registry Health Check
+      - description: Mattermost Health Check
         wait:
           cluster:
             kind: Deployment
-            name: mattermost-registry
-            namespace: mattermost
-
-      - description: Mattermost Shell Health Check
-        wait:
-          cluster:
-            kind: Deployment
-            name: mattermost-mattermost-shell
-            namespace: mattermost
-
-      - description: Mattermost Toolbox Health Check
-        wait:
-          cluster:
-            kind: Deployment
-            name: mattermost-toolbox
-            namespace: mattermost
-
-      - description: Mattermost Sidekiq Health Check
-        wait:
-          cluster:
-            kind: Deployment
-            name: mattermost-sidekiq-all-in-1-v2
-            namespace: mattermost
-
-      - description: Mattermost Webservice Health Check
-        wait:
-          cluster:
-            kind: Deployment
-            name: mattermost-webservice-default
-            namespace: mattermost
-
-      - description: Mattermost Gitaly Health Check
-        wait:
-          cluster:
-            kind: StatefulSet
-            name: mattermost-gitaly
-            namespace: mattermost
-
-      - description: Mattermost Migrations Health Check
-        wait:
-          cluster:
-            kind: Job
-            name: mattermost-migrations-1
+            name: mattermost
             namespace: mattermost
 
   - name: ingress
