@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [9.3.0-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.3.0-uds.0...v9.3.0-uds.1) (2024-01-29)
+
+
+### Features
+
+* update readme ([7f5162b](https://github.com/defenseunicorns/uds-package-mattermost/commit/7f5162b6cd5a3353416df0a4f6424ab9058895c0))
+* Update README.md ([7e9f97b](https://github.com/defenseunicorns/uds-package-mattermost/commit/7e9f97b886d83ab592da3de8d94f68d6fedec385))
+
+
+### Bug Fixes
+
+* fix mm hostname ([516569a](https://github.com/defenseunicorns/uds-package-mattermost/commit/516569afd508436ebd0a922649f3bc1172cf5f0e))
+* fix mm hostname and tests ([785384d](https://github.com/defenseunicorns/uds-package-mattermost/commit/785384dfd54e1ce1e3d5a59c8c381d3d2c65e080))
+* fix tests for mm ([c660e66](https://github.com/defenseunicorns/uds-package-mattermost/commit/c660e661577f1cc82eb4f335043f207cc642d5f5))
+
 ## [0.1.7](https://github.com/defenseunicorns/uds-capability-mattermost-operator/compare/v0.1.6...v0.1.7) (2023-12-18)
 
 
