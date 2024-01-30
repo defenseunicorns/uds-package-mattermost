@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [9.3.0-uds.2](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.3.0-uds.1...v9.3.0-uds.2) (2024-01-30)
+
+
+### Features
+
+* add irsa/sa auth support ([f178a54](https://github.com/defenseunicorns/uds-package-mattermost/commit/f178a5422e0bc84bb591532015df8e9a7acb0b54))
+* add irsa/sa auth support ([c3d5acb](https://github.com/defenseunicorns/uds-package-mattermost/commit/c3d5acb55e48fb4a92b62523b32ca2b90d181614))
+
 ## [9.3.0-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.3.0-uds.0...v9.3.0-uds.1) (2024-01-29)
 
 
