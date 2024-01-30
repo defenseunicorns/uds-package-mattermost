@@ -59,27 +59,32 @@ mattermostApp:
     - name: MM_FILESETTINGS_AMAZONS3SSL
       valueFrom:
         secretKeyRef:
-          key: MM_FILESETTINGS_AMAZONS3SSL
+          key: secure_connection
           name: "mattermost-object-store"
     - name: MM_FILESETTINGS_AMAZONS3ACCESSKEYID
       valueFrom:
         secretKeyRef:
-          key: MM_FILESETTINGS_AMAZONS3ACCESSKEYID
+          key: access_key
           name: "mattermost-object-store"
     - name: MM_FILESETTINGS_AMAZONS3SECRETACCESSKEY
       valueFrom:
         secretKeyRef:
-          key: MM_FILESETTINGS_AMAZONS3SECRETACCESSKEY
+          key: secret_key
           name: "mattermost-object-store"
     - name: MM_FILESETTINGS_AMAZONS3BUCKET
       valueFrom:
         secretKeyRef:
-          key: MM_FILESETTINGS_AMAZONS3BUCKET
+          key: bucket
           name: "mattermost-object-store"
     - name: MM_FILESETTINGS_AMAZONS3ENDPOINT
       valueFrom:
         secretKeyRef:
-          key: MM_FILESETTINGS_AMAZONS3ENDPOINT
+          key: endpoint
+          name: "mattermost-object-store"
+    - name: MM_FILESETTINGS_AMAZONS3REGION
+      valueFrom:
+        secretKeyRef:
+          key: region
           name: "mattermost-object-store"
   securityContext:
     runAsUser: 2000
@@ -99,7 +104,7 @@ global:
       useInternal: false
       existingDatabaseSecret:
         name: mattermost-postgres
-        key: DB_CONNECTION_STRING
+        key: db_connection_string
     # The job server is only necessary on multi-node/enterprise clusters
     # https://docs.mattermost.com/scale/high-availability-cluster.html#job-server
     # It also will error due to its init container being blocked by Istio mTLS

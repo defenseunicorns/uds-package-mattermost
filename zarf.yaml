@@ -4,7 +4,7 @@ metadata:
   name: mattermost
   description: "UDS Mattermost Package"
   # x-release-please-start-version
-  version: "9.3.0-uds.1"
+  version: "9.3.0-uds.2"
   # x-release-please-end
   architecture: amd64
 
@@ -12,10 +12,6 @@ variables:
   - name: MATTERMOST_ENTERPRISE_LICENSE
     default: ""
     autoIndent: true
-  - name: MATTERMOST_BUCKET_SUFFIX
-    default: ""
-  - name: MATTERMOST_FILE_STORE_ENDPOINT
-    default: "minio"
   - name: MATTERMOST_SSO_ENABLED
     default: "false"
   - name: MATTERMOST_SSO_CLIENT_ID
