@@ -51,6 +51,7 @@ fileStore:
   secret: "mattermost-object-store"
   url: "###ZARF_VAR_MATTERMOST_FILE_STORE_ENDPOINT###"
   bucket: "uds-mattermost###ZARF_VAR_MATTERMOST_BUCKET_SUFFIX###"
+  useServiceAccount: ###ZARF_VAR_MATTERMOST_FILE_STORE_SA###
 
 # mattermostEnvs:
 #   # required for Keycloak >= 20.X to work with mattermost auth pointed to Keycloak
