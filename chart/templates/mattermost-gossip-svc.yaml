@@ -1,0 +1,18 @@
+{{- /* Mattermost uses a gossip protocol for HA clustering. In order for Istio to properly route this traffic it needs to be explicitly defined in a service with a `tcp-` prefix. */ -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: mattermost-gossip
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: mattermost-enterprise-edition
+spec:
+  type: ClusterIP
+  clusterIP: None
+  selector:
+    app.kubernetes.io/name: mattermost-enterprise-edition
+  ports:
+  - name: tcp-gossip
+    port: 8074
+    protocol: TCP
+    targetPort: 8074

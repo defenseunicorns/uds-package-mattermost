@@ -6,15 +6,22 @@ metadata:
 spec:
   network:
     expose:
-      - service: mattermost
+      - service: mattermost-enterprise-edition
         podLabels:
-          app: mattermost
+          app.kubernetes.io/name: mattermost-enterprise-edition
         gateway: tenant
         host: mattermost
         port: 8065
     allow:
+      # Permit intra-namespace communication for job communications
+      - direction: Ingress
+        remoteGenerated: IntraNamespace
+
+      - direction: Egress
+        remoteGenerated: IntraNamespace
+
       # Todo: wide open for hitting in-cluster or external postgres/s3
       - direction: Egress
         podLabels:
-          app: mattermost
+          app.kubernetes.io/name: mattermost-enterprise-edition
         remoteGenerated: Anywhere

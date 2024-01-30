@@ -1,0 +1,10 @@
+sso:
+  enabled: false
+  client_id: ""
+  client_secret: ""
+  auth_endpoint: ""
+  token_endpoint: ""
+  user_api_endpoint: ""
+  enable_sign_up_with_email: ""
+  enable_sign_in_with_email: ""
+  enable_sign_in_with_username: ""
