@@ -18,6 +18,8 @@ variables:
     default: ""
   - name: MATTERMOST_FILE_STORE_ENDPOINT
     default: "minio"
+  - name: MATTERMOST_FILE_STORE_SA
+    default: "false"
   - name: MATTERMOST_VOLUMES
     default: "[]"
     autoIndent: true
@@ -61,7 +63,7 @@ components:
           - values/mattermost-operator-values.yaml
       - name: mattermost
         namespace: mattermost
-        url: https://repo1.dso.mil/big-bang/product/packages/mattermost.git
+        url: https://repo1.dso.mil/jmcclintock/mattermost.git
         gitPath: chart
         version: 9.3.0-bb.2
         valuesFiles:
