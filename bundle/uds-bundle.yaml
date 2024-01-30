@@ -3,7 +3,7 @@ metadata:
   name: mattermost-test
   description: A UDS bundle for deploying Mattermost and it's dependencies on a development cluster
   # x-release-please-start-version
-  version: 9.3.0-uds.1
+  version: 9.3.0-uds.2
   # x-release-please-end
 
 packages:
@@ -22,5 +22,5 @@ packages:
   - name: mattermost
     path: ../
     # x-release-please-start-version
-    ref: 9.3.0-uds.1
+    ref: 9.3.0-uds.2
     # x-release-please-end
