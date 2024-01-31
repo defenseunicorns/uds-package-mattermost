@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 
 ### Features
 
-* burn the boats ([d25c6bb](https://github.com/defenseunicorns/uds-package-mattermost/commit/d25c6bb156a9724bfd548bbc3b0c23d2b9ebd728))
+* Switch to upstream chart and 9.4.1 MM ([d25c6bb](https://github.com/defenseunicorns/uds-package-mattermost/commit/d25c6bb156a9724bfd548bbc3b0c23d2b9ebd728))
 
 
 ### Miscellaneous
