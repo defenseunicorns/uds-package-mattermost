@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [9.4.1-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.3.0-uds.2...v9.4.1-uds.0) (2024-01-31)
+
+
+### Features
+
+* Switch to upstream chart and 9.4.1 MM ([d25c6bb](https://github.com/defenseunicorns/uds-package-mattermost/commit/d25c6bb156a9724bfd548bbc3b0c23d2b9ebd728))
+
+
+### Miscellaneous
+
+* release 9.4.1-uds.0 ([5b89960](https://github.com/defenseunicorns/uds-package-mattermost/commit/5b899604054f3d194d3c52ce2e0257991a37b47f))
+
 ## [9.3.0-uds.2](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.3.0-uds.1...v9.3.0-uds.2) (2024-01-30)
 
 
