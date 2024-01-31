@@ -14,5 +14,5 @@ tasks:
         wait:
           network:
             protocol: https
-            address: mattermost.uds.dev
+            address: chat.uds.dev
             code: 200
