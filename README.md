@@ -34,4 +34,12 @@ Object storage configuration is setup in the `uds-mattermost-config` chart and s
 
 The full list of override config can be found in the values under `objectStorage` [here](./chart/values.yaml). In addition zarf vars are exposed for `ACCESS_KEY` and `SECRET_KEY` for convenience if using import/exports in your bundle.
 
-To use IRSA make sure to not set the two keys and add the appropriate annotation to the service account via an override to `serviceAccount.annotations`.
+To use IRSA make sure to NOT set the two key variables and add the appropriate role ARN annotation to the service account via an override to `serviceAccount.annotations`. As an example:
+```yaml
+    overrides:
+      mattermost:
+        mattermost-enterprise-edition:
+          values:
+            - path: "serviceAccount.annotations.irsa/role-arn"
+              value: "arn:aws:iam::123456789:role/mattermost-role"
+```
