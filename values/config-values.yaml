@@ -1,10 +1,6 @@
-sso:
-  enabled: ###ZARF_VAR_MATTERMOST_SSO_ENABLED###
-  client_id: ###ZARF_VAR_MATTERMOST_SSO_CLIENT_ID###
-  client_secret: ###ZARF_VAR_MATTERMOST_SSO_CLIENT_SECRET###
-  auth_endpoint: ###ZARF_VAR_MATTERMOST_SSO_AUTH_ENDPOINT###
-  token_endpoint: ###ZARF_VAR_MATTERMOST_SSO_TOKEN_ENDPOINT###
-  user_api_endpoint: ###ZARF_VAR_MATTERMOST_SSO_USER_API_ENDPOINT###
-  enable_sign_up_with_email: ###ZARF_VAR_MATTERMOST_SSO_EMAIL_SIGNUP_ENABLED###
-  enable_sign_in_with_email: ###ZARF_VAR_MATTERMOST_SSO_EMAIL_SIGNIN_ENABLED###
-  enable_sign_in_with_username: ###ZARF_VAR_MATTERMOST_SSO_USERNAME_SIGNIN_ENABLED###
+objectStorage:
+  accessKey: "###ZARF_VAR_ACCESS_KEY###"
+  secretKey: "###ZARF_VAR_SECRET_KEY###"
+
+postgres:
+  password: "###ZARF_VAR_DB_PASSWORD###"

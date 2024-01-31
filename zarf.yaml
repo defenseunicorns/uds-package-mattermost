@@ -9,30 +9,14 @@ metadata:
   architecture: amd64
 
 variables:
-  - name: MATTERMOST_ENTERPRISE_LICENSE
-    default: ""
-    autoIndent: true
-  - name: MATTERMOST_SSO_ENABLED
-    default: "false"
-  - name: MATTERMOST_SSO_CLIENT_ID
-    default: ""
-  - name: MATTERMOST_SSO_CLIENT_SECRET
-    default: ""
-  - name: MATTERMOST_SSO_AUTH_ENDPOINT
-    default: ""
-  - name: MATTERMOST_SSO_TOKEN_ENDPOINT
-    default: ""
-  - name: MATTERMOST_SSO_USER_API_ENDPOINT
-    default: ""
-  # Enabled by default to support non-SSO auth
-  - name: MATTERMOST_SSO_EMAIL_SIGNUP_ENABLED
-    default: "true"
-  - name: MATTERMOST_SSO_EMAIL_SIGNIN_ENABLED
-    default: "true"
-  - name: MATTERMOST_SSO_USERNAME_SIGNIN_ENABLED
-    default: "true"
   - name: DOMAIN
     default: "uds.dev"
+  - name: ACCESS_KEY
+    description: "Access Key for S3 compatible storage"
+  - name: SECRET_KEY
+    description: "Secret Key for S3 compatible storage"
+  - name: DB_PASSWORD
+    description: "Database Password for Mattermost"
 
 components:
   - name: mattermost

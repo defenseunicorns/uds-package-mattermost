@@ -59,32 +59,32 @@ mattermostApp:
     - name: MM_FILESETTINGS_AMAZONS3SSL
       valueFrom:
         secretKeyRef:
-          key: secure_connection
+          key: MM_FILESETTINGS_AMAZONS3SSL
           name: "mattermost-object-store"
     - name: MM_FILESETTINGS_AMAZONS3ACCESSKEYID
       valueFrom:
         secretKeyRef:
-          key: access_key
+          key: MM_FILESETTINGS_AMAZONS3ACCESSKEYID
           name: "mattermost-object-store"
     - name: MM_FILESETTINGS_AMAZONS3SECRETACCESSKEY
       valueFrom:
         secretKeyRef:
-          key: secret_key
+          key: MM_FILESETTINGS_AMAZONS3SECRETACCESSKEY
           name: "mattermost-object-store"
     - name: MM_FILESETTINGS_AMAZONS3BUCKET
       valueFrom:
         secretKeyRef:
-          key: bucket
+          key: MM_FILESETTINGS_AMAZONS3BUCKET
           name: "mattermost-object-store"
     - name: MM_FILESETTINGS_AMAZONS3ENDPOINT
       valueFrom:
         secretKeyRef:
-          key: endpoint
+          key: MM_FILESETTINGS_AMAZONS3ENDPOINT
           name: "mattermost-object-store"
     - name: MM_FILESETTINGS_AMAZONS3REGION
       valueFrom:
         secretKeyRef:
-          key: region
+          key: MM_FILESETTINGS_AMAZONS3REGION
           name: "mattermost-object-store"
   securityContext:
     runAsUser: 2000
@@ -93,11 +93,12 @@ mattermostApp:
 serviceAccount:
   create: true
   name: mattermost
-  annotations: {} # Add IRSA annotation here if necessary in environment
+  annotations: {}
 
 global:
   siteUrl: "https://mattermost.###ZARF_VAR_DOMAIN###"
-  mattermostLicense: "###ZARF_VAR_MATTERMOST_ENTERPRISE_LICENSE###"
+  # Default unlicensed deployment
+  mattermostLicense: ""
 
   features:
     database:

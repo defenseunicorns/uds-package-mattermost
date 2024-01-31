@@ -1,3 +1,20 @@
+objectStorage:
+  secure: true
+  accessKey: ""
+  secretKey: ""
+  bucket: "mattermost"
+  endpoint: "s3.amazonaws.com"
+  region: "us-west-1"
+
+postgres:
+  username: "mattermost"
+  password: ""
+  host: ""
+  port: 5432
+  dbName: "mattermost"
+  # Example: "?connect_timeout=10&sslmode=disable"
+  connectionOptions: ""
+
 sso:
   enabled: false
   client_id: ""
@@ -5,6 +22,7 @@ sso:
   auth_endpoint: ""
   token_endpoint: ""
   user_api_endpoint: ""
-  enable_sign_up_with_email: ""
-  enable_sign_in_with_email: ""
-  enable_sign_in_with_username: ""
+  # These should typically be disabled if SSO is enabled
+  enable_sign_up_with_email: true
+  enable_sign_in_with_email: true
+  enable_sign_in_with_username: true

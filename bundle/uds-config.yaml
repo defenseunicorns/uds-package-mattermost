@@ -4,4 +4,4 @@ variables:
       - name: uds-mattermost-dev
   dev-postgres:
     db_username: "mattermost"
-    db_name: "mattermostdb"
+    db_name: "mattermost"

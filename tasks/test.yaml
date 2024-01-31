@@ -1,4 +1,13 @@
 tasks:
+  - name: health-check
+    actions:
+      - description: Mattermost Health Check
+        wait:
+          cluster:
+            kind: Deployment
+            name: mattermost-enterprise-edition
+            namespace: mattermost
+
   - name: ingress
     actions:
       - description: Mattermost UI Health Check

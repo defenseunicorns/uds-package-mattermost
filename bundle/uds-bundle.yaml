@@ -18,9 +18,34 @@ packages:
   - name: dev-secrets
     path: ../
     ref: 0.1.0
-  
+    exports:
+    - name: ACCESS_KEY
+    - name: SECRET_KEY
+    - name: DB_PASSWORD
+
   - name: mattermost
     path: ../
     # x-release-please-start-version
     ref: 9.3.0-uds.2
     # x-release-please-end
+    imports:
+      - name: ACCESS_KEY
+        package: dev-secrets
+      - name: SECRET_KEY
+        package: dev-secrets
+      - name: DB_PASSWORD
+        package: dev-secrets
+    overrides:
+      mattermost:
+        uds-mattermost-config:
+          values:
+            - path: "objectStorage.secure"
+              value: "false"
+            - path: "objectStorage.endpoint"
+              value: "minio.dev-minio.svc.cluster.local:9000"
+            - path: "objectStorage.bucket"
+              value: "uds-mattermost-dev"
+            - path: "postgres.host"
+              value: "postgresql.dev-postgres.svc.cluster.local"
+            - path: "postgres.connectionOptions"
+              value: "?connect_timeout=10&sslmode=disable"
