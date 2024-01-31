@@ -9,6 +9,9 @@ metadata:
   architecture: amd64
 
 variables:
+  - name: SUBDOMAIN
+    description: "Subdomain for Mattermost"
+    default: "chat"
   - name: DOMAIN
     default: "uds.dev"
   - name: ACCESS_KEY

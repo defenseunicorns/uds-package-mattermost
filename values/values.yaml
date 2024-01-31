@@ -96,7 +96,7 @@ serviceAccount:
   annotations: {}
 
 global:
-  siteUrl: "https://mattermost.###ZARF_VAR_DOMAIN###"
+  siteUrl: "https://###ZARF_VAR_SUBDOMAIN###.###ZARF_VAR_DOMAIN###"
   # Default unlicensed deployment
   mattermostLicense: ""
 

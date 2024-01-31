@@ -28,4 +28,4 @@ sso:
   enable_sign_in_with_username: true
 
 # The subdomain for the mattermost server, will be prefixed to your domain (ex: mattermost.example.com)
-host: "mattermost"
+subdomain: "chat"
