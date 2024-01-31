@@ -23,7 +23,10 @@ jobs:
     needs: tag-new-version
     if: ${{ needs.tag-new-version.outputs.release_created == 'true' }}
     runs-on: ubuntu-latest
-    name: Publish package
+    name: Publish ${{ matrix.flavor }}
+    strategy:
+      matrix:
+        flavor: [upstream, registry1]
 
     permissions:
       contents: read
@@ -46,4 +49,4 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
     
       - name: Publish Package
-        run: uds run -f tasks/publish.yaml package
+        run: uds run -f tasks/publish.yaml package --set FLAVOR=${{ matrix.flavor }}
