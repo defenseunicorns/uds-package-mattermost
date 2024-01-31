@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [9.4.1-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.4.1-uds.0...v9.4.1-uds.1) (2024-01-31)
+
+
+### Bug Fixes
+
+* handle subdomain shared between packages ([#10](https://github.com/defenseunicorns/uds-package-mattermost/issues/10)) ([31da0b4](https://github.com/defenseunicorns/uds-package-mattermost/commit/31da0b4eec93179197d1e916369a5a683e9252ac))
+
 ## [9.4.1-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.3.0-uds.2...v9.4.1-uds.0) (2024-01-31)
 
 
