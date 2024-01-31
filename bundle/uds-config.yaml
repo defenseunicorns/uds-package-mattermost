@@ -4,7 +4,4 @@ variables:
       - name: uds-mattermost-dev
   dev-postgres:
     db_username: "mattermost"
-    db_name: "mattermostdb"
-  mattermost:
-    mattermost_file_store_endpoint: minio.dev-minio.svc.cluster.local
-    mattermost_bucket_suffix: "-dev"
+    db_name: "mattermost"

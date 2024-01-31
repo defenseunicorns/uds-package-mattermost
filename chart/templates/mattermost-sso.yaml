@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mattermost-sso
+  namespace: {{ .Release.Namespace }}
+type: Opaque
+stringData:
+  MM_GITLABSETTINGS_ENABLE: "{{ .Values.sso.enabled | toString }}"
+  MM_GITLABSETTINGS_ID: "{{ .Values.sso.client_id }}"
+  MM_GITLABSETTINGS_SECRET: "{{ .Values.sso.client_secret }}"
+  MM_GITLABSETTINGS_AUTHENDPOINT: "{{ .Values.sso.auth_endpoint }}"
+  MM_GITLABSETTINGS_TOKENENDPOINT: "{{ .Values.sso.token_endpoint }}"
+  MM_GITLABSETTINGS_USERAPIENDPOINT: "{{ .Values.sso.user_api_endpoint }}"
+  MM_EMAILSETTINGS_ENABLESIGNUPWITHEMAIL: "{{ .Values.sso.enable_sign_up_with_email | toString }}"
+  MM_EMAILSETTINGS_ENABLESIGNINWITHEMAIL: "{{ .Values.sso.enable_sign_in_with_email | toString }}"
+  MM_EMAILSETTINGS_ENABLESIGNINWITHUSERNAME: "{{ .Values.sso.enable_sign_in_with_username | toString }}"

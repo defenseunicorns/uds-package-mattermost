@@ -1,15 +1,20 @@
-name: Test package
+name: Test
 
+# This workflow is triggered on pull requests to the main branch.
 on:
-  # Manual trigger
-  workflow_dispatch:
-
-  # Triggered by pull-request-conditionals.yaml
-  workflow_call:
+  pull_request:
+    paths:
+      - ".github/**"
+      - "bundle/**"
+      - "values/**"
+      - "tasks/**"
+      - "tests/**"
+      - "tasks.yaml"
+      - "zarf.yaml"
 
 # Abort prior jobs in the same workflow / PR
 concurrency:
-  group: test-${{ github.ref }}-${{ inputs.package }}
+  group: test-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -17,9 +22,12 @@ permissions:
 
 jobs:
   test:
-    runs-on: "uds-ubuntu-big-boy-16-core"
+    runs-on: "ubuntu-latest"
     timeout-minutes: 20
-    name: Test
+    name: Deploy ${{ matrix.flavor }}
+    strategy:
+      matrix:
+        flavor: [upstream, registry1]
 
     steps:
       - name: Checkout repository
@@ -32,7 +40,7 @@ jobs:
         run: zarf tools registry login -u "${{secrets.IRON_BANK_ROBOT_USERNAME}}" -p "${{secrets.IRON_BANK_ROBOT_PASSWORD}}" registry1.dso.mil
 
       - name: Create test bundle
-        run: uds run create-test-bundle
+        run: uds run create-test-bundle --set FLAVOR=${{ matrix.flavor }}
 
       - name: Setup cluster
         run: uds run setup-cluster
@@ -42,10 +50,6 @@ jobs:
 
       - name: Test package
         run: uds run test-package
-
-      - name: Cleanup
-        if: always()
-        run: uds run cleanup
 
       - name: Save logs
         if: always()

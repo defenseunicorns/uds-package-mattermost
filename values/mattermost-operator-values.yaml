@@ -1,7 +1,0 @@
-# imagePullSecrets:
-#   - name: private-registry
-
-image:
-  imagePullPolicy: IfNotPresent
-
-openshift: false

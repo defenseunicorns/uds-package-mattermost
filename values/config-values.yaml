@@ -1,0 +1,6 @@
+objectStorage:
+  accessKey: "###ZARF_VAR_ACCESS_KEY###"
+  secretKey: "###ZARF_VAR_SECRET_KEY###"
+
+postgres:
+  password: "###ZARF_VAR_DB_PASSWORD###"

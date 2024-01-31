@@ -1,18 +1,11 @@
 tasks:
   - name: health-check
     actions:
-      - description: Mattermost Operator Health Check
-        wait:
-          cluster:
-            kind: Deployment
-            name: mattermost-operator
-            namespace: mattermost-operator
-
       - description: Mattermost Health Check
         wait:
           cluster:
             kind: Deployment
-            name: mattermost
+            name: mattermost-enterprise-edition
             namespace: mattermost
 
   - name: ingress

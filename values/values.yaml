@@ -1,0 +1,113 @@
+minio:
+  enabled: false
+mysqlha:
+  enabled: false
+mattermostApp:
+  # Default replicacount due to HA requiring a license
+  replicaCount: 1
+  # Mattermost does not provide helm values to configure all the options so it is done via ENV
+  extraEnv:
+    # SSO Settings
+    - name: MM_GITLABSETTINGS_ENABLE
+      valueFrom:
+        secretKeyRef:
+          key: MM_GITLABSETTINGS_ENABLE
+          name: "mattermost-sso"
+    - name: MM_GITLABSETTINGS_ID
+      valueFrom:
+        secretKeyRef:
+          key: MM_GITLABSETTINGS_ID
+          name: "mattermost-sso"
+    - name: MM_GITLABSETTINGS_SECRET
+      valueFrom:
+        secretKeyRef:
+          key: MM_GITLABSETTINGS_SECRET
+          name: "mattermost-sso"
+    - name: MM_GITLABSETTINGS_AUTHENDPOINT
+      valueFrom:
+        secretKeyRef:
+          key: MM_GITLABSETTINGS_AUTHENDPOINT
+          name: "mattermost-sso"
+    - name: MM_GITLABSETTINGS_TOKENENDPOINT
+      valueFrom:
+        secretKeyRef:
+          key: MM_GITLABSETTINGS_TOKENENDPOINT
+          name: "mattermost-sso"
+    - name: MM_GITLABSETTINGS_USERAPIENDPOINT
+      valueFrom:
+        secretKeyRef:
+          key: MM_GITLABSETTINGS_USERAPIENDPOINT
+          name: "mattermost-sso"
+    - name: MM_EMAILSETTINGS_ENABLESIGNUPWITHEMAIL
+      valueFrom:
+        secretKeyRef:
+          key: MM_EMAILSETTINGS_ENABLESIGNUPWITHEMAIL
+          name: "mattermost-sso"
+    - name: MM_EMAILSETTINGS_ENABLESIGNINWITHEMAIL
+      valueFrom:
+        secretKeyRef:
+          key: MM_EMAILSETTINGS_ENABLESIGNINWITHEMAIL
+          name: "mattermost-sso"
+    - name: MM_EMAILSETTINGS_ENABLESIGNINWITHUSERNAME
+      valueFrom:
+        secretKeyRef:
+          key: MM_EMAILSETTINGS_ENABLESIGNINWITHUSERNAME
+          name: "mattermost-sso"
+    # Object Storage Connection
+    - name: MM_FILESETTINGS_DRIVERNAME
+      value: "amazons3"
+    - name: MM_FILESETTINGS_AMAZONS3SSL
+      valueFrom:
+        secretKeyRef:
+          key: MM_FILESETTINGS_AMAZONS3SSL
+          name: "mattermost-object-store"
+    - name: MM_FILESETTINGS_AMAZONS3ACCESSKEYID
+      valueFrom:
+        secretKeyRef:
+          key: MM_FILESETTINGS_AMAZONS3ACCESSKEYID
+          name: "mattermost-object-store"
+    - name: MM_FILESETTINGS_AMAZONS3SECRETACCESSKEY
+      valueFrom:
+        secretKeyRef:
+          key: MM_FILESETTINGS_AMAZONS3SECRETACCESSKEY
+          name: "mattermost-object-store"
+    - name: MM_FILESETTINGS_AMAZONS3BUCKET
+      valueFrom:
+        secretKeyRef:
+          key: MM_FILESETTINGS_AMAZONS3BUCKET
+          name: "mattermost-object-store"
+    - name: MM_FILESETTINGS_AMAZONS3ENDPOINT
+      valueFrom:
+        secretKeyRef:
+          key: MM_FILESETTINGS_AMAZONS3ENDPOINT
+          name: "mattermost-object-store"
+    - name: MM_FILESETTINGS_AMAZONS3REGION
+      valueFrom:
+        secretKeyRef:
+          key: MM_FILESETTINGS_AMAZONS3REGION
+          name: "mattermost-object-store"
+  securityContext:
+    runAsUser: 2000
+    runAsGroup: 2000
+
+serviceAccount:
+  create: true
+  name: mattermost
+  annotations: {}
+
+global:
+  siteUrl: "https://mattermost.###ZARF_VAR_DOMAIN###"
+  # Default unlicensed deployment
+  mattermostLicense: ""
+
+  features:
+    database:
+      useInternal: false
+      existingDatabaseSecret:
+        name: mattermost-postgres
+        key: db_connection_string
+    # The job server is only necessary on multi-node/enterprise clusters
+    # https://docs.mattermost.com/scale/high-availability-cluster.html#job-server
+    # It also will error due to its init container being blocked by Istio mTLS
+    jobserver:
+      enabled: false
