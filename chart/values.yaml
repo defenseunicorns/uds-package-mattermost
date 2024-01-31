@@ -26,3 +26,6 @@ sso:
   enable_sign_up_with_email: true
   enable_sign_in_with_email: true
   enable_sign_in_with_username: true
+
+# The subdomain for the mattermost server, will be prefixed to your domain (ex: mattermost.example.com)
+host: "mattermost"

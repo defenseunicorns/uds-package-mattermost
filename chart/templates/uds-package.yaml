@@ -10,7 +10,7 @@ spec:
         podLabels:
           app.kubernetes.io/name: mattermost-enterprise-edition
         gateway: tenant
-        host: mattermost
+        host: {{ .Values.host }}
         port: 8065
     allow:
       # Permit intra-namespace communication for job communications
