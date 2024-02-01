@@ -1,6 +1,12 @@
 # UDS Mattermost Package
 
-This repo contains the UDS Mattermost Package along with an example bundle and UDS tasks for development.
+This repo contains a UDS Package for [Mattermost](https://mattermost.com/), along with an example bundle and UDS tasks for development.
+
+## Flavors
+
+Two flavors of this package are produced at this time:
+- `upstream`: This flavor uses the upstream images (same ones deployed by the chart by default) and is intended for a quick and seamless development experience
+- `registry1` (amd64 architecture only): This flavor uses hardened images from [Ironbank](https://p1.dso.mil/services/iron-bank) and is intended for production environments
 
 ## Dependencies
 
@@ -43,3 +49,7 @@ To use IRSA make sure to NOT set the two key variables and add the appropriate r
             - path: "serviceAccount.annotations.irsa/role-arn"
               value: "arn:aws:iam::123456789:role/mattermost-role"
 ```
+
+## Additional Config
+
+Additional configuration can be done via overrides to configure a number of Mattermost properties like SSO. Check the full list of values in the config chart [here](./chart/values.yaml). If you find that you need something else exposed please open an issue!

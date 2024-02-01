@@ -6,7 +6,6 @@ metadata:
   # x-release-please-start-version
   version: "9.4.1-uds.2"
   # x-release-please-end
-  architecture: amd64
 
 variables:
   - name: SUBDOMAIN
@@ -51,6 +50,8 @@ components:
     description: "Deploy Mattermost"
     only:
       flavor: registry1
+      cluster:
+        architecture: amd64
     charts:
       - name: uds-mattermost-config
         namespace: mattermost
