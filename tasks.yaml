@@ -1,8 +1,8 @@
 includes:
   - cleanup: ./tasks/cleanup.yaml
   - create: ./tasks/create.yaml
-  - deploy: ./tasks/deploy.yaml
-  - setup: ./tasks/setup.yaml
+  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.1.2/tasks/deploy.yaml
+  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.1.2/tasks/setup.yaml
   - test: ./tasks/test.yaml
 
 tasks:
@@ -26,11 +26,11 @@ tasks:
   
   - name: deploy-package
     actions:
-      - task: deploy:mattermost-package
+      - task: deploy:package
 
   - name: deploy-test-bundle
     actions:
-      - task: deploy:mattermost-test-bundle
+      - task: deploy:test-bundle
 
   - name: test-package
     actions:

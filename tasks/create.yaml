@@ -1,21 +1,20 @@
-variables:
-  - name: FLAVOR
-    default: "registry1"
+includes:
+  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.1.2/tasks/create.yaml
 
 tasks:
   - name: mattermost-test-bundle
     description: Create the UDS bundle with Mattermost and its dependencies
     actions:
-      - task: mattermost-package
+      - task: create:package
       - task: dependency-package
-      - cmd: uds create bundle --confirm --no-progress --architecture=${UDS_ARCH}
+      - task: create:test-bundle
 
   - name: mattermost-package
     description: Create the UDS Mattermost Zarf Package
     actions:
-      - cmd: zarf package create --confirm --no-progress --architecture=${ZARF_ARCHITECTURE} --flavor ${FLAVOR}
+      - task: create:package
 
   - name: dependency-package
-    description: Create the Minio, PostgreSQL, and Redis Dependency Zarf Packages
+    description: Create the Dependency Zarf Package
     actions:
       - cmd: zarf package create src/dev-secrets/ --confirm --no-progress --architecture=${UDS_ARCH}
