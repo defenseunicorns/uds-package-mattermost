@@ -29,3 +29,7 @@ sso:
 
 # The subdomain for the mattermost server, will be prefixed to your domain (ex: mattermost.example.com)
 subdomain: "chat"
+
+# Additional configuration for Mattermost
+config:
+  enablePluginUploads: false
