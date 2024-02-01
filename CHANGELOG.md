@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [9.4.1-uds.2](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.4.1-uds.1...v9.4.1-uds.2) (2024-02-01)
+
+
+### Bug Fixes
+
+* expose plugin upload setting ([#12](https://github.com/defenseunicorns/uds-package-mattermost/issues/12)) ([f8fbfc2](https://github.com/defenseunicorns/uds-package-mattermost/commit/f8fbfc2d38e90f82f57821e319b69388e178a1fc))
+
 ## [9.4.1-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.4.1-uds.0...v9.4.1-uds.1) (2024-01-31)
 
 
