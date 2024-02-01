@@ -1,3 +1,6 @@
+includes:
+  - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.1.2/tasks/publish.yaml
+
 variables:
   - name: TARGET_REPO
     default: oci://ghcr.io/defenseunicorns/packages/uds
@@ -21,9 +24,4 @@ tasks:
           fi
 
       - description: Publish the packages
-        cmd: |
-          set -e
-          zarf package publish zarf-package-mattermost-amd64-${VERSION}.tar.zst ${TARGET_REPO}
-          if [ "${FLAVOR}" != "registry1" ]; then
-            zarf package publish zarf-package-mattermost-arm64-${VERSION}.tar.zst ${TARGET_REPO}
-          fi
+        task: publish:package
