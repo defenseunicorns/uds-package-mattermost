@@ -1,10 +1,6 @@
 includes:
   - create: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.1.2/tasks/create.yaml
 
-variables:
-  - name: FLAVOR
-    default: "upstream"
-
 tasks:
   - name: mattermost-test-bundle
     description: Create the UDS bundle with Mattermost and its dependencies
