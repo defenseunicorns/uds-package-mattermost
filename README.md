@@ -52,7 +52,7 @@ To use IRSA make sure to NOT set the two key variables and add the appropriate r
 
 | Flavor | Description | Example Creation |
 | ------ | ----------- | ---------------- |
-| upstream-ce | Uses upstream images within the package. | `zarf package create . -f upstream` |
+| upstream | Uses upstream images within the package. | `zarf package create . -f upstream` |
 | registry1 | Uses images from registry1.dso.mil within the package. | `zarf package create . -f registry1` |
 
 ## Releases
