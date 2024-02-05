@@ -35,7 +35,7 @@ jobs:
 
       - name: Environment setup
         uses: ./.github/actions/setup
-      
+
       - name: Iron Bank Login
         run: zarf tools registry login -u "${{secrets.IRON_BANK_ROBOT_USERNAME}}" -p "${{secrets.IRON_BANK_ROBOT_PASSWORD}}" registry1.dso.mil
 
@@ -44,7 +44,7 @@ jobs:
 
       - name: Setup cluster
         run: uds run setup-cluster
-      
+
       - name: Deploy test bundle
         run: uds run deploy-test-bundle
 

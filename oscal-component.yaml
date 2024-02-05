@@ -31,15 +31,15 @@ component-definition:
             - uuid: 889dce9c-d83f-48a3-a62a-3f50e311761a
               control-id: au-2
               description: >-
-                Mattermost creates event logs.  
+                Mattermost creates event logs.
             - uuid: ce2c791e-f47e-45d3-9bba-dcd7a372ddd3
               control-id: au-3
               description: >-
-                Mattermost creates event logs.  
+                Mattermost creates event logs.
             - uuid: 2ef78f64-d9ac-4292-a5f1-6c627734d39c
               control-id: au-3.1
               description: >-
-                Mattermost creates event logs.  
+                Mattermost creates event logs.
             - uuid: 1041d516-56b9-4652-886e-bd5bad38f789
               control-id: au-8
               description: >-
