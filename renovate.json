@@ -4,14 +4,15 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     ":dependencyDashboard",
-    ":semanticCommits",
-    ":semanticCommitTypeAll(chore)",
-    "group:all"
+    ":semanticPrefixFixDepsChoreOthers",
+    "config:base",
+    "group:all",
+    "replacements:all",
+    "workarounds:all"
   ],
-  "branchConcurrentLimit": 0,
-  "prConcurrentLimit": 0,
-  "prHourlyLimit": 0,
+  "timezone": "America/New_York",
   "rebaseStalePrs": true,
+  "schedule": ["after 7am and before 9am every weekday"],
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
   "rebaseWhen": "conflicted",
@@ -23,50 +24,12 @@
   "helm-values": {
     "fileMatch": ["./.+\\.yaml$"]
   },
-  "regexManagers": [
-    {
-      "fileMatch": ["\\.*\\.ya?ml$"],
-      "matchStrings": [
-        "- name: (?<depName>.*?)\n *url: (?<registryUrl>.*?)\n *version: (?<currentValue>.*)\n",
-        "- name: (?<depName>.*?)\n *version: (?<currentValue>.*)\n *url: (?<registryUrl>.*?)\n",
-        "- name: (?<depName>.*?)\n *namespace: .*\n *url: (?<registryUrl>.*?)\n *version: (?<currentValue>.*)\n",
-        "- name: (?<depName>.*?)\n *namespace: .*\n *version: (?<currentValue>.*)\n *url: (?<registryUrl>.*?)\n"
-      ],
-      "datasourceTemplate": "helm"
-    },
-    {
-      "fileMatch": ["\\.*\\.ya?ml$"],
-      "matchStrings": [
-        "- [\"]?(?<depName>[^\"\n]*):(?<currentValue>[^\"\n]*)[\"]?"
-      ],
-      "datasourceTemplate": "docker"
-    },
-    {
-      "depNameTemplate": "defenseunicorns/uds-cli",
-      "fileMatch": ["\\.*\\.ya?ml$"],
-      "matchStrings": [
-        "# renovate: datasource=github-tags depName=defenseunicorns/uds-cli versioning=(?<versioning>[^\n]+)\n.*?uds@(?<currentValue>.*)"
-      ],
-      "datasourceTemplate": "github-tags",
-      "extractVersionTemplate": "^v(?<version>.*)$"
-    },
-    {
-      "depNameTemplate": "defenseunicorns/zarf",
-      "fileMatch": ["\\.*\\.ya?ml$"],
-      "matchStrings": [
-        "# renovate: datasource=github-tags depName=defenseunicorns/zarf versioning=(?<versioning>.*?)\n.*?(version:) (?<currentValue>.*)"
-      ],
-      "datasourceTemplate": "github-tags"
-    },
-    {
-      "depNameTemplate": "defenseunicorns/uds-common-tasks",
-      "fileMatch": ["\\.*\\.ya?ml$"],
-      "matchStrings": [
-        "https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/(?<currentValue>[^/]+)/.*"
-      ],
-      "datasourceTemplate": "github-tags"
-    }
-  ],
+  "kubernetes": {
+    "fileMatch": ["\\.yaml$"],
+    "ignorePaths": [
+      ".github"
+    ]
+  },
   "hostRules": [
     {
       "matchHost": "registry1.dso.mil",
@@ -78,13 +41,64 @@
       }
     }
   ],
-  "packageRules": [
+  "regexManagers": [
     {
-      "matchFileNames": [".github/**"],
-      "excludePackageNames": ["defenseunicorns/zarf","defenseunicorns/uds-cli"],
-      "groupName": "githubactions",
-      "commitMessageTopic": "githubactions",
-      "pinDigests": true
+      "fileMatch": [".*\\.ya?ml$"],
+      "matchStrings": [
+        "# renovate: datasource=helm\n .*- name: (?<depName>.*?)\n *url: (?<registryUrl>.*?)\n *version: (?<currentValue>.*)\n"
+      ],
+      "datasourceTemplate": "helm",
+      "extractVersionTemplate": "{{#if extractVersion}}{{{extractVersion}}}{{else}}^(?<version>.*)${{/if}}"
+    },
+    {
+      "fileMatch": [".*\\.ya?ml$"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?( extractVersion=(?<extractVersion>.*?))?( registryUrl=(?<registryUrl>.*?))?\\s.*?:\\s*['\"]?(?<currentValue>.*?)['\"]?\\s"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver-coerced{{/if}}",
+      "extractVersionTemplate": "{{#if extractVersion}}{{{extractVersion}}}{{else}}^(?<version>.*)${{/if}}"
+    },
+    {
+      "fileMatch": [".*\\.ya?ml$"],
+      "matchStrings": [
+        "# renovate: zarf-uri datasource=github-tags depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*?uri: ['\"]https:\\/\\/github.com\\/defenseunicorns\\/zarf\\/releases\\/download\\/(?<currentValue>.*)\\/zarf_.*_Linux_amd64['\"]",
+        "# renovate: zarf-uri datasource=github-tags depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*?uri: ['\"]https:\\/\\/github.com\\/defenseunicorns\\/zarf\\/releases\\/download\\/.*\\/zarf_(?<currentValue>.*)_Linux_amd64['\"]"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver-coerced{{/if}}",
+      "datasourceTemplate": "github-tags"
+    },
+    {
+      "fileMatch": [".*\/?zarf\\.ya?ml$"],
+      "matchStrings": [
+        "-\\s+['\"]?(?<depName>[^:]+):(?<currentValue>.*)['\"]?"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver-coerced{{/if}}",
+      "datasourceTemplate": "docker",
+      "extractVersionTemplate": "{{#if extractVersion}}{{{extractVersion}}}{{else}}^(?<version>.*)${{/if}}"
+    },
+    {
+      "fileMatch": [
+        "(^|/)zarf.yaml$"
+      ],
+      "matchStringsStrategy": "recursive",
+      "matchStrings": [
+        "(?m)charts:(.|\\n)*?(^\\s{4}[\\w:]+|\\n$|^\\s{2}-)",
+        "(?m)name:(.|\\n)+?(^\\s{4}[\\w\\-:]+|\\n$|^\\s{2}-)",
+        "(?m)name: (?<depName>.+)(.|\\n)*?url: (?<registryUrl>.+)(.|\\n)*?version: (?<currentValue>.+)"
+      ],
+      "datasourceTemplate": "helm"
+    },
+    {
+      "fileMatch": [
+        "(^|/)zarf.yaml$"
+      ],
+      "matchStringsStrategy": "recursive",
+      "matchStrings": [
+        "(?m)charts:(.|\\n)*?(^\\s{4}[\\w:]+|\\n$|^\\s{2}-)",
+        "(?m)name:(.|\\n)+?(^\\s{4}[\\w\\-:]+|\\n$|^\\s{2}-)",
+        "(?m)name: (?<depName>.+)(.|\\n)*?version: (?<currentValue>.+)(.|\\n)*?url: (?<registryUrl>.+)"
+      ],
+      "datasourceTemplate": "helm"
     }
   ]
 }
