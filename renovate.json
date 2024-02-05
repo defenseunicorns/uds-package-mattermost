@@ -59,6 +59,14 @@
       "datasourceTemplate": "github-tags"
     },
     {
+      "fileMatch": [".*\\.ya?ml$"],
+      "matchStrings": [
+        "# renovate: repo-file depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\n.*\\/(?<currentValue>v.*?)\\/"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver-coerced{{/if}}",
+      "datasourceTemplate": "github-tags"
+    },
+    {
       "depNameTemplate": "defenseunicorns/uds-common-tasks",
       "fileMatch": ["\\.*\\.ya?ml$"],
       "matchStrings": [
