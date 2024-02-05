@@ -79,7 +79,7 @@ See:
 1. [/values/config-values.yaml](/values/config-values.yaml)
 1. [/values/registry1-values.yaml](/values/registry1-values.yaml)
 1. [/values/upstream-values.yaml](/values/upstream-values.yaml)
-2. [/values/values.yaml](/values/values.yaml)
+1. [/values/values.yaml](/values/values.yaml)
 
 ## Contributing
 
