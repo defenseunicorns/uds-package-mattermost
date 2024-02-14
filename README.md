@@ -1,14 +1,12 @@
 # UDS Mattermost Package
 
-This repo contains a UDS Package for [Mattermost](https://mattermost.com/), along with an example bundle and UDS tasks for development.
+[![Latest Release](https://img.shields.io/github/v/release/defenseunicorns/uds-package-mattermost)](https://github.com/defenseunicorns/uds-package-mattermost/releases)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/defenseunicorns/uds-package-mattermost/tag-and-release.yaml)](https://github.com/defenseunicorns/uds-package-mattermost/actions/workflows/tag-and-release.yaml)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/defenseunicorns/uds-package-mattermost/badge)](https://api.securityscorecards.dev/projects/github.com/defenseunicorns/uds-package-mattermost)
 
-## Flavors
+This package is designed for use as part of a [UDS Software Factory](https://github.com/defenseunicorns/uds-software-factory) bundle deployed on [UDS Core](https://github.com/defenseunicorns/uds-core).
 
-Two flavors of this package are produced at this time:
-- `upstream`: This flavor uses the upstream images (same ones deployed by the chart by default) and is intended for a quick and seamless development experience
-- `registry1` (amd64 architecture only): This flavor uses hardened images from [Ironbank](https://p1.dso.mil/services/iron-bank) and is intended for production environments
-
-## Dependencies
+## Prerequisites
 
 Mattermost requires two dependencies, postgres and s3 compatible object storage. Wiring Mattermost to your dependencies is done primarily via helm values, which will require the use of a bundle created with uds-cli.
 
@@ -50,6 +48,31 @@ To use IRSA make sure to NOT set the two key variables and add the appropriate r
               value: "arn:aws:iam::123456789:role/mattermost-role"
 ```
 
-## Additional Config
+## Flavors
 
-Additional configuration can be done via overrides to configure a number of Mattermost properties like SSO. Check the full list of values in the config chart [here](./chart/values.yaml). If you find that you need something else exposed please open an issue!
+| Flavor | Description | Example Creation |
+| ------ | ----------- | ---------------- |
+| upstream | Uses upstream images within the package. | `zarf package create . -f upstream` |
+| registry1 | Uses images from registry1.dso.mil within the package. | `zarf package create . -f registry1` |
+
+## Releases
+
+The released packages can be found in [ghcr](https://github.com/defenseunicorns/uds-package-mattermost/pkgs/container/packages%2Fuds%2Fmattermost).
+
+## UDS Tasks (for local dev and CI)
+
+*For local dev, this requires installing [uds-cli](https://github.com/defenseunicorns/uds-cli?tab=readme-ov-file#install)
+
+| Task | Description | Example |
+| ---- | ----------- | ------- |
+| setup-cluster | Uses the `k3d-core-istio` bundle to create a cluster for testing against | `uds run setup-cluster` |
+| create-package | Creates just the Mattermost package | `uds run create-package --set FLAVOR=<flavor>` |
+| create-test-bundle | Creates Mattermost and Mattermost dependency packages and then bundles them | `uds run create-test-bundle` |
+| deploy-package | Deploy Mattermost package only | `uds run deploy-package` |
+| deploy-test-bundle | Deploy Mattermost and Mattermost dependency bundle | `uds run deploy-test-bundle` |
+| test-package | Run checks against a deployed package or bundle | `uds run test-package` |
+| cleanup | Teardown the cluster | `uds run cleanup` |
+
+## Contributing
+
+Please see the [CONTRIBUTING.md](./CONTRIBUTING.md)
