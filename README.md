@@ -73,14 +73,6 @@ The released packages can be found in [ghcr](https://github.com/defenseunicorns/
 | test-package | Run checks against a deployed package or bundle | `uds run test-package` |
 | cleanup | Teardown the cluster | `uds run cleanup` |
 
-## Values
-
-See: 
-1. [/values/config-values.yaml](/values/config-values.yaml)
-1. [/values/registry1-values.yaml](/values/registry1-values.yaml)
-1. [/values/upstream-values.yaml](/values/upstream-values.yaml)
-1. [/values/values.yaml](/values/values.yaml)
-
 ## Contributing
 
 Please see the [CONTRIBUTING.md](./CONTRIBUTING.md)
