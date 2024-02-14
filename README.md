@@ -1,4 +1,4 @@
-# UDS Mattermost Package
+# 🏭 UDS Mattermost Package
 
 This repo contains a UDS Package for [Mattermost](https://mattermost.com/), along with an example bundle and UDS tasks for development.
 
