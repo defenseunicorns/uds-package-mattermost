@@ -1,0 +1,29 @@
+name: CI Docs Shim
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '**.md'
+      - '**.jpg'
+      - '**.png'
+      - '**.gif'
+      - '**.svg'
+      - 'adr/**'
+      - 'docs/**'
+      - 'CODEOWNERS'
+
+jobs:
+  deploy-registry1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to registry1 (shim)
+        run: |
+          echo "Documentation-only change detected; marking deploy to registry1 as successful."
+
+  deploy-upstream:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy upstream (shim)
+        run: |
+          echo "Documentation-only change detected; marking deploy upstream as successful."
