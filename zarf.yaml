@@ -30,6 +30,7 @@ components:
       flavor: upstream
     charts:
       - name: mattermost-enterprise-edition
+        valuesFiles:
           - values/upstream-values.yaml
     images:
       - appropriate/curl:latest
@@ -46,6 +47,7 @@ components:
         architecture: amd64
     charts:
       - name: mattermost-enterprise-edition
+        valuesFiles:
           - values/registry1-values.yaml
     images:
       - registry1.dso.mil/ironbank/redhat/ubi/ubi9-minimal:9.3
