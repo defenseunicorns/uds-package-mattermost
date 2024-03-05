@@ -1,5 +1,5 @@
 includes:
-  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.1.4/tasks/create.yaml
+  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.2.1/tasks/create.yaml
 
 tasks:
   - name: mattermost-test-bundle
