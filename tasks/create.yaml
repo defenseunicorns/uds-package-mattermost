@@ -17,4 +17,4 @@ tasks:
   - name: dependency-package
     description: Create the Dependency Zarf Package
     actions:
-      - cmd: zarf package create src/dev-secrets/ --confirm --no-progress --architecture=${UDS_ARCH}
+      - cmd: uds zarf package create src/dev-secrets/ --confirm --no-progress --architecture=${UDS_ARCH}
