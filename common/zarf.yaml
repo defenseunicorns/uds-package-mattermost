@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/defenseunicorns/zarf/main/zarf.schema.json
+kind: ZarfPackageConfig
+metadata:
+  name: mattermost-common
+  description: "UDS Mattermost Common Package" 
+
+components:
+  - name: mattermost
+    required: true
+    charts:
+      - name: uds-mattermost-config
+        namespace: mattermost
+        version: 0.1.0
+        localPath: ../chart
+        valuesFiles:
+          - ../values/config-values.yaml
+      - name: mattermost-enterprise-edition
+        namespace: mattermost
+        url: https://helm.mattermost.com
+        gitPath: chart
+        version: 2.6.43
+        valuesFiles:
+          - ../values/common-values.yaml
