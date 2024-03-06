@@ -28,7 +28,7 @@ jobs:
     uses: defenseunicorns/uds-common/.github/workflows/test-deploy.yaml@17-ewyles-workflow-consolidation
     with:
       flavors: '"upstream", "registry1"'
-      runson: "ubuntu-latest"
+      runson: '"ubuntu-latest"'
   # test:
   #   runs-on: "ubuntu-latest"
   #   timeout-minutes: 20
