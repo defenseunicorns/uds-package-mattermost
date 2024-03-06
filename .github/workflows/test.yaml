@@ -17,7 +17,6 @@ on:
 #   group: test-${{ github.ref }}
 #   cancel-in-progress: true
 
-
 permissions:
   id-token: write # Needed for OIDC-related operations.
   contents: read # Allows reading the content of the repository.
