@@ -12,10 +12,10 @@ on:
       - "tasks.yaml"
       - "zarf.yaml"
 
-# Abort prior jobs in the same workflow / PR
-concurrency:
-  group: test-${{ github.ref }}
-  cancel-in-progress: true
+# # Abort prior jobs in the same workflow / PR
+# concurrency:
+#   group: test-${{ github.ref }}
+#   cancel-in-progress: true
 
 permissions:
   id-token: write # Needed for OIDC-related operations.
