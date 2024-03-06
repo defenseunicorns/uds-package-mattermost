@@ -3,27 +3,24 @@ name: CI Docs Shim
 on:
   pull_request:
     branches: [main]
-    paths:
-      - '**.md'
-      - '**.jpg'
-      - '**.png'
-      - '**.gif'
-      - '**.svg'
-      - 'adr/**'
-      - 'docs/**'
-      - 'CODEOWNERS'
+    paths-ignore:
+      - '.github/**'
+      - 'bundle/**'
+      - 'values/**'
+      - 'tasks/**'
+      - 'tests/**'
+      - 'tasks.yaml'
+      - 'zarf.yaml'
 
 jobs:
-  deploy-registry1:
-    runs-on: ubuntu-latest
+  test:
+    runs-on: "ubuntu-latest"
+    timeout-minutes: 20
+    name: Deploy ${{ matrix.flavor }}
+    strategy:
+      matrix:
+        flavor: [upstream, registry1]
     steps:
-      - name: Deploy to registry1 (shim)
+      - name: Shim for Deploy ${{ matrix.flavor }}
         run: |
-          echo "Documentation-only change detected; marking deploy to registry1 as successful."
-
-  deploy-upstream:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy upstream (shim)
-        run: |
-          echo "Documentation-only change detected; marking deploy upstream as successful."
+          echo "Documentation-only change detected; marking Deploy ${{ matrix.flavor }} as successful."
