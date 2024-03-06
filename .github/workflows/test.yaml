@@ -22,37 +22,39 @@ permissions:
 
 jobs:
   test:
-    runs-on: "ubuntu-latest"
-    timeout-minutes: 20
-    name: Deploy ${{ matrix.flavor }}
-    strategy:
-      matrix:
-        flavor: [upstream, registry1]
+    uses: defenseunicorns/uds-common/.github/workflows/test-deploy.yaml@17-ewyles-workflow-consolidation    
+  # test:
+  #   runs-on: "ubuntu-latest"
+  #   timeout-minutes: 20
+  #   name: Deploy ${{ matrix.flavor }}
+  #   strategy:
+  #     matrix:
+  #       flavor: [upstream, registry1]
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-      - name: Environment setup
-        uses: defenseunicorns/uds-common/.github/actions/setup@417b9c2bc088f664c616c9929a2b3ce448d251f7
+  #     - name: Environment setup
+  #       uses: defenseunicorns/uds-common/.github/actions/setup@417b9c2bc088f664c616c9929a2b3ce448d251f7
       
-      - name: Iron Bank Login
-        run: uds zarf tools registry login -u "${{secrets.IRON_BANK_ROBOT_USERNAME}}" -p "${{secrets.IRON_BANK_ROBOT_PASSWORD}}" registry1.dso.mil
+  #     - name: Iron Bank Login
+  #       run: uds zarf tools registry login -u "${{secrets.IRON_BANK_ROBOT_USERNAME}}" -p "${{secrets.IRON_BANK_ROBOT_PASSWORD}}" registry1.dso.mil
 
-      - name: Create test bundle
-        run: uds run create-test-bundle --set FLAVOR=${{ matrix.flavor }}
+  #     - name: Create test bundle
+  #       run: uds run create-test-bundle --set FLAVOR=${{ matrix.flavor }}
 
-      - name: Setup cluster
-        run: uds run setup-cluster
+  #     - name: Setup cluster
+  #       run: uds run setup-cluster
       
-      - name: Deploy test bundle
-        run: uds run deploy-test-bundle
+  #     - name: Deploy test bundle
+  #       run: uds run deploy-test-bundle
 
-      - name: Test package
-        run: uds run test-package
+  #     - name: Test package
+  #       run: uds run test-package
 
-      - name: Save logs
-        if: always()
-        uses: defenseunicorns/uds-common/.github/actions/save-logs@417b9c2bc088f664c616c9929a2b3ce448d251f7
-        with:
-          suffix: '${{ matrix.flavor }}-${{ github.run_id }}-${{ github.run_attempt }}'
+  #     - name: Save logs
+  #       if: always()
+  #       uses: defenseunicorns/uds-common/.github/actions/save-logs@417b9c2bc088f664c616c9929a2b3ce448d251f7
+  #       with:
+  #         suffix: '${{ matrix.flavor }}-${{ github.run_id }}-${{ github.run_attempt }}'
