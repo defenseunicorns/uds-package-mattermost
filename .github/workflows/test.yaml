@@ -29,6 +29,7 @@ jobs:
     with:
       flavors: '"upstream", "registry1"'
       runson: '"ubuntu-latest"'
+    secrets: inherit
   # test:
   #   runs-on: "ubuntu-latest"
   #   timeout-minutes: 20
