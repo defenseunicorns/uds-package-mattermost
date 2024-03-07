@@ -18,13 +18,11 @@ on:
 #   cancel-in-progress: true
 
 permissions:
-  id-token: write # Needed for OIDC-related operations.
-  contents: read # Allows reading the content of the repository.
-  pull-requests: read # Allows reading pull request metadata.
+  contents: read
 
 jobs:
   test:
-    uses: defenseunicorns/uds-common/.github/workflows/test-deploy.yaml@17-ewyles-workflow-consolidation
+    uses: defenseunicorns/uds-common/.github/workflows/shared-test-deploy.yaml@17-ewyles-workflow-consolidation
     with:
       flavors: '"upstream", "registry1"'
       runson: '"ubuntu-latest"'
