@@ -41,6 +41,8 @@ jobs:
 
       - name: Test
         uses: defenseunicorns/uds-common/.github/actions/test@17-ewyles-workflow-consolidation
+        with:
+          flavor: ${{ matrix.flavor }}
 
       - name: Save logs
         if: always()
