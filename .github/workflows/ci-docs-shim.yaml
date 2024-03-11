@@ -2,15 +2,22 @@ name: CI Docs Shim
 
 on:
   pull_request:
-    branches: [main]
     paths-ignore:
-      - '.github/**'
-      - 'bundle/**'
-      - 'values/**'
-      - 'tasks/**'
-      - 'tests/**'
-      - 'tasks.yaml'
-      - 'zarf.yaml'
+      - "**.md"
+      - "**.jpg"
+      - "**.png"
+      - "**.gif"
+      - "**.svg"
+      - "adr/**"
+      - "docs/**"
+      - ".gitignore"
+      - "renovate.json"
+      - ".release-please-config.json"
+      - "release-please-config.json"
+      - "oscal-component.yaml"
+      - "CODEOWNERS"
+      - "LICENSE"
+      - "CONTRIBUTING.md"
 
 jobs:
   test:
