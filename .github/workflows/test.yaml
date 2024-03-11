@@ -21,9 +21,26 @@ permissions:
   contents: read
 
 jobs:
-  test:
-    uses: defenseunicorns/uds-common/.github/workflows/shared-test-deploy.yaml@17-ewyles-workflow-consolidation
-    with:
-      flavors: '"upstream", "registry1"'
-      runson: '"ubuntu-latest"'
-    secrets: inherit
+  run-test:
+    name: Create and Deploy Flavor ${{ matrix.flavor }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        flavor: [upstream, registry1]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Environment setup
+        uses: defenseunicorns/uds-common/.github/actions/setup@417b9c2bc088f664c616c9929a2b3ce448d251f7
+
+      - name: Test
+        uses: defenseunicorns/uds-common/.github/actions/test@17-ewyles-workflow-consolidation
+
+      - name: Save logs
+        if: always()
+        uses: defenseunicorns/uds-common/.github/actions/save-logs@417b9c2bc088f664c616c9929a2b3ce448d251f7
+        with:
+          suffix: ${{ matrix.flavor }}-${{ github.run_id }}-${{ github.run_attempt }}
