@@ -2,7 +2,7 @@ name: CI Docs Shim
 
 on:
   pull_request:
-    paths-ignore:
+    paths:
       - "**.md"
       - "**.jpg"
       - "**.png"
@@ -18,6 +18,7 @@ on:
       - "CODEOWNERS"
       - "LICENSE"
       - "CONTRIBUTING.md"
+      - "SECURITY.md"
 
 jobs:
   test:
