@@ -3,6 +3,8 @@ name: Test
 # This workflow is triggered on pull requests to the main branch.
 on:
   pull_request:
+    branches: [main]
+    types: [milestoned, opened, edited, synchronize]  
     paths-ignore:
       - "**.md"
       - "**.jpg"
