@@ -53,3 +53,9 @@ jobs:
     
       - name: Publish Package
         run: uds run -f tasks/publish.yaml package --set FLAVOR=${{ matrix.flavor }}
+
+      - name: Save logs
+        if: always()
+        uses: defenseunicorns/uds-common/.github/actions/save-logs@442bae718050ea9a47254851a45632aabeb13b17
+        with:
+          suffix: ${{ matrix.flavor }}-${{ github.run_id }}-${{ github.run_attempt }}
