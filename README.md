@@ -1,4 +1,4 @@
-# UDS Mattermost Package
+# 🏭 UDS Mattermost Package
 
 [![Latest Release](https://img.shields.io/github/v/release/defenseunicorns/uds-package-mattermost)](https://github.com/defenseunicorns/uds-package-mattermost/releases)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/defenseunicorns/uds-package-mattermost/tag-and-release.yaml)](https://github.com/defenseunicorns/uds-package-mattermost/actions/workflows/tag-and-release.yaml)
