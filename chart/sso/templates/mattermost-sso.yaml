@@ -7,7 +7,7 @@ type: Opaque
 stringData:
   MM_GITLABSETTINGS_ENABLE: "{{ .Values.sso.enabled | toString }}"
   MM_GITLABSETTINGS_ID: "{{ .Values.sso.client_id }}"
-  MM_GITLABSETTINGS_SECRET: "{{ .Values.sso.client_secret }}"
+  MM_GITLABSETTINGS_SECRET: "{{ (lookup "v1" "Secret" "mattermost" "sso-client-uds-core-mattermost").data.secret | b64dec }}"
   MM_GITLABSETTINGS_AUTHENDPOINT: "{{ .Values.sso.auth_endpoint }}"
   MM_GITLABSETTINGS_TOKENENDPOINT: "{{ .Values.sso.token_endpoint }}"
   MM_GITLABSETTINGS_USERAPIENDPOINT: "{{ .Values.sso.user_api_endpoint }}"

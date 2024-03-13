@@ -4,6 +4,13 @@ metadata:
   name: mattermost
   namespace: {{ .Release.Namespace }}
 spec:
+  {{- if .Values.sso.enabled }}
+  sso:
+    - name: Mattermost SSO
+      clientId: uds-core-mattermost
+      redirectUris:
+        - "https://chat.{{ .Values.domain }}/signup/gitlab/complete"
+  {{- end }}
   network:
     expose:
       - service: mattermost-enterprise-edition

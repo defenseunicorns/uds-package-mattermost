@@ -11,9 +11,13 @@ components:
       - name: uds-mattermost-config
         namespace: mattermost
         version: 0.1.0
-        localPath: ../chart
+        localPath: ../chart/config
         valuesFiles:
           - ../values/config-values.yaml
+      - name: uds-mattermost-sso
+        namespace: mattermost
+        version: 0.1.0
+        localPath: ../chart/sso
       - name: mattermost-enterprise-edition
         namespace: mattermost
         url: https://helm.mattermost.com
