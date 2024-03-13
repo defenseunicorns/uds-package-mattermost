@@ -3,6 +3,8 @@ name: Test
 # This workflow is triggered on pull requests to the main branch.
 on:
   pull_request:
+    branches: [main]
+    types: [milestoned, opened, edited, synchronize]  
     paths-ignore:
       - "**.md"
       - "**.jpg"
@@ -30,10 +32,10 @@ permissions:
   contents: read
 
 jobs:
-  test:
-    runs-on: "ubuntu-latest"
+  run-test:
+    name: Create and Deploy Flavor ${{ matrix.flavor }}
+    runs-on: ubuntu-latest
     timeout-minutes: 20
-    name: Deploy ${{ matrix.flavor }}
     strategy:
       matrix:
         flavor: [upstream, registry1]
@@ -43,25 +45,18 @@ jobs:
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
       - name: Environment setup
-        uses: defenseunicorns/uds-common/.github/actions/setup@417b9c2bc088f664c616c9929a2b3ce448d251f7
-      
-      - name: Iron Bank Login
-        run: uds zarf tools registry login -u "${{secrets.IRON_BANK_ROBOT_USERNAME}}" -p "${{secrets.IRON_BANK_ROBOT_PASSWORD}}" registry1.dso.mil
+        uses: defenseunicorns/uds-common/.github/actions/setup@442bae718050ea9a47254851a45632aabeb13b17
+        with:
+          username: ${{secrets.IRON_BANK_ROBOT_USERNAME}}
+          password: ${{secrets.IRON_BANK_ROBOT_PASSWORD}}
 
-      - name: Create test bundle
-        run: uds run create-test-bundle --set FLAVOR=${{ matrix.flavor }}
-
-      - name: Setup cluster
-        run: uds run setup-cluster
-      
-      - name: Deploy test bundle
-        run: uds run deploy-test-bundle
-
-      - name: Test package
-        run: uds run test-package
+      - name: Test
+        uses: defenseunicorns/uds-common/.github/actions/test@442bae718050ea9a47254851a45632aabeb13b17
+        with:
+          flavor: ${{ matrix.flavor }}
 
       - name: Save logs
         if: always()
-        uses: defenseunicorns/uds-common/.github/actions/save-logs@417b9c2bc088f664c616c9929a2b3ce448d251f7
+        uses: defenseunicorns/uds-common/.github/actions/save-logs@442bae718050ea9a47254851a45632aabeb13b17
         with:
-          suffix: '${{ matrix.flavor }}-${{ github.run_id }}-${{ github.run_attempt }}'
+          suffix: ${{ matrix.flavor }}-${{ github.run_id }}-${{ github.run_attempt }}

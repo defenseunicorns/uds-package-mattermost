@@ -1,8 +1,8 @@
 includes:
   - cleanup: ./tasks/cleanup.yaml
   - create: ./tasks/create.yaml
-  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.2.1/tasks/deploy.yaml
-  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.2.1/tasks/setup.yaml
+  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.2.2/tasks/deploy.yaml
+  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.2.2/tasks/setup.yaml
   - test: ./tasks/test.yaml
 
 tasks:
@@ -12,21 +12,27 @@ tasks:
       - task: create-test-bundle
       - task: deploy-test-bundle
 
-  - name: setup-cluster
-    actions:
-      - task: setup:k3d-test-cluster
-  
   - name: create-package
     actions:
       - task: create:mattermost-package
 
-  - name: create-test-bundle
-    actions:
-      - task: create:mattermost-test-bundle
-  
   - name: deploy-package
     actions:
       - task: deploy:package
+
+  - name: cleanup
+    actions:
+      - task: cleanup:destroy
+
+# CI will execute the following (via uds-common/.github/actions/test) so they need to be here with these names
+
+  - name: create-test-bundle
+    actions:
+      - task: create:mattermost-test-bundle
+
+  - name: setup-cluster
+    actions:
+      - task: setup:k3d-test-cluster
 
   - name: deploy-test-bundle
     actions:
@@ -36,7 +42,3 @@ tasks:
     actions:
       - task: test:health-check
       - task: test:ingress
-
-  - name: cleanup
-    actions:
-      - task: cleanup:destroy
