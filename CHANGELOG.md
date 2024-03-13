@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [9.4.1-uds.3](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.4.1-uds.2...v9.4.1-uds.3) (2024-03-13)
+
+
+### Miscellaneous
+
+* add 🏭 to README.md ([9e4c566](https://github.com/defenseunicorns/uds-package-mattermost/commit/9e4c56615b8a5ef75c30c02930b8472c42cd52e6))
+* **deps:** update all dependencies ([#16](https://github.com/defenseunicorns/uds-package-mattermost/issues/16)) ([e54ebc6](https://github.com/defenseunicorns/uds-package-mattermost/commit/e54ebc6f1ea9c1cb16afacadeca9e929ffe412e7))
+* **deps:** update githubactions ([#17](https://github.com/defenseunicorns/uds-package-mattermost/issues/17)) ([a24855a](https://github.com/defenseunicorns/uds-package-mattermost/commit/a24855aec82b54ba868d1d4df6b23d051453db0d))
+* **deps:** update githubactions ([#22](https://github.com/defenseunicorns/uds-package-mattermost/issues/22)) ([d1cf997](https://github.com/defenseunicorns/uds-package-mattermost/commit/d1cf99761139370adb51eb1b43b8bf8513ea576a))
+* renovate config, remote tasks ([#14](https://github.com/defenseunicorns/uds-package-mattermost/issues/14)) ([bb6c574](https://github.com/defenseunicorns/uds-package-mattermost/commit/bb6c574383674d09e77ee7d88a1d9a5becd9faa0))
+* standardize repo to template and update README.md ([#20](https://github.com/defenseunicorns/uds-package-mattermost/issues/20)) ([88a3d84](https://github.com/defenseunicorns/uds-package-mattermost/commit/88a3d84db5501ebe51dd0b4ff59b0c4233e35fb6))
+
 ## [9.4.1-uds.2](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.4.1-uds.1...v9.4.1-uds.2) (2024-02-01)
 
 
