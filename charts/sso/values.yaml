@@ -1,0 +1,22 @@
+domain: "###ZARF_VAR_DOMAIN###"
+sso:
+  gitlab:
+    enabled: false
+    client_id: ""
+    client_secret: ""
+    auth_endpoint: ""
+    token_endpoint: ""
+    user_api_endpoint: ""
+
+  oidc:
+    enabled: false
+    button_text: SSO
+    button_color: "#145DBF"
+    discovery_endpoint: "https://sso.###ZARF_VAR_DOMAIN###/realms/uds/.well-known/openid-configuration"
+    client_id: "uds-core-mattermost"
+    client_secret: ""
+
+  # These should typically be disabled if SSO is enabled
+  enable_sign_up_with_email: true
+  enable_sign_in_with_email: true
+  enable_sign_in_with_username: true

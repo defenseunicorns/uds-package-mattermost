@@ -8,6 +8,22 @@ mattermostApp:
   # Mattermost does not provide helm values to configure all the options so it is done via ENV
   extraEnv:
     # SSO Settings
+    - name: MM_EMAILSETTINGS_ENABLESIGNUPWITHEMAIL
+      valueFrom:
+        secretKeyRef:
+          key: MM_EMAILSETTINGS_ENABLESIGNUPWITHEMAIL
+          name: "mattermost-sso"
+    - name: MM_EMAILSETTINGS_ENABLESIGNINWITHEMAIL
+      valueFrom:
+        secretKeyRef:
+          key: MM_EMAILSETTINGS_ENABLESIGNINWITHEMAIL
+          name: "mattermost-sso"
+    - name: MM_EMAILSETTINGS_ENABLESIGNINWITHUSERNAME
+      valueFrom:
+        secretKeyRef:
+          key: MM_EMAILSETTINGS_ENABLESIGNINWITHUSERNAME
+          name: "mattermost-sso"
+    # Gitlab SSO environment variables
     - name: MM_GITLABSETTINGS_ENABLE
       valueFrom:
         secretKeyRef:
@@ -38,20 +54,36 @@ mattermostApp:
         secretKeyRef:
           key: MM_GITLABSETTINGS_USERAPIENDPOINT
           name: "mattermost-sso"
-    - name: MM_EMAILSETTINGS_ENABLESIGNUPWITHEMAIL
+    # OpenID Connect SSO environment variables
+    - name: MM_OPENIDSETTINGS_ENABLE
       valueFrom:
         secretKeyRef:
-          key: MM_EMAILSETTINGS_ENABLESIGNUPWITHEMAIL
+          key: MM_OPENIDSETTINGS_ENABLE
           name: "mattermost-sso"
-    - name: MM_EMAILSETTINGS_ENABLESIGNINWITHEMAIL
+    - name: MM_OPENIDSETTINGS_BUTTONTEXT
       valueFrom:
         secretKeyRef:
-          key: MM_EMAILSETTINGS_ENABLESIGNINWITHEMAIL
+          key: MM_OPENIDSETTINGS_BUTTONTEXT
           name: "mattermost-sso"
-    - name: MM_EMAILSETTINGS_ENABLESIGNINWITHUSERNAME
+    - name: MM_OPENIDSETTINGS_BUTTONCOLOR
       valueFrom:
         secretKeyRef:
-          key: MM_EMAILSETTINGS_ENABLESIGNINWITHUSERNAME
+          key: MM_OPENIDSETTINGS_BUTTONCOLOR
+          name: "mattermost-sso"
+    - name: MM_OPENIDSETTINGS_DISCOVERYENDPOINT
+      valueFrom:
+        secretKeyRef:
+          key: MM_OPENIDSETTINGS_DISCOVERYENDPOINT
+          name: "mattermost-sso"
+    - name: MM_OPENIDSETTINGS_ID
+      valueFrom:
+        secretKeyRef:
+          key: MM_OPENIDSETTINGS_ID
+          name: "mattermost-sso"
+    - name: MM_OPENIDSETTINGS_SECRET
+      valueFrom:
+        secretKeyRef:
+          key: MM_OPENIDSETTINGS_SECRET
           name: "mattermost-sso"
     # Object Storage Connection
     - name: MM_FILESETTINGS_DRIVERNAME
