@@ -1,6 +1,6 @@
 apiVersion: v2
-name: uds-gitlab-sso
-description: uds-gitlab-sso
+name: uds-mattermost-sso
+description: uds-mattermost-sso
 
 # A chart can be either an 'application' or a 'library' chart.
 #
