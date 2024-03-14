@@ -1,7 +1,6 @@
 domain: "###ZARF_VAR_DOMAIN###"
-sso:
-  oidc: 
-    enabled: false
+sso: 
+  enabled: true
 objectStorage:
   secure: true
   accessKey: ""

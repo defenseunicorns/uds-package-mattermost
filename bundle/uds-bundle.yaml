@@ -39,6 +39,8 @@ packages:
       mattermost:
         uds-mattermost-config:
           values:
+            - path: "sso.enabled"
+              value: "true"
             - path: "objectStorage.secure"
               value: "false"
             - path: "objectStorage.endpoint"
@@ -49,3 +51,15 @@ packages:
               value: "postgresql.dev-postgres.svc.cluster.local"
             - path: "postgres.connectionOptions"
               value: "?connect_timeout=10&sslmode=disable"
+        uds-mattermost-sso:
+          values:
+            - path: "sso.enabled"
+              value: "true"
+            - path: "sso.client_id"
+              value: "uds-core-mattermost"
+            - path: "sso.enable_sign_up_with_email"
+              value: "false"
+            - path: "sso.enable_sign_in_with_email"
+              value: "false"
+            - path: "sso.enable_sign_in_with_username"
+              value: "true"

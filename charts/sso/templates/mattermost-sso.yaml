@@ -1,6 +1,3 @@
-{{- if and .Values.sso.oidc.enabled .Values.sso.gitlab.enabled}}
-{{- fail "More than one SSO provider is enabled" }}
-{{- end }}
 apiVersion: v1
 kind: Secret
 metadata:
@@ -8,22 +5,16 @@ metadata:
   namespace: {{ .Release.Namespace }}
 type: Opaque
 stringData:
+  MM_GITLABSETTINGS_ENABLE: "{{ .Values.sso.enabled | toString }}"
+  MM_GITLABSETTINGS_ID: "{{ .Values.sso.client_id }}"
+{{- if .Values.sso.enabled }}
+  MM_GITLABSETTINGS_SECRET: "{{ (lookup "v1" "Secret" "mattermost" "sso-client-uds-core-mattermost").data.secret | b64dec }}"
+{{- else }}
+  MM_GITLABSETTINGS_SECRET: ""
+{{- end }}
+  MM_GITLABSETTINGS_AUTHENDPOINT: "https://sso.{{ .Values.domain }}/oauth/authorize"
+  MM_GITLABSETTINGS_TOKENENDPOINT: "https://sso.{{ .Values.domain }}/oauth/token"
+  MM_GITLABSETTINGS_USERAPIENDPOINT: "https://sso.{{ .Values.domain }}/api/v4/user"
   MM_EMAILSETTINGS_ENABLESIGNUPWITHEMAIL: "{{ .Values.sso.enable_sign_up_with_email | toString }}"
   MM_EMAILSETTINGS_ENABLESIGNINWITHEMAIL: "{{ .Values.sso.enable_sign_in_with_email | toString }}"
   MM_EMAILSETTINGS_ENABLESIGNINWITHUSERNAME: "{{ .Values.sso.enable_sign_in_with_username | toString }}"
-  MM_GITLABSETTINGS_ENABLE: "{{ .Values.sso.gitlab.enabled | toString }}"
-  MM_GITLABSETTINGS_ID: "{{ .Values.sso.gitlab.client_id }}"
-  MM_GITLABSETTINGS_SECRET: "{{ .Values.sso.gitlab.client_secret }}"
-  MM_GITLABSETTINGS_AUTHENDPOINT: "{{ .Values.sso.gitlab.auth_endpoint }}"
-  MM_GITLABSETTINGS_TOKENENDPOINT: "{{ .Values.sso.gitlab.token_endpoint }}"
-  MM_GITLABSETTINGS_USERAPIENDPOINT: "{{ .Values.sso.gitlab.user_api_endpoint }}"
-  MM_OPENIDSETTINGS_ENABLE: "{{ .Values.sso.oidc.enabled }}"
-  MM_OPENIDSETTINGS_BUTTONTEXT: "{{ .Values.sso.oidc.button_text }}"
-  MM_OPENIDSETTINGS_BUTTONCOLOR: "{{ .Values.sso.oidc.button_color }}"
-  MM_OPENIDSETTINGS_DISCOVERYENDPOINT: "{{ .Values.sso.oidc.discovery_endpoint }}"
-  MM_OPENIDSETTINGS_ID: "{{ .Values.sso.oidc.client_id }}"
-{{- if .Values.sso.oidc.enabled }}
-  MM_OPENIDSETTINGS_SECRET: "{{ (lookup "v1" "Secret" "mattermost" "sso-client-uds-core-mattermost").data.secret | b64dec }}"
-{{- else }}
-  MM_OPENIDSETTINGS_SECRET: ""
-{{- end }}
