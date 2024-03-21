@@ -2,7 +2,7 @@
 kind: ZarfPackageConfig
 metadata:
   name: mattermost-common
-  description: "UDS Mattermost Common Package" 
+  description: "UDS Mattermost Common Package"
 
 components:
   - name: mattermost
