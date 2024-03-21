@@ -30,6 +30,20 @@ tasks:
       - task: dependencies:create
       - task: create:test-bundle
 
+  - name: create-mm-latest-release-bundle
+    description: Create UDS Mattermost bundle based on the latest release
+    actions:
+      - task: pull:latest-package-release
+      # TODO (@WSTARR): This is currently needed to get around the chicken+egg condition when release please updates the version in GH
+      - description: Get the current Zarf package name
+        cmd: cat zarf.yaml | yq .metadata.version
+        setVariables:
+          - name: CURRENT_VERSION
+      - description: Move the latest to the current (needed to make this work on release-please PRs)
+        cmd: test -f zarf-package-mattermost-${UDS_ARCH}-${CURRENT_VERSION}.tar.zst || mv zarf-package-mattermost-${UDS_ARCH}-*.tar.zst zarf-package-mattermost-${UDS_ARCH}-${CURRENT_VERSION}.tar.zst
+      - task: dependencies:create
+      - task: create:test-bundle
+
 # CI will execute the following (via uds-common/.github/actions/test) so they need to be here with these names
 
   - name: test-package
@@ -44,4 +58,10 @@ tasks:
   - name: test-upgrade
     description: Test an upgrade from the latest released package to the current branch
     actions:
-      - cmd: echo "not yet"
+      - task: create-mm-latest-release-bundle
+      - task: setup:k3d-test-cluster
+      - task: deploy:test-bundle
+      - task: create-mm-test-bundle
+      - task: deploy:test-bundle
+      - task: test:health-check
+      - task: test:ingress
