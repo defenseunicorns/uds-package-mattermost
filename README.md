@@ -61,17 +61,9 @@ The released packages can be found in [ghcr](https://github.com/defenseunicorns/
 
 ## UDS Tasks (for local dev and CI)
 
-*For local dev, this requires installing [uds-cli](https://github.com/defenseunicorns/uds-cli?tab=readme-ov-file#install)
+*For local dev, this requires you install [uds-cli](https://github.com/defenseunicorns/uds-cli?tab=readme-ov-file#install)
 
-| Task | Description | Example |
-| ---- | ----------- | ------- |
-| setup-cluster | Uses the `k3d-core-istio` bundle to create a cluster for testing against | `uds run setup-cluster` |
-| create-package | Creates just the Mattermost package | `uds run create-package --set FLAVOR=<flavor>` |
-| create-test-bundle | Creates Mattermost and Mattermost dependency packages and then bundles them | `uds run create-test-bundle` |
-| deploy-package | Deploy Mattermost package only | `uds run deploy-package` |
-| deploy-test-bundle | Deploy Mattermost and Mattermost dependency bundle | `uds run deploy-test-bundle` |
-| test-package | Run checks against a deployed package or bundle | `uds run test-package` |
-| cleanup | Teardown the cluster | `uds run cleanup` |
+> :white_check_mark: **Tip:** To get a list of tasks to run you can use `uds run --list`!
 
 ## Contributing
 

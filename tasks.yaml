@@ -1,44 +1,67 @@
 includes:
   - cleanup: ./tasks/cleanup.yaml
-  - create: ./tasks/create.yaml
-  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.2.2/tasks/deploy.yaml
-  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.2.2/tasks/setup.yaml
+  - dependencies: ./tasks/dependencies.yaml
   - test: ./tasks/test.yaml
+  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.3.3/tasks/create.yaml
+  - lint: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.3.3/tasks/lint.yaml
+  - pull: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.3.3/tasks/pull.yaml
+  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.3.3/tasks/deploy.yaml
+  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.3.3/tasks/setup.yaml
 
 tasks:
   - name: default
+    description: Setup k3d cluster, deploy Mattermost
     actions:
-      - task: setup-cluster
-      - task: create-test-bundle
-      - task: deploy-test-bundle
+      - task: create-mm-test-bundle
+      - task: setup:k3d-test-cluster
+      - task: deploy:test-bundle
 
-  - name: create-package
+  - name: create-mm-package
+    description: Create the Mattermost package
     actions:
-      - task: create:mattermost-package
+      - task: create:package
+        with:
+          options: "--skip-sbom"
 
-  - name: deploy-package
+  - name: create-mm-test-bundle
+    description: Create a local UDS Mattermost bundle
     actions:
-      - task: deploy:package
+      - task: create-mm-package
+      - task: dependencies:create
+      - task: create:test-bundle
 
-  - name: cleanup
+  - name: create-mm-latest-release-bundle
+    description: Create UDS Mattermost bundle based on the latest release
     actions:
-      - task: cleanup:destroy
+      - task: pull:latest-package-release
+      # TODO (@WSTARR): This is currently needed to get around the chicken+egg condition when release please updates the version in GH
+      - description: Get the current Zarf package name
+        cmd: cat zarf.yaml | yq .metadata.version
+        setVariables:
+          - name: CURRENT_VERSION
+      - description: Move the latest to the current (needed to make this work on release-please PRs)
+        cmd: test -f zarf-package-mattermost-${UDS_ARCH}-${CURRENT_VERSION}.tar.zst || mv zarf-package-mattermost-${UDS_ARCH}-*.tar.zst zarf-package-mattermost-${UDS_ARCH}-${CURRENT_VERSION}.tar.zst
+      - task: dependencies:create
+      - task: create:test-bundle
 
 # CI will execute the following (via uds-common/.github/actions/test) so they need to be here with these names
 
-  - name: create-test-bundle
-    actions:
-      - task: create:mattermost-test-bundle
-
-  - name: setup-cluster
-    actions:
-      - task: setup:k3d-test-cluster
-
-  - name: deploy-test-bundle
-    actions:
-      - task: deploy:test-bundle
-
   - name: test-package
+    description: Test the health of a Mattermost deployment
     actions:
+      - task: create-mm-test-bundle
+      - task: setup:k3d-test-cluster
+      - task: deploy:test-bundle
+      - task: test:health-check
+      - task: test:ingress
+
+  - name: test-upgrade
+    description: Test an upgrade from the latest released package to the current branch
+    actions:
+      - task: create-mm-latest-release-bundle
+      - task: setup:k3d-test-cluster
+      - task: deploy:test-bundle
+      - task: create-mm-test-bundle
+      - task: deploy:test-bundle
       - task: test:health-check
       - task: test:ingress

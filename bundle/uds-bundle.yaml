@@ -10,18 +10,18 @@ packages:
   - name: dev-minio
     repository: ghcr.io/defenseunicorns/packages/uds/dev-minio
     ref: 0.0.1
-  
+
   - name: dev-postgres
     repository: ghcr.io/defenseunicorns/packages/uds/dev-postgres
     ref: 0.0.1
-  
+
   - name: dev-secrets
     path: ../
     ref: 0.1.0
     exports:
-    - name: ACCESS_KEY
-    - name: SECRET_KEY
-    - name: DB_PASSWORD
+      - name: ACCESS_KEY
+      - name: SECRET_KEY
+      - name: DB_PASSWORD
 
   - name: mattermost
     path: ../
