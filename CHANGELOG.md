@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [9.4.1-uds.4](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.4.1-uds.3...v9.4.1-uds.4) (2024-03-21)
+
+
+### Miscellaneous
+
+* implement upgrade tests for mattermost ([43044cf](https://github.com/defenseunicorns/uds-package-mattermost/commit/43044cf8ed321b7e71977c01280ab40300fb5a2b))
+* update CODEOWNERS to new style/group ([27246ca](https://github.com/defenseunicorns/uds-package-mattermost/commit/27246ca21b9cb2aac31d245d4eb6b9690059ec52))
+
 ## [9.4.1-uds.3](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.4.1-uds.2...v9.4.1-uds.3) (2024-03-13)
 
 
