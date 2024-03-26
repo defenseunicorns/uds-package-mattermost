@@ -1,0 +1,12 @@
+domain: "###ZARF_VAR_DOMAIN###"
+sso:
+  enabled: true
+  client_id: ""
+  client_secret: ""
+  auth_endpoint: ""
+  token_endpoint: ""
+  user_api_endpoint: ""
+  # These should typically be disabled if SSO is enabled
+  enable_sign_up_with_email: true
+  enable_sign_in_with_email: true
+  enable_sign_in_with_username: true
