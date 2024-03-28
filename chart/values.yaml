@@ -17,12 +17,13 @@ postgres:
 
 sso:
   enabled: true
-  #auth_endpoint: "https://sso.uds.dev/oauth/authorize"
-  #token_endpoint: "https://sso.uds.dev/oauth/token"
-  #user_api_endpoint: "https://sso.uds.dev/api/v4/user"
-  auth_endpoint: "https://sso.uds.dev/realms/uds/protocol/openid-connect/auth"
-  token_endpoint: "https://sso.uds.dev/realms/uds/protocol/openid-connect/token"  
-  user_api_endpoint: "https://sso.uds.dev/realms/uds/protocol/openid-connect/userinfo"
+  #TODO: ewyles -- need to pick which style of url we want to use. Both work, redirect ones (commented out) don't seem to be necessary
+  #auth_endpoint: "https://sso.###ZARF_VAR_DOMAIN###/oauth/authorize" 
+  #token_endpoint: "https://sso.###ZARF_VAR_DOMAIN###/oauth/token"
+  #user_api_endpoint: "https://sso.###ZARF_VAR_DOMAIN###/api/v4/user"
+  auth_endpoint: "https://sso.###ZARF_VAR_DOMAIN###/realms/uds/protocol/openid-connect/auth"
+  token_endpoint: "https://sso.###ZARF_VAR_DOMAIN###/realms/uds/protocol/openid-connect/token"  
+  user_api_endpoint: "https://sso.###ZARF_VAR_DOMAIN###/realms/uds/protocol/openid-connect/userinfo"
   
   # These should typically be disabled if SSO is enabled
   enable_sign_up_with_email: false
