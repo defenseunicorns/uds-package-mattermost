@@ -16,16 +16,18 @@ postgres:
   connectionOptions: ""
 
 sso:
-  enabled: false
-  client_id: ""
-  client_secret: ""
-  auth_endpoint: ""
-  token_endpoint: ""
-  user_api_endpoint: ""
+  enabled: true
+  #auth_endpoint: "https://sso.uds.dev/oauth/authorize"
+  #token_endpoint: "https://sso.uds.dev/oauth/token"
+  #user_api_endpoint: "https://sso.uds.dev/api/v4/user"
+  auth_endpoint: "https://sso.uds.dev/realms/uds/protocol/openid-connect/auth"
+  token_endpoint: "https://sso.uds.dev/realms/uds/protocol/openid-connect/token"  
+  user_api_endpoint: "https://sso.uds.dev/realms/uds/protocol/openid-connect/userinfo"
+  
   # These should typically be disabled if SSO is enabled
-  enable_sign_up_with_email: true
-  enable_sign_in_with_email: true
-  enable_sign_in_with_username: true
+  enable_sign_up_with_email: false
+  enable_sign_in_with_email: false
+  enable_sign_in_with_username: false
 
 # The subdomain for the mattermost server, will be prefixed to your domain (ex: mattermost.example.com)
 subdomain: "chat"
