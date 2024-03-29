@@ -1,5 +1,5 @@
 includes:
-  - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.3.9/tasks/publish.yaml
+  - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.3.9/tasks/publish.yaml
 
 tasks:
   - name: package
