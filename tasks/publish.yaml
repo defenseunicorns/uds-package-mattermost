@@ -20,5 +20,5 @@ tasks:
         task: publish:package
         with:
           # x-release-please-start-version
-          version: "9.4.1-uds.4"
+          version: "9.6.1-uds.0"
           # x-release-please-end
