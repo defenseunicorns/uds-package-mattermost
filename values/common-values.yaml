@@ -92,7 +92,12 @@ mattermostApp:
         secretKeyRef:
           key: MM_PLUGINSETTINGS_ENABLEUPLOADS
           name: "mattermost-config"
-    ###ZARF_VAR_EXTRA_ENV###
+    - name: MM_SQLSETTINGS_DATASOURCE
+      valueFrom:
+        secretKeyRef:
+          key: db_connection_string
+          name: "mattermost-postgres"
+    ###ZARF_VAR_MM_EXTRA_ENV###
   securityContext:
     runAsUser: 2000
     runAsGroup: 2000
