@@ -20,7 +20,7 @@ variables:
   - name: DB_PASSWORD
     description: "Database Password for Mattermost"
   - name: EXTRA_ENV
-    description: "Sets an extra env variable for the mattermost chart"
+    description: "Sets extra env variables for the mattermost chart"
     default: ""
     autoIndent: true
 
