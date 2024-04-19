@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [9.7.1-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.6.1-uds.0...v9.7.1-uds.0) (2024-04-19)
+
+
+### Features
+
+* env var MM_SQLSETTINGS_DATASOURCE set ([#54](https://github.com/defenseunicorns/uds-package-mattermost/issues/54)) ([16894df](https://github.com/defenseunicorns/uds-package-mattermost/commit/16894dfc302838a199e89a84e1430267538de2f8))
+
+
+### Miscellaneous
+
+* **deps:** update mattermost package dependencies ([#48](https://github.com/defenseunicorns/uds-package-mattermost/issues/48)) ([10b24e9](https://github.com/defenseunicorns/uds-package-mattermost/commit/10b24e99c2abc4acc3a59d30eb1d6d8524299d80))
+* **deps:** update mattermost support dependencies ([#46](https://github.com/defenseunicorns/uds-package-mattermost/issues/46)) ([2a9d055](https://github.com/defenseunicorns/uds-package-mattermost/commit/2a9d05537fc2bd2c824a90e2a9294af8b774b12e))
+* fix renovate config to only allow semver on mattermost image ([#51](https://github.com/defenseunicorns/uds-package-mattermost/issues/51)) ([65e294f](https://github.com/defenseunicorns/uds-package-mattermost/commit/65e294f9b3387c909abf61ce9d1b8ef189f6aa2a))
+* update extraEnv to envFrom ([#58](https://github.com/defenseunicorns/uds-package-mattermost/issues/58)) ([57df25a](https://github.com/defenseunicorns/uds-package-mattermost/commit/57df25af4cc20c528961b30aa0914564a67108a9))
+
 ## [9.6.1-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.4.1-uds.4...v9.6.1-uds.0) (2024-04-01)
 
 
