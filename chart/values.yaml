@@ -33,3 +33,6 @@ subdomain: "chat"
 # Additional configuration for Mattermost
 config:
   enablePluginUploads: false
+
+# Additional environment variables for Mattermost
+extraEnv: {}

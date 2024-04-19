@@ -5,6 +5,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
 type: Opaque
 stringData:
+  MM_FILESETTINGS_DRIVERNAME: amazons3
   MM_FILESETTINGS_AMAZONS3SSL: "{{ .Values.objectStorage.secure | toString }}"
   MM_FILESETTINGS_AMAZONS3ACCESSKEYID: "{{ .Values.objectStorage.accessKey }}"
   MM_FILESETTINGS_AMAZONS3SECRETACCESSKEY: "{{ .Values.objectStorage.secretKey }}"
