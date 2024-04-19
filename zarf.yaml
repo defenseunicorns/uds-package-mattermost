@@ -19,10 +19,6 @@ variables:
     description: "Secret Key for S3 compatible storage"
   - name: DB_PASSWORD
     description: "Database Password for Mattermost"
-  - name: EXTRA_ENV
-    description: "Sets extra env variables for the mattermost chart"
-    default: ""
-    autoIndent: true
 
 components:
   - name: mattermost
