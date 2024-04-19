@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mattermost-extra-env
+  namespace: {{ .Release.Namespace }}
+type: Opaque
+stringData:
+{{- with .Values.extraEnv }}
+{{- toYaml . | nindent 2 }}
+{{- end }}
