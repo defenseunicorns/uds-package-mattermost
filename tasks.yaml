@@ -60,7 +60,7 @@ tasks:
       - task: create-mm-test-bundle
       - task: setup:k3d-test-cluster
         with:
-          version: "0.20.0"      
+          version: "0.20.0"
       - task: deploy:test-bundle
       - task: test:health-check
       - task: test:ingress
@@ -71,7 +71,7 @@ tasks:
       - task: create-mm-latest-release-bundle
       - task: setup:k3d-test-cluster
         with:
-          version: "0.20.0"       
+          version: "0.20.0"
       - task: deploy:test-bundle
       - task: create-mm-test-bundle
       - task: deploy:test-bundle
