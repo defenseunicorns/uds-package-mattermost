@@ -9,8 +9,11 @@ spec:
       clientId: mattermost-client
       redirectUris:
         - "https://chat.uds.dev/*"
-      # defaultClientScopes: #TODO: ewyles - put this back once uds can handle the openid scope on the initial realm
-      #   - "openid"
+      defaultClientScopes: #TODO: ewyles - put this back once uds can handle the openid scope on the initial realm
+        - "openid"
+        - "mapper-oidc-username-username"
+        - "mapper-oidc-mattermostid-id"
+        - "mapper-oidc-email-email" 
 
       secretName: mattermost-sso
       secretTemplate:
