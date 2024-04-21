@@ -5,4 +5,4 @@ metadata:
   namespace: {{ .Release.Namespace }}
 type: Opaque
 stringData:
-  db_connection_string: "postgres://{{ .Values.postgres.username }}:{{ .Values.postgres.password }}@{{ .Values.postgres.host }}:{{ .Values.postgres.port }}/{{ .Values.postgres.dbName }}{{ .Values.postgres.connectionOptions }}"
+  MM_SQLSETTINGS_DATASOURCE: "postgres://{{ .Values.postgres.username }}:{{ .Values.postgres.password }}@{{ .Values.postgres.host }}:{{ .Values.postgres.port }}/{{ .Values.postgres.dbName }}{{ .Values.postgres.connectionOptions }}"

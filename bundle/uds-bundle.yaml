@@ -3,17 +3,17 @@ metadata:
   name: mattermost-test
   description: A UDS bundle for deploying Mattermost and it's dependencies on a development cluster
   # x-release-please-start-version
-  version: 9.4.1-uds.3
+  version: 9.7.1-uds.0
   # x-release-please-end
 
 packages:
   - name: dev-minio
     repository: ghcr.io/defenseunicorns/packages/uds/dev-minio
-    ref: 0.0.1
+    ref: 0.0.2
 
   - name: dev-postgres
     repository: ghcr.io/defenseunicorns/packages/uds/dev-postgres
-    ref: 0.0.1
+    ref: 0.0.2
 
   - name: dev-secrets
     path: ../
@@ -26,7 +26,7 @@ packages:
   - name: mattermost
     path: ../
     # x-release-please-start-version
-    ref: 9.4.1-uds.3
+    ref: 9.7.1-uds.0
     # x-release-please-end
     imports:
       - name: ACCESS_KEY

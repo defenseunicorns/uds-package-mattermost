@@ -21,8 +21,15 @@
       "groupName": "Mattermost Package Dependencies",
       "labels": ["package-deps"],
       "commitMessageTopic": "package-deps",
-      "registryUrls": ["https://registry1.dso.mil"],
       "matchDatasources": ["docker", "helm", "git-tags"]
+    },
+    {
+      "groupName": "Mattermost Package Dependencies",
+      "labels": ["package-deps"],
+      "commitMessageTopic": "package-deps",
+      "matchDatasources": ["docker"],
+      "matchPackagePatterns": ["mattermost/mattermost-enterprise-edition"],
+      "allowedVersions": "/^\\d+\\.\\d+\\.\\d+$/"
     },
     {
       "groupName": "Mattermost Package Dependencies",
