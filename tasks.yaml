@@ -2,11 +2,11 @@ includes:
   - cleanup: ./tasks/cleanup.yaml
   - dependencies: ./tasks/dependencies.yaml
   - test: ./tasks/test.yaml
-  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.3.11/tasks/create.yaml
-  - lint: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.3.11/tasks/lint.yaml
-  - pull: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.3.11/tasks/pull.yaml
-  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.3.11/tasks/deploy.yaml
-  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.3.11/tasks/setup.yaml
+  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.0/tasks/create.yaml
+  - lint: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.0/tasks/lint.yaml
+  - pull: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.0/tasks/pull.yaml
+  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.0/tasks/deploy.yaml
+  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.0/tasks/setup.yaml
 
 tasks:
   - name: default
@@ -59,8 +59,6 @@ tasks:
     actions:
       - task: create-mm-test-bundle
       - task: setup:k3d-test-cluster
-        with:
-          version: "0.20.0"
       - task: deploy:test-bundle
       - task: test:health-check
       - task: test:ingress
@@ -70,8 +68,6 @@ tasks:
     actions:
       - task: create-mm-latest-release-bundle
       - task: setup:k3d-test-cluster
-        with:
-          version: "0.20.0"
       - task: deploy:test-bundle
       - task: create-mm-test-bundle
       - task: deploy:test-bundle
