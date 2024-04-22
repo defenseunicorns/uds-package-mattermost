@@ -47,11 +47,6 @@ tasks:
       - task: test:health-check
       - task: test:ingress
 
-  - name: remove
-    description: Test the health of a Mattermost deployment
-    actions:
-      - cmd: uds remove bundles/zarf-package-*-${UDS_ARCH}-*.tar.zst
-
 # CI will execute the following (via uds-common/.github/actions/test) so they need to be here with these names
 
   - name: test-package
