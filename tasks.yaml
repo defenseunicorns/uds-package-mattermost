@@ -39,13 +39,11 @@ tasks:
       - task: dependencies:create
       - task: create:test-bundle
 
-  - name: local-test
-    description: Test the health of a Mattermost deployment on an existing cluster (for iteration/dev speed)
+  - name: dev
+    description: Create and deploy the bundle on an existing cluster (for iteration/dev speed)
     actions:
       - task: create-mm-test-bundle
       - task: deploy:test-bundle
-      - task: test:health-check
-      - task: test:ingress
 
 # CI will execute the following (via uds-common/.github/actions/test) so they need to be here with these names
 
