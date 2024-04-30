@@ -34,7 +34,7 @@ components:
           - values/upstream-values.yaml
     images:
       - appropriate/curl:latest
-      - mattermost/mattermost-enterprise-edition:9.7.3
+      - mattermost/mattermost-enterprise-edition:9.7.2
 
   - name: mattermost
     required: true
