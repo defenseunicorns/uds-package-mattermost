@@ -17,6 +17,7 @@ postgres:
 
 sso:
   enabled: true
+  secretName: matermost-sso
   auth_endpoint: "https://sso.###ZARF_VAR_DOMAIN###/realms/uds/protocol/openid-connect/auth"
   token_endpoint: "http://keycloak-http.keycloak.svc.cluster.local:8080/realms/uds/protocol/openid-connect/token"
   user_api_endpoint: "https://sso.###ZARF_VAR_DOMAIN###/realms/uds/protocol/openid-connect/userinfo"
