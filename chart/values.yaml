@@ -19,7 +19,7 @@ postgres:
 
 sso:
   enabled: true
-  secretName: matermost-sso
+  secretName: mattermost-sso
 
   # These should typically be disabled if SSO is enabled
   enable_sign_up_with_email: false
