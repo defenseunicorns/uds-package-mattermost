@@ -53,8 +53,10 @@ tasks:
       - task: create-mm-test-bundle
       - task: setup:k3d-test-cluster
       - task: deploy:test-bundle
+      - task: setup:create-doug-user
       - task: test:health-check
       - task: test:ingress
+      - task: test:smoke
 
   - name: test-upgrade
     description: Test an upgrade from the latest released package to the current branch
@@ -64,5 +66,7 @@ tasks:
       - task: deploy:test-bundle
       - task: create-mm-test-bundle
       - task: deploy:test-bundle
+      - task: setup:create-doug-user
       - task: test:health-check
       - task: test:ingress
+      - task: test:smoke-test

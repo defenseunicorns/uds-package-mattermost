@@ -63,3 +63,10 @@ jobs:
         uses: defenseunicorns/uds-common/.github/actions/save-logs@a6fba9c0084319325d70816a3481aec0979649fa # v0.4.0
         with:
           suffix: ${{ matrix.type }}-${{ matrix.flavor }}-${{ github.run_id }}-${{ github.run_attempt }}
+
+      - uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4.3.3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30

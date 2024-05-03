@@ -17,3 +17,11 @@ tasks:
             protocol: https
             address: chat.uds.dev
             code: 200
+
+  - name: smoke
+    description: Mattermost Smoke Check
+    actions:
+      - cmd: |
+          npm ci
+          npx playwright install --with-deps
+      - cmd: npx playwright test --project chromium firefox # webkit doesn't retry 421s so fails with login
