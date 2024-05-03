@@ -1,6 +1,6 @@
 includes:
-  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.3.11/tasks/create.yaml
-  - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.3.11/tasks/publish.yaml
+  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.0/tasks/create.yaml
+  - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.0/tasks/publish.yaml
 
 tasks:
   - name: package
@@ -20,5 +20,5 @@ tasks:
         task: publish:package
         with:
           # x-release-please-start-version
-          version: "9.7.1-uds.0"
+          version: "9.7.2-uds.0"
           # x-release-please-end
