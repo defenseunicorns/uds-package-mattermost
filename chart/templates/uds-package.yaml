@@ -6,7 +6,7 @@ metadata:
 spec:
   {{- if .Values.sso.enabled }}
   sso:
-    - name: Mattermost Client
+    - name: Mattermost Login
       clientId: uds-swf-mattermost
       redirectUris:
         - "https://chat.uds.dev/*"
