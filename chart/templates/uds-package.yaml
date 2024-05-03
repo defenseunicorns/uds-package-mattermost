@@ -4,6 +4,30 @@ metadata:
   name: mattermost
   namespace: {{ .Release.Namespace }}
 spec:
+  {{- if .Values.sso.enabled }}
+  sso:
+    - name: Mattermost Login
+      clientId: uds-swf-mattermost
+      redirectUris:
+        - "https://chat.uds.dev/*"
+      defaultClientScopes:
+        - "openid"
+        - "mapper-oidc-username-username"
+        - "mapper-oidc-mattermostid-id"
+        - "mapper-oidc-email-email" 
+
+      secretName: {{ .Values.sso.secretName }}
+      secretTemplate:
+        MM_GITLABSETTINGS_ENABLE: "{{ .Values.sso.enabled | toString }}"
+        MM_GITLABSETTINGS_ID: "clientField(clientId)"
+        MM_GITLABSETTINGS_SECRET: "clientField(secret)"
+        MM_GITLABSETTINGS_AUTHENDPOINT: "https://sso.{{ .Values.domain }}/realms/uds/protocol/openid-connect/auth"
+        MM_GITLABSETTINGS_TOKENENDPOINT: "http://keycloak-http.keycloak.svc.cluster.local:8080/realms/uds/protocol/openid-connect/token"
+        MM_GITLABSETTINGS_USERAPIENDPOINT: "https://sso.{{ .Values.domain }}/realms/uds/protocol/openid-connect/userinfo"
+        MM_EMAILSETTINGS_ENABLESIGNUPWITHEMAIL: "{{ .Values.sso.enable_sign_up_with_email | toString }}"
+        MM_EMAILSETTINGS_ENABLESIGNINWITHEMAIL: "{{ .Values.sso.enable_sign_in_with_email | toString }}"
+        MM_EMAILSETTINGS_ENABLESIGNINWITHUSERNAME: "{{ .Values.sso.enable_sign_in_with_username | toString }}"
+  {{- end }}
   network:
     expose:
       - service: mattermost-enterprise-edition

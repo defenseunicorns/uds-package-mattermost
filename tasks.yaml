@@ -2,11 +2,11 @@ includes:
   - cleanup: ./tasks/cleanup.yaml
   - dependencies: ./tasks/dependencies.yaml
   - test: ./tasks/test.yaml
-  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.0/tasks/create.yaml
-  - lint: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.0/tasks/lint.yaml
-  - pull: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.0/tasks/pull.yaml
-  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.0/tasks/deploy.yaml
-  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.0/tasks/setup.yaml
+  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.2/tasks/create.yaml
+  - lint: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.2/tasks/lint.yaml
+  - pull: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.2/tasks/pull.yaml
+  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.2/tasks/deploy.yaml
+  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.2/tasks/setup.yaml
 
 tasks:
   - name: default
@@ -38,6 +38,12 @@ tasks:
           spoof_release: "true"
       - task: dependencies:create
       - task: create:test-bundle
+
+  - name: dev
+    description: Create and deploy the bundle on an existing cluster (for iteration/dev speed)
+    actions:
+      - task: create-mm-test-bundle
+      - task: deploy:test-bundle
 
 # CI will execute the following (via uds-common/.github/actions/test) so they need to be here with these names
 

@@ -1,3 +1,5 @@
+domain: "###ZARF_VAR_DOMAIN###"
+
 objectStorage:
   secure: true
   accessKey: ""
@@ -16,16 +18,13 @@ postgres:
   connectionOptions: ""
 
 sso:
-  enabled: false
-  client_id: ""
-  client_secret: ""
-  auth_endpoint: ""
-  token_endpoint: ""
-  user_api_endpoint: ""
+  enabled: true
+  secretName: mattermost-sso
+
   # These should typically be disabled if SSO is enabled
-  enable_sign_up_with_email: true
-  enable_sign_in_with_email: true
-  enable_sign_in_with_username: true
+  enable_sign_up_with_email: false
+  enable_sign_in_with_email: false
+  enable_sign_in_with_username: false
 
 # The subdomain for the mattermost server, will be prefixed to your domain (ex: mattermost.example.com)
 subdomain: "chat"
