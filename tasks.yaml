@@ -64,9 +64,9 @@ tasks:
       - task: create-mm-latest-release-bundle
       - task: setup:k3d-test-cluster
       - task: deploy:test-bundle
+      - task: setup:create-doug-user
       - task: create-mm-test-bundle
       - task: deploy:test-bundle
-      - task: setup:create-doug-user
       - task: test:health-check
       - task: test:ingress
-      - task: test:smoke-test
+      - task: test:smoke
