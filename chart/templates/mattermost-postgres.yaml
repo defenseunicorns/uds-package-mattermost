@@ -15,7 +15,4 @@ stringData:
     {{- else }}
     postgres://{{ .Values.postgres.username }}:{{ .Values.postgres.password }}@{{ .Values.postgres.host }}:{{ .Values.postgres.port }}/{{ .Values.postgres.dbName }}{{ .Values.postgres.connectionOptions }}
     {{- end }}
-    {{- else }}
-    # Debug: Secret not found or no access
-    # Fallback or error handling here
     {{- end }}
