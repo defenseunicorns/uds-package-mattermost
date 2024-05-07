@@ -7,13 +7,24 @@ metadata:
   # x-release-please-end
 
 packages:
+  - name: dev-namespace
+    path: ../
+    ref: 0.1.0
+
   - name: dev-minio
     repository: ghcr.io/defenseunicorns/packages/uds/dev-minio
     ref: 0.0.2
 
-  - name: dev-postgres
-    repository: ghcr.io/defenseunicorns/packages/uds/dev-postgres
-    ref: 0.0.2
+  - name: postgres-operator
+    repository: ghcr.io/defenseunicorns/packages/uds/postgres-operator
+    ref: 1.11.0-uds.0-upstream
+    overrides:
+      postgres-operator:
+        uds-postgres-config:
+          variables:
+            - name: POSTGRESQL
+              description: "Configure postgres using CRs via the uds-postgres-config chart"
+              path: postgresql
 
   - name: dev-secrets
     path: ../
@@ -21,7 +32,6 @@ packages:
     exports:
       - name: ACCESS_KEY
       - name: SECRET_KEY
-      - name: DB_PASSWORD
 
   - name: mattermost
     path: ../
@@ -33,8 +43,6 @@ packages:
         package: dev-secrets
       - name: SECRET_KEY
         package: dev-secrets
-      - name: DB_PASSWORD
-        package: dev-secrets
     overrides:
       mattermost:
         uds-mattermost-config:
@@ -45,7 +53,3 @@ packages:
               value: "minio.dev-minio.svc.cluster.local:9000"
             - path: "objectStorage.bucket"
               value: "uds-mattermost-dev"
-            - path: "postgres.host"
-              value: "postgresql.dev-postgres.svc.cluster.local"
-            - path: "postgres.connectionOptions"
-              value: "?connect_timeout=10&sslmode=disable"
