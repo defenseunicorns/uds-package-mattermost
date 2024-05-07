@@ -5,4 +5,17 @@ metadata:
   namespace: {{ .Release.Namespace }}
 type: Opaque
 stringData:
-  MM_SQLSETTINGS_DATASOURCE: "postgres://{{ .Values.postgres.username }}:{{ .Values.postgres.password }}@{{ .Values.postgres.host }}:{{ .Values.postgres.port }}/{{ .Values.postgres.dbName }}{{ .Values.postgres.connectionOptions }}"
+  MM_SQLSETTINGS_DATASOURCE: |-
+    {{- if and .Values.postgres.existingSecret.name (eq .Values.postgres.password "") }}
+    {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.postgres.existingSecret.name) }}
+    {{- if $secret }}
+    {{- $password := index $secret.data .Values.postgres.existingSecret.passwordKey | b64dec }}
+    {{- $username := index $secret.data .Values.postgres.existingSecret.usernameKey | b64dec }}
+    postgres://{{ $username }}:{{ $password }}@{{ .Values.postgres.host }}:{{ .Values.postgres.port }}/{{ .Values.postgres.dbName }}{{ .Values.postgres.connectionOptions }}
+    {{- else }}
+    postgres://{{ .Values.postgres.username }}:{{ .Values.postgres.password }}@{{ .Values.postgres.host }}:{{ .Values.postgres.port }}/{{ .Values.postgres.dbName }}{{ .Values.postgres.connectionOptions }}
+    {{- end }}
+    {{- else }}
+    # Debug: Secret not found or no access
+    # Fallback or error handling here
+    {{- end }}
