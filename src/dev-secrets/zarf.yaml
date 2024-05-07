@@ -3,7 +3,6 @@ kind: ZarfPackageConfig
 metadata:
   name: dev-secrets
   version: "0.1.0"
-  architecture: amd64
 
 components:
   - name: minio-password
@@ -20,14 +19,4 @@ components:
             mute: true
             setVariables:
               - name: SECRET_KEY
-                sensitive: true
-  - name: postgres-password
-    required: true
-    actions:
-      onDeploy:
-        before:
-          - cmd: kubectl get secret -n dev-postgres postgresql --template={{.data.password}} | base64 -d
-            mute: true
-            setVariables:
-              - name: DB_PASSWORD
                 sensitive: true

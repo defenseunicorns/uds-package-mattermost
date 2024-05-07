@@ -32,7 +32,6 @@ packages:
     exports:
       - name: ACCESS_KEY
       - name: SECRET_KEY
-      - name: DB_PASSWORD
 
   - name: mattermost
     path: ../
@@ -43,8 +42,6 @@ packages:
       - name: ACCESS_KEY
         package: dev-secrets
       - name: SECRET_KEY
-        package: dev-secrets
-      - name: DB_PASSWORD
         package: dev-secrets
     overrides:
       mattermost:
