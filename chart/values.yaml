@@ -13,10 +13,10 @@ postgres:
   # Note: Specifying password as anything other than "" will not use the existingSecret
   password: ""
   existingSecret:
-    name: "gitlab.gitlab.pg-cluster.credentials.postgresql.acid.zalan.do"
+    name: "mattermost.mattermost.pg-cluster.credentials.postgresql.acid.zalan.do"
     passwordKey: password
     usernameKey: username
-  host: ""
+  host: "pg-cluster.postgres.svc.cluster.local"
   dbName: "mattermost"
   # Example: "?connect_timeout=10&sslmode=disable"
   connectionOptions: ""
@@ -54,19 +54,19 @@ storage:
   namespace: dev-minio
   port: 9000
 
-custom:
-   # Notice no `remoteGenerated` field here on custom internal rule
-  - direction: Ingress
-    selector:
-      app: jenkins
-    remoteNamespace: jenkins
-    remoteSelector:
-      app: jenkins
-    port: 8180
-    description: "Ingress from Jenkins"
-  # No `remoteNamespace`, `remoteSelector`, or `port` fields on rule to `remoteGenerated`
-  - direction: Egress
-    selector:
-      app: webservice
-    remoteGenerated: Anywhere
-    description: "Egress from Mattermost"
+# custom:
+#    # Notice no `remoteGenerated` field here on custom internal rule
+#   - direction: Ingress
+#     selector:
+#       app: jenkins
+#     remoteNamespace: jenkins
+#     remoteSelector:
+#       app: jenkins
+#     port: 8180
+#     description: "Ingress from Jenkins"
+#   # No `remoteNamespace`, `remoteSelector`, or `port` fields on rule to `remoteGenerated`
+#   - direction: Egress
+#     selector:
+#       app: webservice
+#     remoteGenerated: Anywhere
+#     description: "Egress from Mattermost"

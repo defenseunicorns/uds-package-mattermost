@@ -53,7 +53,3 @@ packages:
               value: "minio.dev-minio.svc.cluster.local:9000"
             - path: "objectStorage.bucket"
               value: "uds-mattermost-dev"
-            - path: "postgres.host"
-              value: "postgresql.dev-postgres.svc.cluster.local"
-            - path: "postgres.connectionOptions"
-              value: "?connect_timeout=10&sslmode=disable"
