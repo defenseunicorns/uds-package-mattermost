@@ -28,10 +28,17 @@ spec:
         MM_EMAILSETTINGS_ENABLESIGNINWITHEMAIL: "{{ .Values.sso.enable_sign_in_with_email | toString }}"
         MM_EMAILSETTINGS_ENABLESIGNINWITHUSERNAME: "{{ .Values.sso.enable_sign_in_with_username | toString }}"
   {{- end }}
+  monitor:
+    - selector:
+        app.kubernetes.io/name: mattermost-enterprise-edition
+      targetPort: 8067
+      portName: mattermost-app-metrics
+      description: Metrics
+
   network:
     expose:
       - service: mattermost-enterprise-edition
-        podLabels:
+        selector:
           app.kubernetes.io/name: mattermost-enterprise-edition
         gateway: tenant
         host: {{ .Values.subdomain }}
@@ -44,8 +51,44 @@ spec:
       - direction: Egress
         remoteGenerated: IntraNamespace
 
-      # Todo: wide open for hitting in-cluster or external postgres/s3
       - direction: Egress
-        podLabels:
+        selector:
           app.kubernetes.io/name: mattermost-enterprise-edition
+        {{- if .Values.storage.internal }}
+        remoteNamespace: {{ .Values.storage.namespace | quote }}
+        remoteSelector:
+          {{ .Values.storage.selector | toYaml | nindent 10 }}
+        port: {{ .Values.storage.port }}
+        {{- else }}
         remoteGenerated: Anywhere
+        {{- end }}
+        description: "Mattermost Storage"
+
+      - direction: Egress
+        selector:
+          app.kubernetes.io/name: mattermost-enterprise-edition
+        {{- if .Values.postgres.internal }}
+        remoteNamespace: {{ .Values.postgres.namespace | quote }}
+        remoteSelector:
+          {{ .Values.postgres.selector | toYaml | nindent 10 }}
+        port: {{ .Values.postgres.port }}
+        {{- else }}
+        remoteGenerated: Anywhere
+        {{- end }}
+        description: "Mattermost Postgres"
+
+      # Custom rules for unanticipated scenarios
+      {{- range .Values.custom }}
+      - direction: {{ .direction }}
+        selector:
+          {{ .selector | toYaml | nindent 10 }}
+        {{- if not .remoteGenerated }}
+        remoteNamespace: {{ .remoteNamespace }}
+        remoteSelector:
+          {{ .remoteSelector | toYaml | nindent 10 }}
+        port: {{ .port }}
+        {{- else }}
+        remoteGenerated: {{ .remoteGenerated }}
+        {{- end }}
+        description: {{ .description }}
+      {{- end }}
