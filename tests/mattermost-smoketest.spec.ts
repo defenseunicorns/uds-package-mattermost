@@ -31,6 +31,10 @@ async function setupWorkspace(page: Page) {
   await page.getByRole("button", { name: "Finish setup" }).click();
   await page.waitForURL(/\/unicorns\/channels\/town-square/);
   await page.locator("button").filter({ hasText: "7" }).click();
+  const button = page.locator('role=button[name="Not now"]');
+  if (await button.isVisible()) {
+    await button.click();
+  }
   await page.getByRole("button", { name: "Not now" }).click();
 }
 
@@ -56,7 +60,7 @@ async function logout(page: Page) {
   await page.getByLabel("Log Out").click();
 }
 
-test("test mattermost login, init and message", async ({ page }) => {
+test("test mattermost login, init and message", async ({ page, context }) => {
   await loginToMattermost(page);
 
   const finalUrl = page.url();
@@ -67,7 +71,19 @@ test("test mattermost login, init and message", async ({ page }) => {
     await page.waitForURL(/\/unicorns\/channels\/town-square/);
   }
 
+  expect(
+    page.getByLabel("set status").locator("div").filter({ hasText: "@doug" }),
+  ).toBeTruthy();
   expect(page.url()).toContain("/unicorns/channels/town-square");
+
+  const cookies = await context.cookies();
+  const keycloakCookie = cookies.find(
+    (cookie) => cookie.name === "KEYCLOAK_SESSION",
+  );
+
+  expect(keycloakCookie).toBeDefined();
+  expect(keycloakCookie?.value).not.toBe("");
+  expect(keycloakCookie?.domain).toContain("sso.uds.dev");
 
   await createChannelAndPostMessage(page);
   await logout(page);
