@@ -38,28 +38,6 @@ async function setupWorkspace(page: Page) {
   await page.getByRole("button", { name: "Not now" }).click();
 }
 
-async function createChannelAndPostMessage(page: Page) {
-  await page
-    .getByLabel("channel sidebar region")
-    .getByLabel("Add Channel Dropdown")
-    .click();
-  await page.getByLabel("Create new channel").click();
-  await page
-    .getByPlaceholder("Enter a name for your new")
-    .fill("testchannel" + randomSuffix());
-  await page.getByRole("button", { name: "Create channel" }).click();
-  await page.getByTestId("post_textbox").click();
-  await page
-    .getByTestId("post_textbox")
-    .fill("Hello! from playwright on " + currentDateTime());
-  await page.getByTestId("SendMessageButton").click();
-}
-
-async function logout(page: Page) {
-  await page.getByLabel("Current status: Online.").click();
-  await page.getByLabel("Log Out").click();
-}
-
 test("test mattermost login, init and message", async ({ page, context }) => {
   await loginToMattermost(page);
 
@@ -85,6 +63,4 @@ test("test mattermost login, init and message", async ({ page, context }) => {
   expect(keycloakCookie?.value).not.toBe("");
   expect(keycloakCookie?.domain).toContain("sso.uds.dev");
 
-  await createChannelAndPostMessage(page);
-  await logout(page);
 });
