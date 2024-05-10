@@ -35,7 +35,6 @@ async function setupWorkspace(page: Page) {
   if (await button.isVisible()) {
     await button.click();
   }
-  await page.getByRole("button", { name: "Not now" }).click();
 }
 
 test("test mattermost login, init and message", async ({ page, context }) => {
