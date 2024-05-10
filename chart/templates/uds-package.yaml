@@ -52,6 +52,22 @@ spec:
         remoteGenerated: IntraNamespace
 
       - direction: Egress
+        remoteNamespace: keycloak
+        remoteSelector:
+          app.kubernetes.io/name: keycloak
+        selector:
+          app.kubernetes.io/name: mattermost-enterprise-edition
+        port: 8080
+        description: "SSO Internal"
+
+      - direction: Egress
+        remoteGenerated: Anywhere
+        selector:
+          app.kubernetes.io/name: mattermost-enterprise-edition
+        port: 443
+        description: "SSO External"
+
+      - direction: Egress
         selector:
           app.kubernetes.io/name: mattermost-enterprise-edition
         {{- if .Values.storage.internal }}
