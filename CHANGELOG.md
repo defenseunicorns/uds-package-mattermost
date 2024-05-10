@@ -2,68 +2,6 @@
 
 All notable changes to this project will be documented in this file.
 
-## [9.7.2-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.7.2-uds.1...v9.7.2-uds.1) (2024-05-10)
-
-
-### ⚠ BREAKING CHANGES
-
-* add monitoring and granular netpols ([#67](https://github.com/defenseunicorns/uds-package-mattermost/issues/67))
-
-### Features
-
-* add irsa/sa auth support ([f178a54](https://github.com/defenseunicorns/uds-package-mattermost/commit/f178a5422e0bc84bb591532015df8e9a7acb0b54))
-* add irsa/sa auth support ([c3d5acb](https://github.com/defenseunicorns/uds-package-mattermost/commit/c3d5acb55e48fb4a92b62523b32ca2b90d181614))
-* add monitoring and granular netpols ([#67](https://github.com/defenseunicorns/uds-package-mattermost/issues/67)) ([915eb2d](https://github.com/defenseunicorns/uds-package-mattermost/commit/915eb2ddcfe82f56c34bb2e98043d7a05f3e4810))
-* burn the boats ([d25c6bb](https://github.com/defenseunicorns/uds-package-mattermost/commit/d25c6bb156a9724bfd548bbc3b0c23d2b9ebd728))
-* env var MM_SQLSETTINGS_DATASOURCE set ([#54](https://github.com/defenseunicorns/uds-package-mattermost/issues/54)) ([16894df](https://github.com/defenseunicorns/uds-package-mattermost/commit/16894dfc302838a199e89a84e1430267538de2f8))
-* integrate with keycloak ([#44](https://github.com/defenseunicorns/uds-package-mattermost/issues/44)) ([ce05b45](https://github.com/defenseunicorns/uds-package-mattermost/commit/ce05b45e32e4d7aceb77979b984cbd9a8506c9e2))
-* update readme ([7f5162b](https://github.com/defenseunicorns/uds-package-mattermost/commit/7f5162b6cd5a3353416df0a4f6424ab9058895c0))
-* Update README.md ([7e9f97b](https://github.com/defenseunicorns/uds-package-mattermost/commit/7e9f97b886d83ab592da3de8d94f68d6fedec385))
-
-
-### Bug Fixes
-
-* expose plugin upload setting ([#12](https://github.com/defenseunicorns/uds-package-mattermost/issues/12)) ([f8fbfc2](https://github.com/defenseunicorns/uds-package-mattermost/commit/f8fbfc2d38e90f82f57821e319b69388e178a1fc))
-* fix mm hostname ([516569a](https://github.com/defenseunicorns/uds-package-mattermost/commit/516569afd508436ebd0a922649f3bc1172cf5f0e))
-* fix mm hostname and tests ([785384d](https://github.com/defenseunicorns/uds-package-mattermost/commit/785384dfd54e1ce1e3d5a59c8c381d3d2c65e080))
-* fix tests for mm ([c660e66](https://github.com/defenseunicorns/uds-package-mattermost/commit/c660e661577f1cc82eb4f335043f207cc642d5f5))
-* handle subdomain shared between packages ([#10](https://github.com/defenseunicorns/uds-package-mattermost/issues/10)) ([31da0b4](https://github.com/defenseunicorns/uds-package-mattermost/commit/31da0b4eec93179197d1e916369a5a683e9252ac))
-
-
-### Miscellaneous
-
-* add 🏭 to README.md ([9e4c566](https://github.com/defenseunicorns/uds-package-mattermost/commit/9e4c56615b8a5ef75c30c02930b8472c42cd52e6))
-* **deps:** update all dependencies ([#16](https://github.com/defenseunicorns/uds-package-mattermost/issues/16)) ([e54ebc6](https://github.com/defenseunicorns/uds-package-mattermost/commit/e54ebc6f1ea9c1cb16afacadeca9e929ffe412e7))
-* **deps:** update githubactions ([#17](https://github.com/defenseunicorns/uds-package-mattermost/issues/17)) ([a24855a](https://github.com/defenseunicorns/uds-package-mattermost/commit/a24855aec82b54ba868d1d4df6b23d051453db0d))
-* **deps:** update githubactions ([#22](https://github.com/defenseunicorns/uds-package-mattermost/issues/22)) ([d1cf997](https://github.com/defenseunicorns/uds-package-mattermost/commit/d1cf99761139370adb51eb1b43b8bf8513ea576a))
-* **deps:** update mattermost package dependencies ([#42](https://github.com/defenseunicorns/uds-package-mattermost/issues/42)) ([8da95ef](https://github.com/defenseunicorns/uds-package-mattermost/commit/8da95efccbb1ff8dc3f33e00bc20b831d1806420))
-* **deps:** update mattermost package dependencies ([#48](https://github.com/defenseunicorns/uds-package-mattermost/issues/48)) ([10b24e9](https://github.com/defenseunicorns/uds-package-mattermost/commit/10b24e99c2abc4acc3a59d30eb1d6d8524299d80))
-* **deps:** update mattermost package dependencies ([#59](https://github.com/defenseunicorns/uds-package-mattermost/issues/59)) ([edf154b](https://github.com/defenseunicorns/uds-package-mattermost/commit/edf154b7c947a7cb4b107f10252a92a9c21c57c5))
-* **deps:** update mattermost support dependencies ([#46](https://github.com/defenseunicorns/uds-package-mattermost/issues/46)) ([2a9d055](https://github.com/defenseunicorns/uds-package-mattermost/commit/2a9d05537fc2bd2c824a90e2a9294af8b774b12e))
-* **deps:** update mattermost support dependencies ([#55](https://github.com/defenseunicorns/uds-package-mattermost/issues/55)) ([fe798f6](https://github.com/defenseunicorns/uds-package-mattermost/commit/fe798f6111cd5dfb25ee78a0a58188754a4d4b1d))
-* **deps:** update mattermost support dependencies ([#63](https://github.com/defenseunicorns/uds-package-mattermost/issues/63)) ([6010a04](https://github.com/defenseunicorns/uds-package-mattermost/commit/6010a04d47e5d66f960653b5f09c53e644b0f9d1))
-* fix renovate config to only allow semver on mattermost image ([#51](https://github.com/defenseunicorns/uds-package-mattermost/issues/51)) ([65e294f](https://github.com/defenseunicorns/uds-package-mattermost/commit/65e294f9b3387c909abf61ce9d1b8ef189f6aa2a))
-* hotfix renovate config registries ([#45](https://github.com/defenseunicorns/uds-package-mattermost/issues/45)) ([42a912b](https://github.com/defenseunicorns/uds-package-mattermost/commit/42a912b5e6bc0b3da970319f03a1f627e2f5f22b))
-* implement upgrade tests for mattermost ([43044cf](https://github.com/defenseunicorns/uds-package-mattermost/commit/43044cf8ed321b7e71977c01280ab40300fb5a2b))
-* **main:** release 9.3.0-uds.1 ([41da032](https://github.com/defenseunicorns/uds-package-mattermost/commit/41da032727e415a4998384d12591c9cfff1ee13a))
-* **main:** release 9.3.0-uds.2 ([c4381ae](https://github.com/defenseunicorns/uds-package-mattermost/commit/c4381ae47566a334cdab99a79c428bd49ec61536))
-* **main:** release 9.4.1-uds.0 ([#8](https://github.com/defenseunicorns/uds-package-mattermost/issues/8)) ([5415a0a](https://github.com/defenseunicorns/uds-package-mattermost/commit/5415a0a46154d31c307ef93ade457486b0cba926))
-* **main:** release 9.4.1-uds.1 ([#11](https://github.com/defenseunicorns/uds-package-mattermost/issues/11)) ([8f73182](https://github.com/defenseunicorns/uds-package-mattermost/commit/8f731821f3c716431290a640ca798476078c1ae8))
-* **main:** release 9.4.1-uds.2 ([#13](https://github.com/defenseunicorns/uds-package-mattermost/issues/13)) ([e177cbe](https://github.com/defenseunicorns/uds-package-mattermost/commit/e177cbe8217eab96f3be85b36fc2ecb8d02193ee))
-* **main:** release 9.4.1-uds.3 ([e57f69a](https://github.com/defenseunicorns/uds-package-mattermost/commit/e57f69a26bb236506ba187fe2146bc976f25d00f))
-* **main:** release 9.4.1-uds.4 ([#40](https://github.com/defenseunicorns/uds-package-mattermost/issues/40)) ([6c7549f](https://github.com/defenseunicorns/uds-package-mattermost/commit/6c7549fd166dfbc8d56dd5fa4ffc13aeff5650b1))
-* **main:** release 9.6.1-uds.0 ([#47](https://github.com/defenseunicorns/uds-package-mattermost/issues/47)) ([3e52b95](https://github.com/defenseunicorns/uds-package-mattermost/commit/3e52b9598d4fc3f076cdb5ac9b5914e776653e01))
-* **main:** release 9.7.1-uds.0 ([#52](https://github.com/defenseunicorns/uds-package-mattermost/issues/52)) ([acda0c5](https://github.com/defenseunicorns/uds-package-mattermost/commit/acda0c54696f33a271c427e2e62bde77a5c03c1d))
-* **main:** release 9.7.2-uds.0 ([#60](https://github.com/defenseunicorns/uds-package-mattermost/issues/60)) ([32eb363](https://github.com/defenseunicorns/uds-package-mattermost/commit/32eb363c1c0479f4677398f5810785aa59d9760a))
-* **main:** release 9.7.2-uds.1 ([#64](https://github.com/defenseunicorns/uds-package-mattermost/issues/64)) ([fcf56e0](https://github.com/defenseunicorns/uds-package-mattermost/commit/fcf56e04ca982d4d886af0280a385cfc2deb9133))
-* release 9.4.1-uds.0 ([5b89960](https://github.com/defenseunicorns/uds-package-mattermost/commit/5b899604054f3d194d3c52ce2e0257991a37b47f))
-* release 9.6.1-uds.0 ([#49](https://github.com/defenseunicorns/uds-package-mattermost/issues/49)) ([37ef4ad](https://github.com/defenseunicorns/uds-package-mattermost/commit/37ef4adc5cf209838bf978d827918faee667b896))
-* release as v9.7.2-uds.0 ([#62](https://github.com/defenseunicorns/uds-package-mattermost/issues/62)) ([bc0b65f](https://github.com/defenseunicorns/uds-package-mattermost/commit/bc0b65fbe4b8289857d4f89a7106d1fbb7c89cf2))
-* renovate config, remote tasks ([#14](https://github.com/defenseunicorns/uds-package-mattermost/issues/14)) ([bb6c574](https://github.com/defenseunicorns/uds-package-mattermost/commit/bb6c574383674d09e77ee7d88a1d9a5becd9faa0))
-* standardize repo to template and update README.md ([#20](https://github.com/defenseunicorns/uds-package-mattermost/issues/20)) ([88a3d84](https://github.com/defenseunicorns/uds-package-mattermost/commit/88a3d84db5501ebe51dd0b4ff59b0c4233e35fb6))
-* update CODEOWNERS to new style/group ([27246ca](https://github.com/defenseunicorns/uds-package-mattermost/commit/27246ca21b9cb2aac31d245d4eb6b9690059ec52))
-* update extraEnv to envFrom ([#58](https://github.com/defenseunicorns/uds-package-mattermost/issues/58)) ([57df25a](https://github.com/defenseunicorns/uds-package-mattermost/commit/57df25af4cc20c528961b30aa0914564a67108a9))
-
 ## [9.7.2-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.7.2-uds.0...v9.7.2-uds.1) (2024-05-07)
 
 
