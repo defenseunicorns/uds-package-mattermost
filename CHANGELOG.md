@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [9.7.2-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.7.2-uds.0...v9.7.2-uds.1) (2024-05-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* add monitoring and granular netpols ([#67](https://github.com/defenseunicorns/uds-package-mattermost/issues/67))
+
+### Features
+
+* add monitoring and granular netpols ([#67](https://github.com/defenseunicorns/uds-package-mattermost/issues/67)) ([915eb2d](https://github.com/defenseunicorns/uds-package-mattermost/commit/915eb2ddcfe82f56c34bb2e98043d7a05f3e4810))
+* integrate with keycloak ([#44](https://github.com/defenseunicorns/uds-package-mattermost/issues/44)) ([ce05b45](https://github.com/defenseunicorns/uds-package-mattermost/commit/ce05b45e32e4d7aceb77979b984cbd9a8506c9e2))
+
+
+### Miscellaneous
+
+* **deps:** update mattermost support dependencies ([#63](https://github.com/defenseunicorns/uds-package-mattermost/issues/63)) ([6010a04](https://github.com/defenseunicorns/uds-package-mattermost/commit/6010a04d47e5d66f960653b5f09c53e644b0f9d1))
+
 ## [9.7.2-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.7.1-uds.0...v9.7.2-uds.0) (2024-04-30)
 
 
