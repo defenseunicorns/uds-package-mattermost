@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [9.7.2-uds.2](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.7.2-uds.1...v9.7.2-uds.2) (2024-05-13)
+
+
+### Bug Fixes
+
+* pre-commit yaml lint config and postgres config error ([#74](https://github.com/defenseunicorns/uds-package-mattermost/issues/74)) ([47c4760](https://github.com/defenseunicorns/uds-package-mattermost/commit/47c47600d81baa62913a3ae35f5bcf84b40f3362))
+* replaced hardcoded redirectUri ([#73](https://github.com/defenseunicorns/uds-package-mattermost/issues/73)) ([1390dcd](https://github.com/defenseunicorns/uds-package-mattermost/commit/1390dcd05a600e6a2972740a4a14f7ff89aec8af))
+
 ## [9.7.2-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.7.2-uds.0...v9.7.2-uds.1) (2024-05-07)
 
 
