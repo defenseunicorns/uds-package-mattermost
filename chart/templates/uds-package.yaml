@@ -9,7 +9,7 @@ spec:
     - name: Mattermost Login
       clientId: uds-swf-mattermost
       redirectUris:
-        - "https://chat.uds.dev/*"
+        - "https://{{ .Values.subdomain }}.{{ .Values.domain }}/*"
       defaultClientScopes:
         - "openid"
         - "mapper-oidc-username-username"
