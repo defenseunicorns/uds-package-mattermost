@@ -40,7 +40,9 @@ async function sendMessage(page: Page) {
 
 test("test mattermost login, init and message", async ({ page, context }) => {
   await loginToMattermost(page);
-
+  await page.waitForURL(
+    /\/preparing-workspace|\/unicorns\/channels\/town-square/,
+  );
   const finalUrl = page.url();
 
   if (finalUrl.endsWith("/preparing-workspace")) {
