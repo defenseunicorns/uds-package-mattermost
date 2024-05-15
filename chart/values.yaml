@@ -40,7 +40,7 @@ sso:
 
   # Config for OIDC/SAML
   login_button_text: "Login with SSO"
-  login_button_color: "#145DBF"
+  login_button_color: "#144A8F"
 
 # The subdomain for the mattermost server, will be prefixed to your domain (ex: mattermost.example.com)
 subdomain: "chat"
