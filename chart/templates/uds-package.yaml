@@ -14,19 +14,10 @@ spec:
         - "openid"
         - "mapper-oidc-username-username"
         - "mapper-oidc-mattermostid-id"
-        - "mapper-oidc-email-email" 
+        - "mapper-oidc-email-email"
 
       secretName: {{ .Values.sso.secretName }}
       secretTemplate:
-        {{ if eq .Values.sso.protocol "openid_connect" }}
-        MM_GITLABSETTINGS_ENABLE: "false"
-        MM_OPENIDSETTINGS_ENABLE: "{{ .Values.sso.enabled | toString }}"
-        MM_OPENIDSETTINGS_BUTTONTEXT: "{{ .Values.sso.buttonText }}"
-        MM_OPENIDSETTINGS_BUTTONCOLOR: "{{ .Values.sso.buttonColor }}"
-        MM_OPENIDSETTINGS_DISCOVERYENDPOINT: "https://sso.{{ .Values.domain }}/realms/uds/.well-known/openid-configuration"
-        MM_OPENIDSETTINGS_ID: "clientField(clientId)"
-        MM_OPENIDSETTINGS_SECRET: "clientField(secret)"
-        {{ end }}
         {{ if eq .Values.sso.protocol "gitlab" }}
         MM_OPENIDSETTINGS_ENABLE: "false"
         MM_GITLABSETTINGS_ENABLE: "{{ .Values.sso.enabled | toString }}"
@@ -35,6 +26,15 @@ spec:
         MM_GITLABSETTINGS_AUTHENDPOINT: "https://sso.{{ .Values.domain }}/realms/uds/protocol/openid-connect/auth"
         MM_GITLABSETTINGS_TOKENENDPOINT: "http://keycloak-http.keycloak.svc.cluster.local:8080/realms/uds/protocol/openid-connect/token"
         MM_GITLABSETTINGS_USERAPIENDPOINT: "https://sso.{{ .Values.domain }}/realms/uds/protocol/openid-connect/userinfo"
+        {{ end }}
+        {{ if eq .Values.sso.protocol "openid_connect" }}
+        MM_GITLABSETTINGS_ENABLE: "false"
+        MM_OPENIDSETTINGS_ENABLE: "{{ .Values.sso.enabled | toString }}"
+        MM_OPENIDSETTINGS_BUTTONTEXT: "{{ .Values.sso.login_button_text }}"
+        MM_OPENIDSETTINGS_BUTTONCOLOR: "{{ .Values.sso.login_button_color }}"
+        MM_OPENIDSETTINGS_DISCOVERYENDPOINT: "https://sso.{{ .Values.domain }}/realms/uds/.well-known/openid-configuration"
+        MM_OPENIDSETTINGS_ID: "clientField(clientId)"
+        MM_OPENIDSETTINGS_SECRET: "clientField(secret)"
         {{ end }}
         MM_EMAILSETTINGS_ENABLESIGNUPWITHEMAIL: "{{ .Values.sso.enable_sign_up_with_email | toString }}"
         MM_EMAILSETTINGS_ENABLESIGNINWITHEMAIL: "{{ .Values.sso.enable_sign_in_with_email | toString }}"
