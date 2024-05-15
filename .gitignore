@@ -16,8 +16,7 @@ terraform.tfstate.backup
 
 # SOPS stuff that should never be committed to the repo
 secret-sops-gpg.yaml
+
+# Tests
 node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
+.playwright/
