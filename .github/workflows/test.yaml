@@ -68,5 +68,5 @@ jobs:
         if: always()
         with:
           name: playwright-report-${{ matrix.type }}-${{ matrix.flavor }}-${{ github.run_id }}-${{ github.run_attempt }}
-          path: .playwright/reports/
+          path: tests/.playwright/reports/
           retention-days: 30

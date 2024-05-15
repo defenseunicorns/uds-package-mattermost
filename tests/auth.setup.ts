@@ -1,5 +1,5 @@
 import { test as setup, expect } from '@playwright/test';
-import { authFile } from '../playwright.config';
+import { authFile } from './playwright.config';
 
 setup('authenticate', async ({ page, context, baseURL }) => {
   await page.goto('/login');
@@ -19,11 +19,11 @@ setup('authenticate', async ({ page, context, baseURL }) => {
   expect(keycloakCookie).toBeDefined();
   expect(keycloakCookie?.value).not.toBe("");
   expect(keycloakCookie?.domain).toContain("sso.uds.dev");
-  
+
   await page.context().storageState({ path: authFile });
 
   await page.waitForURL('/');
-  
+
   // one-time workspace setup (when login redirects to "/preparing-workspace")
   const heading = page.locator('.Organization-form-wrapper');
   if (!await heading.isVisible()) return;
@@ -32,10 +32,10 @@ setup('authenticate', async ({ page, context, baseURL }) => {
   await page.getByTestId("continue").click();
   await page.getByRole("button", { name: "Skip" }).click();
   await page.getByRole("button", { name: "Finish setup" }).click();
-  
+
   await page.waitForURL("/unicorns/channels/town-square");
   await page.locator("button").filter({ hasText: "7" }).click();
-  
+
   const button = page.locator('role=button[name="Not now"]');
   if (await button.isVisible()) {
     await button.click();
