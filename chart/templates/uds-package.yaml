@@ -21,8 +21,8 @@ spec:
         {{ if eq .Values.sso.protocol "openid_connect" }}
         MM_GITLABSETTINGS_ENABLE: "false"
         MM_OPENIDSETTINGS_ENABLE: "{{ .Values.sso.enabled | toString }}"
-        MM_OPENIDSETTINGS_BUTTONTEXT: "{{ .Values.sso.oidc.buttonText }}"
-        MM_OPENIDSETTINGS_BUTTONCOLOR: "{{ .Values.sso.oidc.buttonColor }}"
+        MM_OPENIDSETTINGS_BUTTONTEXT: "{{ .Values.sso.buttonText }}"
+        MM_OPENIDSETTINGS_BUTTONCOLOR: "{{ .Values.sso.buttonColor }}"
         MM_OPENIDSETTINGS_DISCOVERYENDPOINT: "https://sso.{{ .Values.domain }}/realms/uds/.well-known/openid-configuration"
         MM_OPENIDSETTINGS_ID: "clientField(clientId)"
         MM_OPENIDSETTINGS_SECRET: "clientField(secret)"
