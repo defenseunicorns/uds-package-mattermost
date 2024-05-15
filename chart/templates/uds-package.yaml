@@ -18,12 +18,23 @@ spec:
 
       secretName: {{ .Values.sso.secretName }}
       secretTemplate:
+        {{ if .Values.sso.oidc.enabled }}
+        MM_GITLABSETTINGS_ENABLE: "false"
+        MM_OPENIDSETTINGS_ENABLE: "{{ .Values.sso.enabled | toString }}"
+        MM_OPENIDSETTINGS_BUTTONTEXT: "{{ .Values.sso.oidc.buttonText }}"
+        MM_OPENIDSETTINGS_BUTTONCOLOR: "{{ .Values.sso.oidc.buttonColor }}"
+        MM_OPENIDSETTINGS_DISCOVERYENDPOINT: "https://sso.{{ .Values.domain }}/realms/uds/.well-known/openid-configuration
+        MM_OPENIDSETTINGS_ID: "clientField(clientId)"
+        MM_OPENIDSETTINGS_SECRET: "clientField(secret)"
+        {{ else }}
+        MM_OPENIDSETTINGS_ENABLE: "false"
         MM_GITLABSETTINGS_ENABLE: "{{ .Values.sso.enabled | toString }}"
         MM_GITLABSETTINGS_ID: "clientField(clientId)"
         MM_GITLABSETTINGS_SECRET: "clientField(secret)"
         MM_GITLABSETTINGS_AUTHENDPOINT: "https://sso.{{ .Values.domain }}/realms/uds/protocol/openid-connect/auth"
         MM_GITLABSETTINGS_TOKENENDPOINT: "http://keycloak-http.keycloak.svc.cluster.local:8080/realms/uds/protocol/openid-connect/token"
         MM_GITLABSETTINGS_USERAPIENDPOINT: "https://sso.{{ .Values.domain }}/realms/uds/protocol/openid-connect/userinfo"
+        {{ end }}
         MM_EMAILSETTINGS_ENABLESIGNUPWITHEMAIL: "{{ .Values.sso.enable_sign_up_with_email | toString }}"
         MM_EMAILSETTINGS_ENABLESIGNINWITHEMAIL: "{{ .Values.sso.enable_sign_in_with_email | toString }}"
         MM_EMAILSETTINGS_ENABLESIGNINWITHUSERNAME: "{{ .Values.sso.enable_sign_in_with_username | toString }}"
