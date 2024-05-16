@@ -11,15 +11,19 @@ spec:
       redirectUris:
         - "https://{{ .Values.subdomain }}.{{ .Values.domain }}/*"
       defaultClientScopes:
-        - "openid"
+        {{ if eq .Values.sso.protocol "gitlab" }}
         - "mapper-oidc-username-username"
         - "mapper-oidc-mattermostid-id"
         - "mapper-oidc-email-email"
+        {{ end }}
+        {{ if eq .Values.sso.protocol "openid_connect" }}
+        - "profile"
+        - "email"
+        {{ end }}
 
       secretName: {{ .Values.sso.secretName }}
       secretTemplate:
         {{ if eq .Values.sso.protocol "gitlab" }}
-        MM_OPENIDSETTINGS_ENABLE: "false"
         MM_GITLABSETTINGS_ENABLE: "{{ .Values.sso.enabled | toString }}"
         MM_GITLABSETTINGS_ID: "clientField(clientId)"
         MM_GITLABSETTINGS_SECRET: "clientField(secret)"
@@ -28,7 +32,6 @@ spec:
         MM_GITLABSETTINGS_USERAPIENDPOINT: "https://sso.{{ .Values.domain }}/realms/uds/protocol/openid-connect/userinfo"
         {{ end }}
         {{ if eq .Values.sso.protocol "openid_connect" }}
-        MM_GITLABSETTINGS_ENABLE: "false"
         MM_OPENIDSETTINGS_ENABLE: "{{ .Values.sso.enabled | toString }}"
         MM_OPENIDSETTINGS_BUTTONTEXT: "{{ .Values.sso.login_button_text }}"
         MM_OPENIDSETTINGS_BUTTONCOLOR: "{{ .Values.sso.login_button_color }}"
