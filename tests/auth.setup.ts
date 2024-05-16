@@ -41,7 +41,7 @@ setup('authenticate', async ({ page, context, baseURL }) => {
     await onboarding.click();
   }
 
-  await page.getByRole('textbox', { name: 'Write to Town Square' }).focus();
+  await page.getByRole('textbox', { name: 'Write to Town Square' }).fill('prompt for draft', { force: true });
 
   // dismiss draft feature overlay
   const button = page.locator('role=button[name="Not now"]');
