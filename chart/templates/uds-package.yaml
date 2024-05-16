@@ -11,6 +11,7 @@ spec:
       redirectUris:
         - "https://{{ .Values.subdomain }}.{{ .Values.domain }}/*"
       defaultClientScopes:
+        - "openid"
         {{ if eq .Values.sso.protocol "gitlab" }}
         - "mapper-oidc-username-username"
         - "mapper-oidc-mattermostid-id"
