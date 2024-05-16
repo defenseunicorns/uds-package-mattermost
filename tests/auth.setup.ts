@@ -13,7 +13,7 @@ setup('authenticate', async ({ page, context, baseURL }) => {
   // ensure auth cookies were set
   const cookies = await context.cookies();
   const keycloakCookie = cookies.find(
-    (cookie) => cookie.name === "KEYCLOAK_SESSION" && cookie.value,
+    (cookie) => cookie.name === "KEYCLOAK_SESSION",
   );
 
   expect(keycloakCookie).toBeDefined();
@@ -26,16 +26,24 @@ setup('authenticate', async ({ page, context, baseURL }) => {
 
   // one-time workspace setup (when login redirects to "/preparing-workspace")
   const heading = page.locator('.Organization-form-wrapper');
-  if (!await heading.isVisible()) return;
+  if (await heading.isVisible()) {
+    await page.getByPlaceholder("Organization name").fill("Unicorns");
+    await page.getByTestId("continue").click();
+    await page.getByRole("button", { name: "Skip" }).click();
+    await page.getByRole("button", { name: "Finish setup" }).click();
+  };
 
-  await page.getByPlaceholder("Organization name").fill("Unicorns");
-  await page.getByTestId("continue").click();
-  await page.getByRole("button", { name: "Skip" }).click();
-  await page.getByRole("button", { name: "Finish setup" }).click();
+  await page.goto('/unicorns/channels/town-square');
 
-  await page.waitForURL("/unicorns/channels/town-square");
-  await page.locator("button").filter({ hasText: "7" }).click();
+  // dismiss onboarding task list
+  const onboarding = page.getByText('No thanks, I’ll figure it out');
+  if (await onboarding.isVisible()) {
+    await onboarding.click();
+  }
 
+  await page.getByRole('textbox', { name: 'Write to Town Square' }).focus();
+
+  // dismiss draft feature overlay
   const button = page.locator('role=button[name="Not now"]');
   if (await button.isVisible()) {
     await button.click();
