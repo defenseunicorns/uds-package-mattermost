@@ -12,18 +12,34 @@ spec:
         - "https://{{ .Values.subdomain }}.{{ .Values.domain }}/*"
       defaultClientScopes:
         - "openid"
+        {{ if eq .Values.sso.protocol "gitlab" }}
         - "mapper-oidc-username-username"
         - "mapper-oidc-mattermostid-id"
-        - "mapper-oidc-email-email" 
+        - "mapper-oidc-email-email"
+        {{ end }}
+        {{ if eq .Values.sso.protocol "openid_connect" }}
+        - "profile"
+        - "email"
+        {{ end }}
 
       secretName: {{ .Values.sso.secretName }}
       secretTemplate:
+        {{ if eq .Values.sso.protocol "gitlab" }}
         MM_GITLABSETTINGS_ENABLE: "{{ .Values.sso.enabled | toString }}"
         MM_GITLABSETTINGS_ID: "clientField(clientId)"
         MM_GITLABSETTINGS_SECRET: "clientField(secret)"
         MM_GITLABSETTINGS_AUTHENDPOINT: "https://sso.{{ .Values.domain }}/realms/uds/protocol/openid-connect/auth"
         MM_GITLABSETTINGS_TOKENENDPOINT: "http://keycloak-http.keycloak.svc.cluster.local:8080/realms/uds/protocol/openid-connect/token"
         MM_GITLABSETTINGS_USERAPIENDPOINT: "https://sso.{{ .Values.domain }}/realms/uds/protocol/openid-connect/userinfo"
+        {{ end }}
+        {{ if eq .Values.sso.protocol "openid_connect" }}
+        MM_OPENIDSETTINGS_ENABLE: "{{ .Values.sso.enabled | toString }}"
+        MM_OPENIDSETTINGS_BUTTONTEXT: "{{ .Values.sso.login_button_text }}"
+        MM_OPENIDSETTINGS_BUTTONCOLOR: "{{ .Values.sso.login_button_color }}"
+        MM_OPENIDSETTINGS_DISCOVERYENDPOINT: "https://sso.{{ .Values.domain }}/realms/uds/.well-known/openid-configuration"
+        MM_OPENIDSETTINGS_ID: "clientField(clientId)"
+        MM_OPENIDSETTINGS_SECRET: "clientField(secret)"
+        {{ end }}
         MM_EMAILSETTINGS_ENABLESIGNUPWITHEMAIL: "{{ .Values.sso.enable_sign_up_with_email | toString }}"
         MM_EMAILSETTINGS_ENABLESIGNINWITHEMAIL: "{{ .Values.sso.enable_sign_in_with_email | toString }}"
         MM_EMAILSETTINGS_ENABLESIGNINWITHUSERNAME: "{{ .Values.sso.enable_sign_in_with_username | toString }}"
