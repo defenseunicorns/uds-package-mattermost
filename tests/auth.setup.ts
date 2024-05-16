@@ -32,20 +32,4 @@ setup('authenticate', async ({ page, context, baseURL }) => {
     await page.getByRole("button", { name: "Skip" }).click();
     await page.getByRole("button", { name: "Finish setup" }).click();
   };
-
-  await page.goto('/unicorns/channels/town-square');
-
-  // dismiss onboarding task list
-  const onboarding = page.getByText('No thanks, I’ll figure it out');
-  if (await onboarding.isVisible()) {
-    await onboarding.click();
-  }
-
-  await page.getByRole('textbox', { name: 'Write to Town Square' }).fill('prompt for draft', { force: true });
-
-  // dismiss draft feature overlay
-  const button = page.locator('role=button[name="Not now"]');
-  if (await button.isVisible()) {
-    await button.click();
-  }
-});
+})

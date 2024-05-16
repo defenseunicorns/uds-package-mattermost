@@ -2,13 +2,36 @@ import { test, expect } from "@playwright/test";
 import path from 'path';
 import consumers from 'stream/consumers';
 
+test.beforeEach(async ({ page }) => {
+  await page.goto("/unicorns/channels/town-square");
+
+  await expect(async () => {
+    // dismiss onboarding task list/overlays
+    const onboarding = page
+      .locator('span', { hasText: 'No thanks, I’ll figure it out' })
+      .or(page.locator('role=button[name="Not now"]'));
+
+    if (await onboarding.isVisible()) {
+      await onboarding.click();
+    }
+
+    await expect(
+      page.locator('#root.channel-view'),
+      'onboarding overlays have been dismissed'
+    ).toBeVisible();
+
+    await expect(
+      page.getByRole('textbox', { name: 'Write to Town Square' }),
+      'message box is editable'
+    ).toBeEditable();
+  }).toPass({ timeout: 10_000 });
+});
+
 function randomMessage(extra: string = "") {
   return `hello universe ${Math.floor((Math.random() * 1000))}-C3!` + extra;
 }
 
 test("send a message", async ({ page }) => {
-  await page.goto("/unicorns/channels/town-square");
-
   const message = randomMessage();
   const messageBox = page.getByRole('textbox', { name: 'Write to Town Square' });
 
@@ -20,8 +43,6 @@ test("send a message", async ({ page }) => {
 });
 
 test("send a message with attachment", async ({ page }) => {
-  await page.goto("/unicorns/channels/town-square");
-
   const messageBox = page.getByRole('textbox', { name: 'Write to Town Square' });
 
   const message = randomMessage('\ncheckout this attachment...');
