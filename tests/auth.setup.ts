@@ -22,12 +22,13 @@ setup('authenticate', async ({ page, context, baseURL }) => {
 
   await page.context().storageState({ path: authFile });
 
-  await page.waitForURL('/');
+  await page.waitForURL(url => url.pathname === '/' || url.pathname === '/preparing-workspace');
 
   // one-time workspace setup (when login redirects to "/preparing-workspace")
-  const heading = page.locator('.Organization-form-wrapper');
-  if (await heading.isVisible()) {
-    await page.getByPlaceholder("Organization name").fill("Unicorns");
+  if (page.url().endsWith('/unicorns/channels/town-square')) {
+    const orgInput = page.getByPlaceholder("Organization name");
+    await orgInput.isVisible();
+    await orgInput.fill("Unicorns");
     await page.getByTestId("continue").click();
     await page.getByRole("button", { name: "Skip" }).click();
     await page.getByRole("button", { name: "Finish setup" }).click();

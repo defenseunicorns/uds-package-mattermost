@@ -1,5 +1,4 @@
 import { test, expect } from "@playwright/test";
-import path from 'path';
 import consumers from 'stream/consumers';
 
 test.beforeEach(async ({ page }) => {
@@ -8,22 +7,32 @@ test.beforeEach(async ({ page }) => {
   await expect(async () => {
     // dismiss onboarding task list/overlays
     const onboarding = page
-      .locator('span', { hasText: 'No thanks, I’ll figure it out' })
-      .or(page.locator('role=button[name="Not now"]'));
+      .locator('div[class^="Overlay-"], .tour-tip__overlay');
 
     if (await onboarding.isVisible()) {
       await onboarding.click();
     }
 
-    await expect(
-      page.locator('#root.channel-view'),
-      'onboarding overlays have been dismissed'
-    ).toBeVisible();
+    const messageBox = page.getByRole('textbox', { name: 'Write to Town Square' });
 
     await expect(
-      page.getByRole('textbox', { name: 'Write to Town Square' }),
+      messageBox,
       'message box is editable'
     ).toBeEditable();
+
+    await messageBox.fill('no demos!');
+
+    await expect(
+      messageBox,
+      'message box is editable'
+    ).toBeFocused();
+
+    await expect(
+      onboarding,
+      'onboarding overlays have been dismissed'
+    ).toBeHidden();
+
+    await messageBox.clear();
   }).toPass({ timeout: 10_000 });
 });
 
