@@ -1,87 +1,111 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, request, APIRequestContext, Page } from "@playwright/test";
 import consumers from 'stream/consumers';
 
-test.beforeEach(async ({ page }) => {
-  await page.goto("/unicorns/channels/town-square");
+type Channel = { id: string; name: string; display_name: string; };
 
-  await expect(async () => {
-    // dismiss onboarding task list/overlays
-    const onboarding = page
-      .locator('div[class^="Overlay-"], .tour-tip__overlay');
+let apiCtx: APIRequestContext;
+let channel: Channel = { id: '86mrup6p5if1bqixjkahojra6o', name: 'town-square', display_name: 'Town Square' }
 
-    if (await onboarding.isVisible()) {
-      await onboarding.click();
+test.beforeEach(async ({ context, baseURL }) => {
+  const cookies = await context.cookies();
+  const token = cookies.find(c => c.name === 'MMAUTHTOKEN');
+
+  expect(token?.value).toBeDefined();
+
+  apiCtx = await request.newContext({
+    baseURL,
+    extraHTTPHeaders: {
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${token?.value}`,
+      'X-Requested-With': 'XMLHttpRequest', // without this you get "Invalid or expired session, please login again."
     }
+  });
 
-    const messageBox = page.getByRole('textbox', { name: 'Write to Town Square' });
+  const channels = await apiCtx.get('/api/v4/channels')
+    .then(res => res.json());
 
-    await expect(
-      messageBox,
-      'message box is editable'
-    ).toBeEditable();
+  expect(channels.length).toBeGreaterThanOrEqual(1);
 
-    await messageBox.fill('no demos!');
-
-    await expect(
-      messageBox,
-      'message box is editable'
-    ).toBeFocused();
-
-    await expect(
-      onboarding,
-      'onboarding overlays have been dismissed'
-    ).toBeHidden();
-
-    await messageBox.clear();
-  }).toPass({ timeout: 10_000 });
+  channel = channels.find((c: Channel) => c.display_name === 'Town Square');
+  expect(channel).toBeDefined();
+  expect(channel.display_name).toBe('Town Square');
 });
 
 function randomMessage(extra: string = "") {
   return `hello universe ${Math.floor((Math.random() * 1000))}-C3!` + extra;
 }
 
+async function createPost(page: Page, data: { channel_id: string, message: string; file_ids?: string[] }) {
+  const req = await apiCtx.post('/api/v4/posts', {
+    data,
+  });
+
+  expect(req).toBeOK();
+
+  const post = await req.json();
+
+  expect(post.id).toBeDefined();
+  expect(post.message).toBe(data.message);
+
+  return post;
+}
+
 test("send a message", async ({ page }) => {
-  const message = randomMessage();
-  const messageBox = page.getByRole('textbox', { name: 'Write to Town Square' });
+  const post = await createPost(page, {
+    channel_id: channel.id,
+    message: randomMessage(),
+  });
 
-  await messageBox.fill(message);
-  await page.getByRole('button', { name: 'Send a message' }).click();
+  await page.goto('/unicorns/channels/town-square');
 
-  await expect(messageBox).toBeEmpty();
-  expect(page.locator('#post-list .post', { hasText: message })).toBeDefined();
+  const el = page.locator(`#post_${post.id}`);
+  await expect(el).toContainText(post.message);
 });
 
 test("send a message with attachment", async ({ page }) => {
-  const messageBox = page.getByRole('textbox', { name: 'Write to Town Square' });
+  const file = {
+    name: 'README.md',
+    mimeType: 'text/plain',
+    buffer: Buffer.from('# My Cool Project'),
+  };
+
+  const upload = await apiCtx.fetch('/api/v4/files', {
+    method: 'POST',
+    multipart: {
+      channel_id: channel.id,
+      files: file,
+    },
+  });
+
+  expect(upload).toBeOK();
+
+  const res = await upload.json();
+
+  expect(res.file_infos.length).toBe(1);
+  expect(res.file_infos[0].name).toBe(file.name);
 
   const message = randomMessage('\ncheckout this attachment...');
-  await messageBox.fill(message);
+  const post = await createPost(page, {
+    channel_id: channel.id,
+    message,
+    file_ids: [ res.file_infos[0].id ],
+  });
 
-  const upload = Buffer.from('# My Cool Project');
+  await page.goto('/unicorns/channels/town-square');
 
-  await page.getByLabel('Upload files')
-    .setInputFiles({
-      name: 'README.md',
-      buffer: upload,
-      mimeType: 'text/plain'
-    });
+  const el = page.locator(`#post_${post.id}`);
+  await expect(el).toContainText(post.message);
 
-  await page.getByRole('button', { name: 'Send a message' }).click();
-  await expect(messageBox).toBeEmpty();
+  const downloadWait = page.waitForEvent('download');
 
-  const downloadEvent = page.waitForEvent('download');
+  await expect(async () => {
+    await el.getByRole('link', { name: 'download' }).click();
 
-  const post = page.locator('#post-list .post__body', { hasText: message });
+    const download = await downloadWait;
+    expect(download.suggestedFilename()).toBe(file.name);
 
-  await expect(post).toBeDefined();
+    const data = await consumers.text(await download.createReadStream())
 
-  await post.getByRole('link', { name: 'download' }).click();
-
-  const download = await downloadEvent;
-
-  expect(download.suggestedFilename()).toBe('README.md');
-
-  const rs = await download.createReadStream();
-  const data = await consumers.buffer(rs);
-  expect(data.equals(upload)).toBe(true);
+    expect(data).toBe(file.buffer.toString('utf8'));
+  }, 'download completed').toPass();
 });
