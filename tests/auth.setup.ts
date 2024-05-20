@@ -22,10 +22,14 @@ setup('authenticate', async ({ page, context, baseURL }) => {
 
   await page.context().storageState({ path: authFile });
 
-  await page.waitForURL(url => url.pathname === '/' || url.pathname === '/preparing-workspace');
+  await page.waitForURL(url =>
+    url.pathname === '/' ||
+    url.pathname === '/preparing-workspace' ||
+    url.pathname === '/unicorns/channels/town-square'
+  );
 
   // one-time workspace setup (when login redirects to "/preparing-workspace")
-  if (page.url().endsWith('/unicorns/channels/town-square')) {
+  if (page.url().endsWith('/preparing-workspace')) {
     const orgInput = page.getByPlaceholder("Organization name");
     await orgInput.isVisible();
     await orgInput.fill("Unicorns");
