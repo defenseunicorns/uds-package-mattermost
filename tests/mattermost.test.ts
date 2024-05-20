@@ -4,7 +4,7 @@ import consumers from 'stream/consumers';
 type Channel = { id: string; name: string; display_name: string; };
 
 let apiCtx: APIRequestContext;
-let channel: Channel = { id: '86mrup6p5if1bqixjkahojra6o', name: 'town-square', display_name: 'Town Square' }
+let channel: Channel;
 
 test.beforeEach(async ({ context, baseURL }) => {
   const cookies = await context.cookies();
@@ -21,14 +21,19 @@ test.beforeEach(async ({ context, baseURL }) => {
     }
   });
 
-  const channels = await apiCtx.get('/api/v4/channels')
-    .then(res => res.json());
+  // poll channel list in case default channels haven't been created yey
+  expect(async () => {
+    const channels = await apiCtx.get('/api/v4/channels')
+      .then(res => res.json());
 
-  expect(channels.length).toBeGreaterThanOrEqual(1);
+    expect(channels.length).toBeGreaterThanOrEqual(1);
 
-  channel = channels.find((c: Channel) => c.display_name === 'Town Square');
-  expect(channel).toBeDefined();
-  expect(channel.display_name).toBe('Town Square');
+    channel = channels.find((c: Channel) => c.display_name === 'Town Square');
+    expect(channel).toBeDefined();
+    expect(channel.display_name).toBe('Town Square');
+  }).toPass({
+    timeout: 30_000,
+  });
 });
 
 function randomMessage(extra: string = "") {
