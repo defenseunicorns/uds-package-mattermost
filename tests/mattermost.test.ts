@@ -22,7 +22,7 @@ test.beforeEach(async ({ context, baseURL }) => {
   });
 
   // poll channel list in case default channels haven't been created yey
-  expect(async () => {
+  await expect(async () => {
     const channels = await apiCtx.get('/api/v4/channels')
       .then(res => res.json());
 
@@ -32,7 +32,7 @@ test.beforeEach(async ({ context, baseURL }) => {
     expect(channel).toBeDefined();
     expect(channel.display_name).toBe('Town Square');
   }).toPass({
-    timeout: 30_000,
+    timeout: 60_000,
   });
 });
 
