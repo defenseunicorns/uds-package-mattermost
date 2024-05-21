@@ -21,7 +21,7 @@ test.beforeEach(async ({ context, baseURL }) => {
     }
   });
 
-  // poll channel list in case default channels haven't been created yey
+  // poll channel list in case default channels haven't been created yet
   await expect(async () => {
     const channels = await apiCtx.get('/api/v4/channels')
       .then(res => res.json());

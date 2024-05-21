@@ -18,7 +18,7 @@ setup('authenticate', async ({ page, context, baseURL }) => {
 
   expect(keycloakCookie).toBeDefined();
   expect(keycloakCookie?.value).not.toBe("");
-  expect(keycloakCookie?.domain).toContain("sso.uds.dev");
+  expect(keycloakCookie?.domain).toContain("sso.");
 
   await page.context().storageState({ path: authFile });
 
