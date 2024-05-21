@@ -101,18 +101,4 @@ test("send a message with attachment", async ({ page }) => {
   const el = page.locator(`#post_${post.id}`);
   await expect(el).toContainText(post.message);
 
-  // TODO @marshall007: I can't get this to work because UI feature tour stuff still gets in the way
-
-  // const downloadWait = page.waitForEvent('download');
-
-  // await expect(async () => {
-  //   await el.getByRole('link', { name: 'download' }).click({ force: true });
-
-  //   const download = await downloadWait;
-  //   expect(download.suggestedFilename()).toBe(file.name);
-
-  //   const data = await consumers.text(await download.createReadStream())
-
-  //   expect(data).toBe(file.buffer.toString('utf8'));
-  // }, 'download completed').toPass();
 });
