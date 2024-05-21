@@ -17,3 +17,13 @@ tasks:
             protocol: https
             address: chat.uds.dev
             code: 200
+
+  - name: ui
+    description: Mattermost UI Checks
+    actions:
+      - cmd: npm ci
+        dir: tests
+      - cmd: npx playwright install --with-deps
+        dir: tests
+      - cmd: npx playwright test
+        dir: tests
