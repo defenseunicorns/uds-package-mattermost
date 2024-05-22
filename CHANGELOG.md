@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [9.8.0-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.7.2-uds.2...v9.8.0-uds.0) (2024-05-22)
+
+
+### Features
+
+* add oidc option for sso ([#77](https://github.com/defenseunicorns/uds-package-mattermost/issues/77)) ([9228ee8](https://github.com/defenseunicorns/uds-package-mattermost/commit/9228ee8c27b1b45413c4156b9ef00acfa69fddfc))
+
+
+### Miscellaneous
+
+* add basic smoke test for mattermost with sso ([#65](https://github.com/defenseunicorns/uds-package-mattermost/issues/65)) ([074749c](https://github.com/defenseunicorns/uds-package-mattermost/commit/074749c5aa7d54712bb2da11a5ee78a0987a732b)), closes [#75](https://github.com/defenseunicorns/uds-package-mattermost/issues/75)
+* **deps:** update mattermost package dependencies ([#61](https://github.com/defenseunicorns/uds-package-mattermost/issues/61)) ([a7c0adb](https://github.com/defenseunicorns/uds-package-mattermost/commit/a7c0adb1f1587782aaf5526721bb73ba315c37f0))
+* **deps:** update mattermost support dependencies ([#66](https://github.com/defenseunicorns/uds-package-mattermost/issues/66)) ([eab55f5](https://github.com/defenseunicorns/uds-package-mattermost/commit/eab55f58e0f712e18e0eae89a02432e28d10e21c))
+
 ## [9.7.2-uds.2](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.7.2-uds.1...v9.7.2-uds.2) (2024-05-13)
 
 
