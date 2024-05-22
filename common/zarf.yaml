@@ -18,6 +18,6 @@ components:
         namespace: mattermost
         url: https://helm.mattermost.com
         gitPath: chart
-        version: 2.6.51
+        version: 2.6.53
         valuesFiles:
           - ../values/common-values.yaml
