@@ -1,6 +1,10 @@
 includes:
   - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.5/tasks/create.yaml
   - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.5/tasks/publish.yaml
+  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.5/tasks/setup.yaml
+  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.5/tasks/deploy.yaml  
+  - dependencies: ./dependencies.yaml
+  - test: ./test.yaml
 
 tasks:
   - name: package
@@ -10,6 +14,14 @@ tasks:
         task: create:package
         with:
           architecture: amd64
+      - task: dependencies:create
+      - task: create:test-bundle
+      - task: setup:k3d-test-cluster
+      - task: deploy:test-bundle
+      - task: setup:create-doug-user
+      - task: test:health-check
+      - task: test:ingress
+      - task: test:ui
 
       - description: Create the ARM64 package
         task: create:package
@@ -17,8 +29,14 @@ tasks:
           architecture: arm64
 
       - description: Publish the packages
-        task: publish:package
-        with:
-          # x-release-please-start-version
-          version: "9.8.0-uds.0"
-          # x-release-please-end
+        cmd: |
+          echo ./uds zarf package publish ./zarf-package-*-amd64-.tar.zst oci://ghcr.io/defenseunicorns/packages/uds
+          if [ ${FLAVOR} != "registry1" ]; then
+            echo ./uds zarf package publish ./zarf-package-*-arm64-.tar.zst oci://ghcr.io/defenseunicorns/packages/uds
+          fi        
+
+        # task: publish:package
+        # with:
+        #   # x-release-please-start-version
+        #   version: "9.8.0-uds.0"
+        #   # x-release-please-end
