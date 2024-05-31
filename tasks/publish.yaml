@@ -2,7 +2,7 @@ includes:
   - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.5/tasks/create.yaml
   - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.5/tasks/publish.yaml
   - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.5/tasks/setup.yaml
-  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.5/tasks/deploy.yaml  
+  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.5/tasks/deploy.yaml
   - dependencies: ./dependencies.yaml
   - test: ./test.yaml
 
@@ -14,14 +14,9 @@ tasks:
         task: create:package
         with:
           architecture: amd64
-      - task: dependencies:create
-      - task: create:test-bundle
-      - task: setup:k3d-test-cluster
-      - task: deploy:test-bundle
-      - task: setup:create-doug-user
-      - task: test:health-check
-      - task: test:ingress
-      - task: test:ui
+      - task: create-bundle
+      - task: deploy-cluster
+      - task: run-tests
 
       - description: Create the ARM64 package
         task: create:package
@@ -33,10 +28,30 @@ tasks:
           echo ./uds zarf package publish ./zarf-package-*-amd64-.tar.zst oci://ghcr.io/defenseunicorns/packages/uds
           if [ ${FLAVOR} != "registry1" ]; then
             echo ./uds zarf package publish ./zarf-package-*-arm64-.tar.zst oci://ghcr.io/defenseunicorns/packages/uds
-          fi        
-
+          fi
+        # replaced this with the echos above temporarily while testing locally
         # task: publish:package
         # with:
         #   # x-release-please-start-version
         #   version: "9.8.0-uds.0"
         #   # x-release-please-end
+
+  - name: create-bundle
+    description: Create a bundle with dependencies for testing
+    actions:
+      - task: dependencies:create
+      - task: create:test-bundle
+
+  - name: deploy-cluster
+    description: Setup Cluster including test bundle deploy and test user
+    actions:
+      - task: setup:k3d-test-cluster
+      - task: deploy:test-bundle
+      - task: setup:create-doug-user
+
+  - name: run-tests
+    description: Run tests
+    actions:
+      - task: test:health-check
+      - task: test:ingress
+      - task: test:ui
