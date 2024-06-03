@@ -24,17 +24,11 @@ tasks:
           architecture: arm64
 
       - description: Publish the packages
-        cmd: |
-          echo ./uds zarf package publish ./zarf-package-*-amd64-.tar.zst oci://ghcr.io/defenseunicorns/packages/uds
-          if [ ${FLAVOR} != "registry1" ]; then
-            echo ./uds zarf package publish ./zarf-package-*-arm64-.tar.zst oci://ghcr.io/defenseunicorns/packages/uds
-          fi
-        # replaced this with the echos above temporarily while testing locally
-        # task: publish:package
-        # with:
-        #   # x-release-please-start-version
-        #   version: "9.8.0-uds.0"
-        #   # x-release-please-end
+        task: publish:package
+        with:
+          # x-release-please-start-version
+          version: "9.8.0-uds.0"
+          # x-release-please-end
 
   - name: create-bundle
     description: Create a bundle with dependencies for testing
