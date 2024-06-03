@@ -14,8 +14,6 @@ tasks:
         task: create:package
         with:
           architecture: amd64
-      - task: create-bundle
-      - task: deploy-cluster
       - task: run-tests
 
       - description: Create the ARM64 package
@@ -30,22 +28,14 @@ tasks:
           version: "9.8.0-uds.0"
           # x-release-please-end
 
-  - name: create-bundle
-    description: Create a bundle with dependencies for testing
-    actions:
-      - task: dependencies:create
-      - task: create:test-bundle
-
-  - name: deploy-cluster
-    description: Setup Cluster including test bundle deploy and test user
-    actions:
-      - task: setup:k3d-test-cluster
-      - task: deploy:test-bundle
-      - task: setup:create-doug-user
-
   - name: run-tests
     description: Run tests
     actions:
+      - task: dependencies:create
+      - task: create:test-bundle
+      - task: setup:k3d-test-cluster
+      - task: deploy:test-bundle
+      - task: setup:create-doug-user
       - task: test:health-check
       - task: test:ingress
       - task: test:ui
