@@ -30,6 +30,10 @@ jobs:
     strategy:
       matrix:
         flavor: [upstream, registry1]
+        architecture: [amd64, arm64]
+        exclude:
+          - flavor: registry1
+            architecture: arm64
 
     permissions:
       contents: read
@@ -45,15 +49,8 @@ jobs:
           registry1Password: ${{ secrets.IRON_BANK_ROBOT_PASSWORD }}
           ghToken: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create and Test the AMD64 Package
-        run: UDS_ARCHITECTURE=amd64 uds run test-package --set FLAVOR=${{ matrix.flavor }}
-
-      - name: Create the ARM64 package
-        if: ${{ matrix.flavor != 'registry1' }}
-        run: UDS_ARCHITECTURE=arm64 uds run create-mm-package --set FLAVOR=${{ matrix.flavor}}
-
       - name: Publish Package
-        run: uds run -f tasks/publish.yaml package --set FLAVOR=${{ matrix.flavor }}
+        run: UDS_ARCHITECTURE=${{ matrix.architecture }} uds run publish-package --set FLAVOR=${{ matrix.flavor }}
 
       - name: Save logs
         if: always()

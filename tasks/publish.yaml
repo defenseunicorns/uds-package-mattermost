@@ -1,13 +1,33 @@
 includes:
+  - cluster: ./cluster.yaml
+  - dependencies: ./dependencies.yaml  
+  - test: ./test.yaml
+  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.5/tasks/create.yaml
   - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.5/tasks/publish.yaml
+
+variables:
+  - name: FLAVOR
+    default: upstream
+  - name: UDS_ARCH
+    default: amd64
 
 tasks:
   - name: package
     description: Build and publish the packages
+
     actions:
-      - description: Publish the packages
-        task: publish:package
-        with:
-          # x-release-please-start-version
-          version: "9.8.0-uds.0"
-          # x-release-please-end
+      - task: create:package
+      - task: dependencies:create
+      - task: create:test-bundle
+      #- task: cluster:setup
+      #- task: test:all
+
+      - description: Publish the package
+        cmd: echo "Would publish ${FLAVOR}-${UDS_ARCH}"
+        # TODO: need to make publish understand arch before I put this back
+
+        # task: publish:package
+        # with:
+        #   # x-release-please-start-version
+        #   version: "9.8.0-uds.0"
+        #   # x-release-please-end
