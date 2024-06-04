@@ -20,8 +20,6 @@ tasks:
     description: Create the Mattermost package
     actions:
       - task: create:package
-        with:
-          options: "--skip-sbom"
 
   - name: create-mm-test-bundle
     description: Create a local UDS Mattermost bundle

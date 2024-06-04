@@ -10,34 +10,9 @@ tasks:
   - name: package
     description: Build and publish the packages
     actions:
-      - description: Create the AMD64 package
-        task: create:package
-        with:
-          architecture: amd64
-
-      - description: Test the AMD64 package
-        task: run-tests
-
-      - description: Create the ARM64 package
-        task: create:package
-        with:
-          architecture: arm64
-
       - description: Publish the packages
         task: publish:package
         with:
           # x-release-please-start-version
           version: "9.8.0-uds.0"
           # x-release-please-end
-
-  - name: run-tests
-    description: Run tests
-    actions:
-      - task: dependencies:create
-      - task: create:test-bundle
-      - task: setup:k3d-test-cluster
-      - task: deploy:test-bundle
-      - task: setup:create-doug-user
-      - task: test:health-check
-      - task: test:ingress
-      - task: test:ui
