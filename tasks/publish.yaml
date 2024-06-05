@@ -1,15 +1,10 @@
 includes:
-  - cluster: ./cluster.yaml
   - dependencies: ./dependencies.yaml  
   - test: ./test.yaml
   - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.5/tasks/create.yaml
+  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.5/tasks/deploy.yaml
   - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.5/tasks/publish.yaml
-
-variables:
-  - name: FLAVOR
-    default: upstream
-  - name: UDS_ARCH
-    default: amd64
+  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.4.5/tasks/setup.yaml
 
 tasks:
   - name: package
@@ -19,8 +14,10 @@ tasks:
       - task: create:package
       - task: dependencies:create
       - task: create:test-bundle
-      #- task: cluster:setup
-      #- task: test:all
+      - task: setup:k3d-test-cluster
+      - task: deploy:test-bundle
+      - task: setup:create-doug-user
+      - task: test:all
 
       - description: Publish the package
         cmd: echo "Would publish ${FLAVOR}-${UDS_ARCH}"
