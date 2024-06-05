@@ -9,14 +9,13 @@ permissions:
   contents: read
 
 jobs:
-  publish-package:
-    needs: tag-new-version
+  fake-publish:
     if: ${{ needs.tag-new-version.outputs.release_created == 'true' }}
     runs-on: ubuntu-latest
     name: Temp - Publish ${{ matrix.flavor }} ${{ matrix.architecture }}
     strategy:
       matrix:
-        flavor: [upstream, registry1]
+        flavor: [upstream]
         architecture: [amd64]
         exclude:
           - flavor: registry1
@@ -37,7 +36,7 @@ jobs:
           ghToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish Package
-        run: UDS_ARCHITECTURE=${{ matrix.architecture }} uds run -f tasks/publish.yaml package --set FLAVOR=${{ matrix.flavor }}
+        run: UDS_ARCHITECTURE=${{ matrix.architecture }} uds run -f tasks/fake-publish.yaml package --set FLAVOR=${{ matrix.flavor }}
 
       - name: Save logs
         if: always()
