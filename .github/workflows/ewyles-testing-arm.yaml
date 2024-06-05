@@ -1,0 +1,46 @@
+name: Temp Workflow to test Publish
+
+on:
+  push:
+    branches:
+      - 'ewyles/pre-release-testing'
+
+permissions:
+  contents: read
+
+jobs:
+  publish-package:
+    needs: tag-new-version
+    if: ${{ needs.tag-new-version.outputs.release_created == 'true' }}
+    runs-on: ubuntu-latest
+    name: Temp - Publish ${{ matrix.flavor }} ${{ matrix.architecture }}
+    strategy:
+      matrix:
+        flavor: [upstream, registry1]
+        architecture: [amd64]
+        exclude:
+          - flavor: registry1
+            architecture: arm64
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+
+      - name: Environment setup
+        uses: defenseunicorns/uds-common/.github/actions/setup@11e591f2ec7d158923d973c85097ce28a5f55db4 # v0.4.5
+        with:
+          registry1Username: ${{ secrets.IRON_BANK_ROBOT_USERNAME }}
+          registry1Password: ${{ secrets.IRON_BANK_ROBOT_PASSWORD }}
+          ghToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish Package
+        run: UDS_ARCHITECTURE=${{ matrix.architecture }} uds run -f tasks/publish.yaml package --set FLAVOR=${{ matrix.flavor }}
+
+      - name: Save logs
+        if: always()
+        uses: defenseunicorns/uds-common/.github/actions/save-logs@11e591f2ec7d158923d973c85097ce28a5f55db4 # v0.4.5
+        with:
+          suffix: ${{ matrix.flavor }}-${{ matrix.architecture }}-${{ github.run_id }}-${{ github.run_attempt }}
