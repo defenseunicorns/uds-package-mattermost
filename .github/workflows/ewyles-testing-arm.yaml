@@ -1,4 +1,4 @@
-name: Temp Workflow to test Publish
+name: Temp Workflow to test a Fake Publish
 
 on:
   push:
@@ -10,7 +10,6 @@ permissions:
 
 jobs:
   fake-publish:
-    if: ${{ needs.tag-new-version.outputs.release_created == 'true' }}
     runs-on: ubuntu-latest
     name: Temp - Publish ${{ matrix.flavor }} ${{ matrix.architecture }}
     strategy:
