@@ -50,7 +50,7 @@ jobs:
           ghToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish Package
-        run: UDS_ARCHITECTURE=${{ matrix.architecture }} uds run publish-package --set FLAVOR=${{ matrix.flavor }}
+        run: UDS_ARCHITECTURE=${{ matrix.architecture }} uds run -f tasks/publish.yaml package --set FLAVOR=${{ matrix.flavor }}
 
       - name: Save logs
         if: always()
