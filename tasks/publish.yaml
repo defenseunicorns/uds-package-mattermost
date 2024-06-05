@@ -20,8 +20,9 @@ tasks:
       - task: test:all
 
       - description: Publish the package
+        # TODO: using this echo command for local testing
         cmd: echo "Would publish ${FLAVOR}-${UDS_ARCH}"
-        # TODO: need to make publish understand arch before I put this back
+        # TODO: need to make publish take the arch as input
 
         # task: publish:package
         # with:
