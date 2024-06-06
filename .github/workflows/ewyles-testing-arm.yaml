@@ -5,6 +5,9 @@ on:
     branches:
       - 'ewyles/pre-release-testing'
 
+env:
+  UDS_CLI_VERSION: v0.11.0
+
 permissions:
   contents: read
 
@@ -45,7 +48,7 @@ jobs:
         if: ${{ runner.arch == 'ARM64' }}
         shell: bash
         # renovate: datasource=github-tags depName=defenseunicorns/uds-cli versioning=semver
-        run: curl -o /usr/local/bin/uds -L https://github.com/defenseunicorns/uds-cli/releases/download/v0.11.0/uds-cli_v0.11.0_Linux_arm64 && chmod +x /usr/local/bin/uds
+        run: curl -o /usr/local/bin/uds -L https://github.com/defenseunicorns/uds-cli/releases/download/$UDS_CLI_VERSION/uds-cli_$UDS_CLI_VERSION_Linux_arm64 && chmod +x /usr/local/bin/uds
 
       - name: Publish Package
         run: UDS_ARCHITECTURE=${{ matrix.architecture }} uds run -f tasks/fake-publish.yaml package --set FLAVOR=${{ matrix.flavor }}
