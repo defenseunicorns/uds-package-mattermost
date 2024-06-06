@@ -31,24 +31,24 @@ jobs:
       - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
       - name: Environment setup
-        if: ${{ runner.arch != 'ARM64' }}
-        uses: defenseunicorns/uds-common/.github/actions/setup@11e591f2ec7d158923d973c85097ce28a5f55db4 # v0.4.5
+#        uses: defenseunicorns/uds-common/.github/actions/setup@11e591f2ec7d158923d973c85097ce28a5f55db4 # v0.4.5
+        uses: defenseunicorns/uds-common/.github/actions/setup@ewyles/publish-arch
         with:
           registry1Username: ${{ secrets.IRON_BANK_ROBOT_USERNAME }}
           registry1Password: ${{ secrets.IRON_BANK_ROBOT_PASSWORD }}
           ghToken: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install k3d
-        if: ${{ runner.arch == 'ARM64' }}
-        shell: bash
-        # renovate: datasource=github-tags depName=k3d-io/k3d versioning=semver
-        run: curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | TAG=v5.6.3 bash
+      # - name: Install k3d
+      #   if: ${{ runner.arch == 'ARM64' }}
+      #   shell: bash
+      #   # renovate: datasource=github-tags depName=k3d-io/k3d versioning=semver
+      #   run: curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | TAG=v5.6.3 bash
 
-      - name: Install UDS CLI
-        if: ${{ runner.arch == 'ARM64' }}
-        shell: bash
-        # renovate: datasource=github-tags depName=defenseunicorns/uds-cli versioning=semver
-        run: curl -o /usr/local/bin/uds -L https://github.com/defenseunicorns/uds-cli/releases/download/${{ env.UDS_CLI_VERSION }}/uds-cli_${{ env.UDS_CLI_VERSION }}_Linux_arm64 && chmod +x /usr/local/bin/uds
+      # - name: Install UDS CLI
+      #   if: ${{ runner.arch == 'ARM64' }}
+      #   shell: bash
+      #   # renovate: datasource=github-tags depName=defenseunicorns/uds-cli versioning=semver
+      #   run: curl -o /usr/local/bin/uds -L https://github.com/defenseunicorns/uds-cli/releases/download/${{ env.UDS_CLI_VERSION }}/uds-cli_${{ env.UDS_CLI_VERSION }}_Linux_arm64 && chmod +x /usr/local/bin/uds
 
       - name: Publish Package
         run: UDS_ARCHITECTURE=${{ matrix.architecture }} uds run -f tasks/fake-publish.yaml package --set FLAVOR=${{ matrix.flavor }}
