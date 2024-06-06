@@ -44,7 +44,7 @@ jobs:
       - name: Install UDS CLI
         shell: bash
         # renovate: datasource=github-tags depName=defenseunicorns/uds-cli versioning=semver
-        run: curl -o /usr/bin/uds -L https://github.com/defenseunicorns/uds-cli/releases/download/v0.11.0/uds-cli_v0.11.0_Linux_arm64 && chmod +x /usr/bin/uds
+        run: curl -o /usr/local/bin/uds -L https://github.com/defenseunicorns/uds-cli/releases/download/v0.11.0/uds-cli_v0.11.0_Linux_arm64 && chmod +x /usr/local/bin/uds
 
 ###### end of temporary environment setup stuff
 
