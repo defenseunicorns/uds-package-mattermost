@@ -48,11 +48,8 @@ jobs:
 
 ###### end of temporary environment setup stuff
 
-      - name: Print UDS CLI version
-        run: uds version
-
-      # - name: Publish Package
-      #   run: UDS_ARCHITECTURE=${{ matrix.architecture }} uds run -f tasks/fake-publish.yaml package --set FLAVOR=${{ matrix.flavor }}
+      - name: Publish Package
+        run: UDS_ARCHITECTURE=${{ matrix.architecture }} uds run -f tasks/fake-publish.yaml package --set FLAVOR=${{ matrix.flavor }}
 
       - name: Save logs
         if: always()
