@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         flavor: [upstream]
-        architecture: [amd64, arm64]
+        architecture: [arm64]
         exclude:
           - flavor: registry1
             architecture: arm64
@@ -27,15 +27,32 @@ jobs:
     steps:
       - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
-      - name: Environment setup
-        uses: defenseunicorns/uds-common/.github/actions/setup@11e591f2ec7d158923d973c85097ce28a5f55db4 # v0.4.5
-        with:
-          registry1Username: ${{ secrets.IRON_BANK_ROBOT_USERNAME }}
-          registry1Password: ${{ secrets.IRON_BANK_ROBOT_PASSWORD }}
-          ghToken: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish Package
-        run: UDS_ARCHITECTURE=${{ matrix.architecture }} uds run -f tasks/fake-publish.yaml package --set FLAVOR=${{ matrix.flavor }}
+##### replacing environment setup temporarily to see what i can get working on arm
+      # - name: Environment setup
+      #   uses: defenseunicorns/uds-common/.github/actions/setup@11e591f2ec7d158923d973c85097ce28a5f55db4 # v0.4.5
+      #   with:
+      #     registry1Username: ${{ secrets.IRON_BANK_ROBOT_USERNAME }}
+      #     registry1Password: ${{ secrets.IRON_BANK_ROBOT_PASSWORD }}
+      #     ghToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install k3d
+        shell: bash
+        # renovate: datasource=github-tags depName=k3d-io/k3d versioning=semver
+        run: curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | TAG=v5.6.3 bash
+
+      - name: Install UDS CLI
+        shell: bash
+        # renovate: datasource=github-tags depName=defenseunicorns/uds-cli versioning=semver
+        run: curl -o /usr/bin/uds -L https://github.com/defenseunicorns/uds-cli/releases/download/v0.11.0/uds-cli_v0.11.0_Linux_arm64 && chmod +x /usr/bin/uds
+
+###### end of temporary environment setup stuff
+
+      - name: Print UDS CLI version
+        run: uds version
+
+      # - name: Publish Package
+      #   run: UDS_ARCHITECTURE=${{ matrix.architecture }} uds run -f tasks/fake-publish.yaml package --set FLAVOR=${{ matrix.flavor }}
 
       - name: Save logs
         if: always()
