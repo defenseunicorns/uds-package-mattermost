@@ -16,9 +16,9 @@ tasks:
       - task: dependencies:create
       - task: create:test-bundle
       - task: setup:k3d-test-cluster
-#      - task: deploy:test-bundle
+      - task: deploy:test-bundle
       - task: setup:create-doug-user
-#      - task: test:all
+      - task: test:all
 
       # - description: Publish the package
       #   task: publish:package
