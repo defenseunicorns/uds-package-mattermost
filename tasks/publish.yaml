@@ -1,22 +1,25 @@
 includes:
+  - dependencies: ./dependencies.yaml
+  - test: ./test.yaml
   - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.5.0/tasks/create.yaml
+  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.5.0/tasks/deploy.yaml
   - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.5.0/tasks/publish.yaml
+  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.5.0/tasks/setup.yaml
 
 tasks:
   - name: package
     description: Build and publish the packages
+
     actions:
-      - description: Create the AMD64 package
-        task: create:package
-        with:
-          architecture: amd64
+      - task: create:package
+      - task: dependencies:create
+      - task: create:test-bundle
+      - task: setup:k3d-test-cluster
+      - task: deploy:test-bundle
+      - task: setup:create-doug-user
+      - task: test:all
 
-      - description: Create the ARM64 package
-        task: create:package
-        with:
-          architecture: arm64
-
-      - description: Publish the packages
+      - description: Publish the package
         task: publish:package
         with:
           # x-release-please-start-version

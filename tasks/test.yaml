@@ -1,4 +1,10 @@
 tasks:
+  - name: all
+    actions:
+      - task: health-check
+      - task: ingress
+      - task: ui
+
   - name: health-check
     actions:
       - description: Mattermost Health Check
