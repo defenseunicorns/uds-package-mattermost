@@ -10,7 +10,8 @@ permissions:
 
 jobs:
   test-qemu:
-    runs-on: uds-ubuntu-arm64-4-core
+#    runs-on: uds-ubuntu-arm64-4-core
+    runs-on: ubuntu-latest
     name: Test QEMU ${{ matrix.flavor }} ${{ matrix.architecture }}
 
     permissions:
@@ -31,7 +32,7 @@ jobs:
         uses: docker/setup-qemu-action@v3
 
       - name: Test Package
-        run: UDS_ARCHITECTURE=arm64 uds run test-package --set FLAVOR=upstream
+        run: UDS_ARCHITECTURE=amd64 uds run test-package --set FLAVOR=upstream
 
       - name: Debug Output
         if: ${{ always() }}
