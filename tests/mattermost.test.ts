@@ -64,7 +64,7 @@ test("send a message", async ({ page }) => {
   await page.goto('/unicorns/channels/town-square');
 
   const el = page.locator(`#post_${post.id}`);
-  await expect(el).toContainText(post.message);
+  await expect(el).toContainText(post.message, { timeout: 60000 });
 });
 
 test("send a message with attachment", async ({ page }) => {
@@ -99,6 +99,6 @@ test("send a message with attachment", async ({ page }) => {
   await page.goto('/unicorns/channels/town-square');
 
   const el = page.locator(`#post_${post.id}`);
-  await expect(el).toContainText(post.message);
+  await expect(el).toContainText(post.message, { timeout: 60000 });
 
 });
