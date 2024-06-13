@@ -11,7 +11,7 @@ permissions:
 jobs:
   test-qemu:
 #    runs-on: uds-ubuntu-arm64-4-core
-    runs-on: ubuntu-latest
+    runs-on: uds-ubuntu-arm64-4-core
     name: Test QEMU ${{ matrix.flavor }} ${{ matrix.architecture }}
 
     permissions:
@@ -29,10 +29,10 @@ jobs:
           ghToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: apt-get install qemu-user-static
 
       - name: Test Package
-        run: UDS_ARCHITECTURE=amd64 uds run test-package --set FLAVOR=upstream
+        run: UDS_ARCHITECTURE=arm64 uds run test-package --set FLAVOR=upstream
 
       - name: Debug Output
         if: ${{ always() }}
