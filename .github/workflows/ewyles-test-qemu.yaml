@@ -34,12 +34,15 @@ jobs:
           registry1Password: ${{ secrets.IRON_BANK_ROBOT_PASSWORD }}
           ghToken: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Print binfmt config
-        run: cat /proc/sys/fs/binfmt_misc/qemu-arm
+      - name: Print docker images
+        run: docker images
 
       - name: Set up QEMU
         if: ${{ runner.arch == 'ARM64' }}
         uses: docker/setup-qemu-action@v3
+
+      - name: Print docker images
+        run: docker images
 
       - name: Print binfmt config
         run: cat /proc/sys/fs/binfmt_misc/qemu-arm
