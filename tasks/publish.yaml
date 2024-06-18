@@ -7,11 +7,14 @@ includes:
   - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.5.0/tasks/setup.yaml
 
 tasks:
-  - name: package
-    description: Build and publish the packages
-
+  - name: build-package
+    description: Build package
     actions:
       - task: create:package
+
+  - name: test-package
+    description: Test the package
+    actions:
       - task: dependencies:create
       - task: create:test-bundle
       - task: setup:k3d-test-cluster
@@ -19,6 +22,9 @@ tasks:
       - task: setup:create-doug-user
       - task: test:all
 
+  - name: publish-package
+    description: Publish the package
+    actions:
       - description: Publish the package
         task: publish:package
         with:

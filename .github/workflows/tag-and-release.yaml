@@ -46,12 +46,15 @@ jobs:
           registry1Password: ${{ secrets.IRON_BANK_ROBOT_PASSWORD }}
           ghToken: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up QEMU
-        if: ${{ runner.arch == 'ARM64' }}
-        uses: docker/setup-qemu-action@v3
+      - name: Build Package
+        run: uds run -f tasks/publish.yaml build-package --set FLAVOR=${{ matrix.flavor }}
+
+      - name: Test Package
+        if: ${{ runner.arch != 'ARM64' }}
+        run: uds run -f tasks/publish.yaml test-package --set FLAVOR=${{ matrix.flavor }}
 
       - name: Publish Package
-        run: UDS_ARCHITECTURE=${{ matrix.architecture }} uds run -f tasks/publish.yaml package --set FLAVOR=${{ matrix.flavor }}
+        run: uds run -f tasks/publish.yaml publish-package --set FLAVOR=${{ matrix.flavor }}
 
       - name: Debug Output
         if: ${{ always() }}
