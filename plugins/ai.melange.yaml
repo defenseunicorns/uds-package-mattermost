@@ -1,0 +1,50 @@
+package:
+  name: mattermost-plugin-ai
+  version: 0.8.1
+  epoch: 0
+  description: Mattermost plugin for LLMs
+  copyright:
+    - license: Apache-2.0
+  target-architecture:
+    - x86_64
+    - aarch64
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - openssl-dev
+      - libelf
+      - go
+      - nodejs
+      - npm
+      - make
+
+pipeline:
+  - uses: git-checkout
+    with:
+      repository: https://github.com/mattermost/mattermost-plugin-ai
+      tag: v${{package.version}}
+      expected-commit: 118283adf71b6f7f48c9c7689f5b49fdb4e2a898
+
+  - runs: |
+      # only build for current architecture (default is all)
+      export MM_SERVICESETTINGS_ENABLEDEVELOPER=1
+
+      make dist
+
+      mv dist/ "${{ targets.destdir }}"
+
+update:
+  enabled: true
+  github:
+    identifier: mattermost/mattermost-plugin-ai
+    strip-prefix: v
+    use-tag: true
+    tag-filter: v
