@@ -33,28 +33,25 @@ mattermostApp:
     - name: mattermost-plugins-init
       emptyDir: {}
   extraInitContainers:
-    # Extra Container to donwload and install plugins
+    # Extra Container to install plugins
     - name: init-plugins-config
-      # TODO @marshall007: use same image as `initContainerImage` (see comment above)
-      image: cgr.dev/chainguard/busybox:latest
+      image: uds-package-mattermost/mattermost-extra-plugins:latest
       imagePullPolicy: Always
       command:
         - sh
         - "-c"
         - |
-          set -e -x
+          set -e
 
-          PLUGINS_TAR=$(ls /init-plugins)
+          PLUGINS_TAR=$(ls /extra-plugins)
 
-          echo $PLUGINS_TAR
-
-          sleep 1m
+          cd /mattermost/plugins/
 
           for plugin_tar in ${PLUGINS_TAR};
           do
-            plugin_tar="/init-plugins/${plugin_tar##*/}"
+            plugin_tar="/extra-plugins/${plugin_tar##*/}"
             echo "extracting $plugin_tar ..."
-            tar -xzvf $plugin_tar /mattermost/plugins/
+            tar -xf $plugin_tar
           done
 
           echo "finished loading plugins"
@@ -73,8 +70,6 @@ mattermostApp:
         mountPath: /mattermost/plugins/
       - name: mattermost-plugins-client
         mountPath: /mattermost/client/plugins/
-      - name: mattermost-plugins-init
-        mountPath: /init-plugins/
 
 serviceAccount:
   create: true

@@ -21,8 +21,6 @@ components:
         version: 2.6.54
         valuesFiles:
           - ../values/common-values.yaml
-    images:
-      - cgr.dev/chainguard/busybox:latest
     actions:
       onDeploy:
         after:

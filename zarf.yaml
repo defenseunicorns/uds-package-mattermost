@@ -21,6 +21,17 @@ variables:
     description: "Database Password for Mattermost"
 
 components:
+  - name: mattermost-plugins
+    required: true
+    images:
+      - uds-package-mattermost/mattermost-extra-plugins:latest
+    actions:
+      onCreate:
+        before:
+          - dir: plugins
+            cmd: |
+              docker build . -t uds-package-mattermost/mattermost-extra-plugins:latest
+
   - name: mattermost
     required: true
     description: "Deploy Mattermost"
@@ -52,18 +63,3 @@ components:
     images:
       - registry1.dso.mil/ironbank/redhat/ubi/ubi9-minimal:9.4
       - registry1.dso.mil/ironbank/opensource/mattermost/mattermost:9.8.1
-
-  - name: mattermost-plugins
-    files:
-      - source: https://github.com/mattermost/mattermost-plugin-gitlab/releases/download/v1.9.1/com.github.manland.mattermost-plugin-gitlab-1.9.1.tar.gz
-        target: ./plugins/downloaded/com.github.manland.mattermost-plugin-gitlab.tar.gz
-      - source: https://github.com/mattermost/mattermost-plugin-ai/releases/download/v0.8.2/mattermost-plugin-ai-v0.8.2-linux-amd64.tar.gz
-        target: ./plugins/downloaded/mattermost-plugin-ai-linux-amd64.tar.gz
-    dataInjections:
-      # Injection in the data directory using the data-loader init container
-      - source: ./plugins/downloaded
-        target:
-          namespace: mattermost
-          selector: app.kubernetes.io/name=mattermost-enterprise-edition
-          container: init-plugins-config
-          path: /init-plugins
