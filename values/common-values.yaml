@@ -56,20 +56,20 @@ mattermostApp:
 
           echo "finished loading plugins"
       volumeMounts:
-      # Must match plugins volumes from chart
+        # Must match plugins volumes from chart
 
-      # In mattermost-team-edition chart, this is `/mattermost/$MM_PLUGINSETTINGS_CLIENTDIRECTORY`
-      # see: https://github.com/mattermost/mattermost-helm/blob/master/charts/mattermost-team-edition/templates/deployment.yaml#L103-L104
+        # In mattermost-team-edition chart, this is `/mattermost/$MM_PLUGINSETTINGS_CLIENTDIRECTORY`
+        # see: https://github.com/mattermost/mattermost-helm/blob/master/charts/mattermost-team-edition/templates/deployment.yaml#L103-L104
 
-      # In mattermost-enterprise-edition chart, it is hardcoded to `/mattermost/plugins/`
-      # see: https://github.com/mattermost/mattermost-helm/blob/master/charts/mattermost-enterprise-edition/templates/deployment-mattermost-app.yaml#L174-L177
+        # In mattermost-enterprise-edition chart, it is hardcoded to `/mattermost/plugins/`
+        # see: https://github.com/mattermost/mattermost-helm/blob/master/charts/mattermost-enterprise-edition/templates/deployment-mattermost-app.yaml#L174-L177
 
-      # TODO @marshall007: only mattermost-team-edition chart supports plugin persistence. `emptyDir` may cause problems on EE, will need to investigate
-      # see: https://github.com/mattermost/mattermost-helm/blob/master/charts/mattermost-team-edition/templates/deployment.yaml#L123-L133
-      - name: mattermost-plugins
-        mountPath: /mattermost/plugins/
-      - name: mattermost-plugins-client
-        mountPath: /mattermost/client/plugins/
+        # TODO @marshall007: only mattermost-team-edition chart supports plugin persistence. `emptyDir` may cause problems on EE, will need to investigate
+        # see: https://github.com/mattermost/mattermost-helm/blob/master/charts/mattermost-team-edition/templates/deployment.yaml#L123-L133
+        - name: mattermost-plugins
+          mountPath: /mattermost/plugins/
+        - name: mattermost-plugins-client
+          mountPath: /mattermost/client/plugins/
 
 serviceAccount:
   create: true
