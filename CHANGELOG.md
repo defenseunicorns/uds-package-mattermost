@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file.
 
+## [9.9.0-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.8.1-uds.1...v9.9.0-uds.0) (2024-06-26)
+
+
+### Miscellaneous
+
+* **deps:** update mattermost package dependencies to v9.9.0 ([33fc29f](https://github.com/defenseunicorns/uds-package-mattermost/commit/33fc29fbf560ad93f606c9276924527b602c96f2))
+
+## [9.8.1-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.8.1-uds.0...v9.8.1-uds.1) (2024-06-20)
+
+
+### Features
+
+* add wait for MM package CR readiness ([#88](https://github.com/defenseunicorns/uds-package-mattermost/issues/88)) ([8c18d54](https://github.com/defenseunicorns/uds-package-mattermost/commit/8c18d54c082ad8209cff5d652b70f80d145bc2c3))
+
+
+### Miscellaneous
+
+* add `Made for UDS` badge to Mattermost ([#90](https://github.com/defenseunicorns/uds-package-mattermost/issues/90)) ([fce7636](https://github.com/defenseunicorns/uds-package-mattermost/commit/fce7636395d1e3afab5fcf8a502c084bd21a8a83))
+* add testing on arm64 architecture using qemu ([#95](https://github.com/defenseunicorns/uds-package-mattermost/issues/95)) ([ba4e8cc](https://github.com/defenseunicorns/uds-package-mattermost/commit/ba4e8cc9f9ff57e5a0bd4bf93ab44ec9c7ece47d))
+* add tests before publishing a release and remove arm64 architecture ([#91](https://github.com/defenseunicorns/uds-package-mattermost/issues/91)) ([c136830](https://github.com/defenseunicorns/uds-package-mattermost/commit/c136830e532892b57dd2b5337ac366eaf59dab06))
+* **deps:** update mattermost support dependencies ([#87](https://github.com/defenseunicorns/uds-package-mattermost/issues/87)) ([c0e0ca9](https://github.com/defenseunicorns/uds-package-mattermost/commit/c0e0ca9be701be569aaa4c9bc18037858fce569c))
+* **deps:** update mattermost support dependencies ([#94](https://github.com/defenseunicorns/uds-package-mattermost/issues/94)) ([c4fecda](https://github.com/defenseunicorns/uds-package-mattermost/commit/c4fecda6486053afee9447be8392e18190e590e1))
+* exclude registry1 arm64 architecture from matrix ([#97](https://github.com/defenseunicorns/uds-package-mattermost/issues/97)) ([7c6199d](https://github.com/defenseunicorns/uds-package-mattermost/commit/7c6199d4f16769f02fd628c516ba2a7103c09521))
+* refactor to skip tests on arm64 ([#96](https://github.com/defenseunicorns/uds-package-mattermost/issues/96)) ([b337bdb](https://github.com/defenseunicorns/uds-package-mattermost/commit/b337bdbd42970cc8ef17daa5acf9483ec50d25cd))
+
 ## [9.8.1-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.8.0-uds.0...v9.8.1-uds.0) (2024-06-05)
 
 

@@ -30,6 +30,9 @@ jobs:
       matrix:
         flavor: [upstream, registry1]
         architecture: [amd64, arm64]
+        exclude:
+          - flavor: registry1
+            architecture: arm64
     name: Publish ${{ matrix.flavor }} ${{ matrix.architecture }}
 
     permissions:
@@ -37,10 +40,10 @@ jobs:
       packages: write
 
     steps:
-      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
       - name: Environment setup
-        uses: defenseunicorns/uds-common/.github/actions/setup@4cea6c8858b9f4db3a3624a6fc046db77e1f4eaa # v0.5.0
+        uses: defenseunicorns/uds-common/.github/actions/setup@61450a210fd16cf14157ee417f9682a4664c05e5 # v0.6.0
         with:
           registry1Username: ${{ secrets.IRON_BANK_ROBOT_USERNAME }}
           registry1Password: ${{ secrets.IRON_BANK_ROBOT_PASSWORD }}
@@ -58,10 +61,10 @@ jobs:
 
       - name: Debug Output
         if: ${{ always() }}
-        uses: defenseunicorns/uds-common/.github/actions/debug-output@4cea6c8858b9f4db3a3624a6fc046db77e1f4eaa # v0.5.0
+        uses: defenseunicorns/uds-common/.github/actions/debug-output@61450a210fd16cf14157ee417f9682a4664c05e5 # v0.6.0
 
       - name: Save logs
         if: always()
-        uses: defenseunicorns/uds-common/.github/actions/save-logs@4cea6c8858b9f4db3a3624a6fc046db77e1f4eaa # v0.5.0
+        uses: defenseunicorns/uds-common/.github/actions/save-logs@61450a210fd16cf14157ee417f9682a4664c05e5 # v0.6.0
         with:
           suffix: ${{ matrix.flavor }}-${{ matrix.architecture }}-${{ github.run_id }}-${{ github.run_attempt }}
