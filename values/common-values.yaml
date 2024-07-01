@@ -31,27 +31,9 @@ mattermostApp:
     runAsGroup: 2000
   extraInitContainers:
     # Extra Container to install plugins
-    - name: init-plugins-config
+    - name: mattermost-extra-plugins
       image: uds-package-mattermost/mattermost-extra-plugins:latest
       imagePullPolicy: Always
-      command:
-        - sh
-        - "-c"
-        - |
-          set -e
-
-          PLUGINS_TAR=$(ls /extra-plugins)
-
-          cd /mattermost/plugins/
-
-          for plugin_tar in ${PLUGINS_TAR};
-          do
-            plugin_tar="/extra-plugins/${plugin_tar##*/}"
-            echo "extracting $plugin_tar ..."
-            tar -xf $plugin_tar
-          done
-
-          echo "finished loading plugins"
       volumeMounts:
         # Must match plugins volumes from chart
 
