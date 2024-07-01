@@ -21,6 +21,17 @@ variables:
     description: "Database Password for Mattermost"
 
 components:
+  - name: mattermost-plugins
+    required: true
+    images:
+      - uds-package-mattermost/mattermost-extra-plugins:latest
+    actions:
+      onCreate:
+        before:
+          - dir: plugins
+            cmd: |
+              docker build . -t uds-package-mattermost/mattermost-extra-plugins:latest
+
   - name: mattermost
     required: true
     description: "Deploy Mattermost"

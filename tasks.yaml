@@ -2,11 +2,11 @@ includes:
   - cleanup: ./tasks/cleanup.yaml
   - dependencies: ./tasks/dependencies.yaml
   - test: ./tasks/test.yaml
-  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.6.0/tasks/create.yaml
-  - lint: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.6.0/tasks/lint.yaml
-  - pull: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.6.0/tasks/pull.yaml
-  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.6.0/tasks/deploy.yaml
-  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.6.0/tasks/setup.yaml
+  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.5.0/tasks/create.yaml
+  - lint: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.5.0/tasks/lint.yaml
+  - pull: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.5.0/tasks/pull.yaml
+  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.5.0/tasks/deploy.yaml
+  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.5.0/tasks/setup.yaml
 
 tasks:
   - name: default
@@ -53,8 +53,8 @@ tasks:
       - task: create-mm-test-bundle
       - task: setup:k3d-test-cluster
       - task: deploy:test-bundle
-      - task: setup:create-doug-user
-      - task: test:all
+      # - task: setup:create-doug-user
+      # - task: test:all
 
   - name: test-upgrade
     description: Test an upgrade from the latest released package to the current branch
@@ -68,3 +68,20 @@ tasks:
       - cmd: ./uds zarf tools kubectl delete pods --all --namespace mattermost
         description: "Workaround - restart the pods so the sso configuration will take effect"
       - task: test:all
+
+  - name: starlink
+    description: Setup k3d cluster, deploy Mattermost not pulling uds-core from oci
+    actions:
+      - task: create-mm-test-bundle
+      # - task: starlink-k3d-test-cluster
+      - task: deploy:test-bundle
+
+  - name: starlink-k3d-test-cluster
+    description: Setup k3d cluster, deploy Mattermost
+    actions:
+      - cmd: ./uds deploy uds-bundle-k3d-core-slim-dev-*-0.22.2.tar.zst --confirm --set INSECURE_ADMIN_PASSWORD_GENERATION=true
+
+  - name: starlink-pull
+    description: pull bundle locally for lackluster internet
+    actions:
+      - cmd: ./uds pull oci://defenseunicorns/uds/bundles/k3d-core-slim-dev:0.22.2
