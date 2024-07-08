@@ -20,12 +20,7 @@ repos:
         exclude: "^kustomizations/bigbang/vendor/.*$"
         args: [--markdown-linebreak-ext=md]
       - id: check-yaml
-        exclude: |
-          (?x)^(
-            chart/templates/uds-package.yaml|
-            chart/templates/mattermost-postgres.yaml|
-            chart/templates/mattermost-sso-secret.yaml
-          )$
+        exclude: chart/templates
         args:
           - "--allow-multiple-documents"
   - repo: https://github.com/sirosen/fix-smartquotes

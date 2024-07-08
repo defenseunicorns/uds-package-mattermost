@@ -30,6 +30,7 @@ components:
       flavor: upstream
     charts:
       - name: mattermost-enterprise-edition
+        namespace: mattermost
         valuesFiles:
           - values/upstream-values.yaml
     images:
@@ -47,6 +48,7 @@ components:
         architecture: amd64
     charts:
       - name: mattermost-enterprise-edition
+        namespace: mattermost
         valuesFiles:
           - values/registry1-values.yaml
     images:
