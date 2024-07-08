@@ -23,7 +23,8 @@ repos:
         exclude: |
           (?x)^(
             chart/templates/uds-package.yaml|
-            chart/templates/mattermost-postgres.yaml
+            chart/templates/mattermost-postgres.yaml|
+            chart/templates/mattermost-sso-secret.yaml
           )$
         args:
           - "--allow-multiple-documents"
