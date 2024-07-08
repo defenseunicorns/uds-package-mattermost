@@ -45,12 +45,13 @@ spec:
         MM_EMAILSETTINGS_ENABLESIGNINWITHUSERNAME: "{{ .Values.sso.enable_sign_in_with_username | toString }}"
   {{- end }}
   monitor:
+  {{- if ne .Values.mattermostLicense "" }}
     - selector:
         app.kubernetes.io/name: mattermost-enterprise-edition
       targetPort: 8067
       portName: mattermost-app-metrics
       description: Metrics
-
+  {{- end }}
   network:
     expose:
       - service: mattermost-enterprise-edition

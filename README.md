@@ -64,6 +64,10 @@ To use IRSA make sure to NOT set the two key variables and add the appropriate r
               value: "arn:aws:iam::123456789:role/mattermost-role"
 ```
 
+### Monitoring
+
+Mattermost supports emitting metrics to Prometheus, but only if yo uhave a license. This package configures the necessary service monitor to enable metrics, but only when a license has been provided via the `MM_LICENSE` var. By default (no license), it does not provision the Service Monitor as it will show unhealthy because metrics is not enabled via the license.
+
 ## Flavors
 
 | Flavor | Description | Example Creation |
