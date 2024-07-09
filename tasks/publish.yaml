@@ -34,9 +34,14 @@ tasks:
           # x-release-please-start-version
           version: "9.9.0-uds.0"
           # x-release-please-end
-      - task: publish:package
+      - description: Publish the full plugins package
+        task: publish:package
         with:
           path: ./plugins
           # x-release-please-start-version
           version: "9.9.0-uds.0"
           # x-release-please-end
+      - description: Publish the skeleton plugins package
+        task: publish:package
+        cmd: |
+          ./uds zarf package publish ./plugins oci://ghcr.io/defenseunicorns/packages/uds
