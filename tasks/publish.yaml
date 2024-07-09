@@ -11,6 +11,9 @@ tasks:
     description: Build package
     actions:
       - task: create:package
+      - task: create:package
+        with:
+          path: ./plugins
 
   - name: test-package
     description: Test the package
@@ -28,6 +31,12 @@ tasks:
       - description: Publish the package
         task: publish:package
         with:
+          # x-release-please-start-version
+          version: "9.9.0-uds.0"
+          # x-release-please-end
+      - task: publish:package
+        with:
+          path: ./plugins
           # x-release-please-start-version
           version: "9.9.0-uds.0"
           # x-release-please-end

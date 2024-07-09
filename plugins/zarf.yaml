@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/defenseunicorns/zarf/main/zarf.schema.json
+kind: ZarfPackageConfig
+metadata:
+  name: mattermost-plugins
+  description: "UDS Mattermost Plugins Package"
+  # x-release-please-start-version
+  version: "9.9.0-uds.0"
+  # x-release-please-end
+
+components:
+  - name: mattermost-plugins
+    required: true
+    images:
+      - uds-package-mattermost/mattermost-extra-plugins:latest
+    actions:
+      onCreate:
+        before:
+          - cmd: |
+              docker build . -t uds-package-mattermost/mattermost-extra-plugins:latest
