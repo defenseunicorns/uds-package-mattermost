@@ -50,14 +50,14 @@ jobs:
           ghToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Package
-        run: uds run -f tasks/publish.yaml build-package --set FLAVOR=${{ matrix.flavor }}
+        run: uds run -f tasks/publish.yaml build-package --set FLAVOR=${{ matrix.flavor }} --no-progress
 
       - name: Test Package
         if: ${{ runner.arch != 'ARM64' }}
-        run: uds run -f tasks/publish.yaml test-package --set FLAVOR=${{ matrix.flavor }}
+        run: uds run -f tasks/publish.yaml test-package --set FLAVOR=${{ matrix.flavor }} --no-progress
 
       - name: Publish Package
-        run: uds run -f tasks/publish.yaml publish-package --set FLAVOR=${{ matrix.flavor }}
+        run: uds run -f tasks/publish.yaml publish-package --set FLAVOR=${{ matrix.flavor }} --no-progress
 
       - name: Debug Output
         if: ${{ always() }}
