@@ -32,7 +32,7 @@ tasks:
         task: publish:package
         with:
           # x-release-please-start-version
-          version: "9.9.0-uds.0"
+          version: "9.9.1-uds.0"
           # x-release-please-end
       - description: Publish the full plugins package
         task: publish:package
