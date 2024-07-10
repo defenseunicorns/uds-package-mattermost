@@ -3,10 +3,28 @@ includes:
   - test: ./test.yaml
   - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.6.0/tasks/create.yaml
   - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.6.0/tasks/deploy.yaml
-  - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.6.0/tasks/publish.yaml
+  # - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.6.0/tasks/publish.yaml
   - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.6.0/tasks/setup.yaml
 
 tasks:
+  # Slightly modified version of uds-common `publish:package`:
+  # https://github.com/defenseunicorns/uds-common/blob/v0.6.0/tasks/publish.yaml#L2-L20
+  - name: publish
+    description: Publish package for the supplied architecture
+    inputs:
+      path:
+        description: Path to the zarf package being published
+        default: .
+      target_repo:
+        description: The repository to publish into
+        default: ghcr.io/defenseunicorns/packages/uds
+    actions:
+      - description: Publish package for the supplied architecture
+        cmd: |
+          for pkg in ${{ .inputs.path }}/zarf-package-*.tar.zst; do
+            ./uds zarf package publish "$pkg" oci://${{ .inputs.target_repo }}
+          done
+
   - name: build-package
     description: Build package
     actions:
@@ -26,22 +44,10 @@ tasks:
       - task: test:all
 
   - name: publish-package
-    description: Publish the package
+    description: Publish the packages
     actions:
-      - description: Publish the package
-        task: publish:package
-        with:
-          # x-release-please-start-version
-          version: "9.9.1-uds.0"
-          # x-release-please-end
-      - description: Publish the full plugins package
-        task: publish:package
-        with:
-          path: ./plugins
-          # x-release-please-start-version
-          version: "9.9.0-uds.0"
-          # x-release-please-end
+      - description: Publish the full packages
+        task: publish
       - description: Publish the skeleton plugins package
-        task: publish:package
         cmd: |
           ./uds zarf package publish ./plugins oci://ghcr.io/defenseunicorns/packages/uds
