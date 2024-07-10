@@ -15,5 +15,7 @@ components:
     actions:
       onCreate:
         before:
+          # we always build on amd64 because that is the target architecture for the plugin binaries
+          # but we still need fake arm64 images because @zachariahmiller said so
           - cmd: |
-              docker build . -t uds-package-mattermost/mattermost-extra-plugins:latest
+              docker buildx build . -t uds-package-mattermost/mattermost-extra-plugins:latest --platform amd64

@@ -32,6 +32,7 @@ tasks:
       - task: create:package
         with:
           path: ./plugins
+          options: "--flavor ''"
 
   - name: test-package
     description: Test the package
