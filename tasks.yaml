@@ -22,6 +22,10 @@ tasks:
       - task: create:package
         with:
           options: "--skip-sbom"
+      - task: create:package
+        with:
+          path: ./plugins
+          options: "--skip-sbom --flavor ''"
 
   - name: create-mm-test-bundle
     description: Create a local UDS Mattermost bundle

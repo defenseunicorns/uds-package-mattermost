@@ -45,7 +45,7 @@ packages:
       - name: SECRET_KEY
 
   - name: mattermost-plugins
-    path: ../plugins
+    path: ../
     # x-release-please-start-version
     ref: 9.9.1-uds.0
     # x-release-please-end
