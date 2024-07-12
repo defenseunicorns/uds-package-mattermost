@@ -17,14 +17,25 @@ packages:
 
   - name: postgres-operator
     repository: ghcr.io/defenseunicorns/packages/uds/postgres-operator
-    ref: 1.11.0-uds.1-upstream
+    ref: 1.12.2-uds.1-upstream
     overrides:
       postgres-operator:
         uds-postgres-config:
-          variables:
-            - name: POSTGRESQL
-              description: "Configure postgres using CRs via the uds-postgres-config chart"
-              path: postgresql
+          values:
+            - path: postgresql
+              value:
+                enabled: true  # Set to false to not create the PostgreSQL resource
+                teamId: "uds"
+                volume:
+                  size: "10Gi"
+                numberOfInstances: 2
+                users:
+                  mattermost.mattermost: []  # database owner
+                databases:
+                  mattermost: mattermost.mattermost
+                version: "14"
+                ingress:
+                  - remoteNamespace: mattermost
 
   - name: dev-secrets
     path: ../
