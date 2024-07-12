@@ -37,6 +37,10 @@ tasks:
   - name: create-mm-latest-release-bundle
     description: Create UDS Mattermost bundle based on the latest release
     actions:
+      - task: create:package
+        with:
+          path: ./plugins
+          options: "--skip-sbom --flavor ''"
       - task: pull:latest-package-release
         with:
           spoof_release: "true"
