@@ -24,11 +24,6 @@ variables:
     default: ""
 
 components:
-  # - name: mattermost-plugins
-  #   required: true
-  #   import:
-  #     path: plugins
-
   - name: mattermost
     required: true
     description: "Deploy Mattermost"
