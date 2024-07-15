@@ -26,7 +26,6 @@ tasks:
 
   - name: ui
     description: Mattermost UI Checks
-    maxTotalSeconds: 600
     actions:
       - cmd: npm ci
         dir: tests

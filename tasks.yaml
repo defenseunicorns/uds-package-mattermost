@@ -73,6 +73,4 @@ tasks:
       - task: setup:create-doug-user
       - task: create-mm-test-bundle
       - task: deploy:test-bundle
-      - cmd: ./uds zarf tools kubectl delete pods --all --namespace mattermost
-        description: "Workaround - restart the pods so the sso configuration will take effect"
       - task: test:all
