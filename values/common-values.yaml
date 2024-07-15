@@ -2,10 +2,6 @@ minio:
   enabled: false
 mysqlha:
   enabled: false
-# TODO @marshall007: this should work pending: https://github.com/chainguard-images/images/issues/923#issuecomment-2181155300
-# initContainerImage:
-#   repository: cgr.dev/chainguard/curl
-#   tag: latest
 mattermostApp:
   # Default replicacount due to HA requiring a license
   replicaCount: 1
