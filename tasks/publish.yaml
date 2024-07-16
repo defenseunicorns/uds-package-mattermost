@@ -3,14 +3,40 @@ includes:
   - test: ./test.yaml
   - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.7.1/tasks/create.yaml
   - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.7.1/tasks/deploy.yaml
-  - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.7.1/tasks/publish.yaml
+  # TODO: @marshall007 - upstream logic into uds-common, tracking: https://github.com/defenseunicorns/uds-common/issues/178
+  # - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.7.1/tasks/publish.yaml
   - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.7.1/tasks/setup.yaml
 
 tasks:
+  # Slightly modified version of uds-common `publish:package`:
+  # https://github.com/defenseunicorns/uds-common/blob/v0.8.0/tasks/publish.yaml#L2-L20
+  - name: publish
+    description: Publish package for the supplied architecture
+    inputs:
+      path:
+        description: Path to the zarf package(s) being published
+        default: .
+      filter:
+        description: Filter the package(s) to be published by name
+        default: "*"
+      target_repo:
+        description: The repository to publish into
+        default: ghcr.io/defenseunicorns/packages/uds
+    actions:
+      - description: Publish package for the supplied architecture
+        cmd: |
+          for pkg in ${{ .inputs.path }}/zarf-package-${{ .inputs.filter }}.tar.zst; do
+            ./uds zarf package publish "$pkg" oci://${{ .inputs.target_repo }}
+          done
+
   - name: build-package
     description: Build package
     actions:
       - task: create:package
+      - task: create:package
+        with:
+          path: ./plugins
+          options: "--flavor ''"
 
   - name: test-package
     description: Test the package
@@ -23,11 +49,12 @@ tasks:
       - task: test:all
 
   - name: publish-package
-    description: Publish the package
+    description: Publish the packages
     actions:
-      - description: Publish the package
-        task: publish:package
+      - description: Publish the full mattermost packages
+        task: publish
         with:
-          # x-release-please-start-version
-          version: "9.9.1-uds.0"
-          # x-release-please-end
+          filter: mattermost-*
+      - description: Publish the skeleton plugins package
+        cmd: |
+          ./uds zarf package publish ./plugins oci://ghcr.io/defenseunicorns/packages/uds

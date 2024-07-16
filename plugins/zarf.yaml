@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/defenseunicorns/zarf/main/zarf.schema.json
+kind: ZarfPackageConfig
+metadata:
+  name: mattermost-plugins
+  description: "UDS Mattermost Plugins Package"
+  # x-release-please-start-version
+  version: "9.9.1-uds.0"
+  # x-release-please-end
+
+components:
+  - name: mattermost-plugins
+    required: true
+    images:
+      - uds-package-mattermost/mattermost-extra-plugins:latest
+    actions:
+      onCreate:
+        before:
+          # we always build on amd64 because that is the target architecture for the plugin binaries
+          # but we still need fake arm64 images because @zachariahmiller said so
+          - cmd: |
+              docker buildx build . -t uds-package-mattermost/mattermost-extra-plugins:latest --platform linux/amd64
