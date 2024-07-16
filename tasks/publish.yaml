@@ -13,15 +13,18 @@ tasks:
     description: Publish package for the supplied architecture
     inputs:
       path:
-        description: Path to the zarf package being published
+        description: Path to the zarf package(s) being published
         default: .
+      filter:
+        description: Filter the package(s) to be published by name
+        default: "*"
       target_repo:
         description: The repository to publish into
         default: ghcr.io/defenseunicorns/packages/uds
     actions:
       - description: Publish package for the supplied architecture
         cmd: |
-          for pkg in ${{ .inputs.path }}/zarf-package-*.tar.zst; do
+          for pkg in ${{ .inputs.path }}/zarf-package-${{ .inputs.filter }}.tar.zst; do
             ./uds zarf package publish "$pkg" oci://${{ .inputs.target_repo }}
           done
 
@@ -47,8 +50,10 @@ tasks:
   - name: publish-package
     description: Publish the packages
     actions:
-      - description: Publish the full packages
+      - description: Publish the full mattermost packages
         task: publish
+        with:
+          filter: mattermost-*
       - description: Publish the skeleton plugins package
         cmd: |
           ./uds zarf package publish ./plugins oci://ghcr.io/defenseunicorns/packages/uds
