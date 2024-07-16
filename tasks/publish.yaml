@@ -3,12 +3,13 @@ includes:
   - test: ./test.yaml
   - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.7.1/tasks/create.yaml
   - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.7.1/tasks/deploy.yaml
+  # TODO: @marshall007 - upstream logic into uds-common, tracking: https://github.com/defenseunicorns/uds-common/issues/178
   # - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.7.1/tasks/publish.yaml
   - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.7.1/tasks/setup.yaml
 
 tasks:
   # Slightly modified version of uds-common `publish:package`:
-  # https://github.com/defenseunicorns/uds-common/blob/v0.6.0/tasks/publish.yaml#L2-L20
+  # https://github.com/defenseunicorns/uds-common/blob/v0.8.0/tasks/publish.yaml#L2-L20
   - name: publish
     description: Publish package for the supplied architecture
     inputs:
