@@ -4,7 +4,7 @@ metadata:
   name: mattermost
   description: "UDS Mattermost Package"
   # x-release-please-start-version
-  version: "9.9.1-uds.0"
+  version: "9.10.1-uds.0"
   # x-release-please-end
 
 variables:
