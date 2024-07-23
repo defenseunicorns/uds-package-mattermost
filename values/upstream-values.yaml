@@ -1,4 +1,4 @@
 mattermostApp:
   image:
     repository: mattermost/mattermost-enterprise-edition
-    tag: 9.9.1
+    tag: 9.10.1

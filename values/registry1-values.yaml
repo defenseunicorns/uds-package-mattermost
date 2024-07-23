@@ -1,7 +1,7 @@
 mattermostApp:
   image:
     repository: registry1.dso.mil/ironbank/opensource/mattermost/mattermost
-    tag: 9.9.1
+    tag: 9.10.1
 initContainerImage:
   repository: registry1.dso.mil/ironbank/redhat/ubi/ubi9-minimal
   tag: 9.4
