@@ -7,7 +7,7 @@ setup('authenticate', async ({ page, context, baseURL }) => {
   await page.getByRole("link", { name: "View in Browser" }).click();
   await page.getByRole("link", { name: "Gitlab Icon GitLab" }).click();
   await page.getByLabel("Username or email").fill("doug");
-  await page.getByLabel("Password").fill("unicorn123!@#");
+  await page.getByLabel("Password").fill("unicorn123!@#UN");
   await page.getByRole("button", { name: "Log In" }).click();
 
   // ensure auth cookies were set
