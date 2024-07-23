@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 
 ### Miscellaneous
 
+* add setup buildx to tag and release flow ([#112](https://github.com/defenseunicorns/uds-package-mattermost/issues/112)) ([cbf46e5](https://github.com/defenseunicorns/uds-package-mattermost/commit/cbf46e5e1b4ab64fbdfbccc7601e52cf1ffeb3cc))
 * **deps:** update mattermost package dependencies ([#106](https://github.com/defenseunicorns/uds-package-mattermost/issues/106)) ([d84f56b](https://github.com/defenseunicorns/uds-package-mattermost/commit/d84f56b4ba062b8a0101256fd6f428e9b468fa1c))
 * **deps:** update mattermost support dependencies ([#110](https://github.com/defenseunicorns/uds-package-mattermost/issues/110)) ([67a5edd](https://github.com/defenseunicorns/uds-package-mattermost/commit/67a5edd79adeaa4cabe1dce5d22d6ebcc2d288d4))
 * **deps:** update mattermost support dependencies ([#98](https://github.com/defenseunicorns/uds-package-mattermost/issues/98)) ([05ae7cf](https://github.com/defenseunicorns/uds-package-mattermost/commit/05ae7cfc78d1d2d93821d549db187b228a042fd6))
