@@ -16,6 +16,7 @@
       "extra-files": [
         "bundle/uds-bundle.yaml",
         "tasks/publish.yaml",
+        "plugins/zarf.yaml",
         "zarf.yaml"
       ]
     }
