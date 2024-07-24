@@ -78,7 +78,9 @@ spec:
         description: "SSO Internal"
 
       - direction: Egress
-        remoteGenerated: Anywhere
+        remoteNamespace: istio-tenant-gateway
+        remoteSelector:
+          app: tenant-ingressgateway
         selector:
           app.kubernetes.io/name: mattermost-enterprise-edition
         port: 443
