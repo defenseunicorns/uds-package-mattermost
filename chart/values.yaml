@@ -29,7 +29,7 @@ postgres:
 mattermostLicense: ""
 sso:
   enabled: true
-  # Options: "gitlab", "openid_connect"
+  # Options: "gitlab", "openid-connect"
   protocol: "gitlab"
   secretName: mattermost-sso
 
