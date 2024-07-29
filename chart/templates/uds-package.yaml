@@ -17,7 +17,7 @@ spec:
         - "mapper-oidc-mattermostid-id"
         - "mapper-oidc-email-email"
         {{ end }}
-        {{ if or (eq .Values.sso.protocol "openid_connect") (eq .Values.sso.protocol "openid-connect") }}
+        {{ if eq .Values.sso.protocol "openid_connect" }}
         - "profile"
         - "email"
         {{ end }}
@@ -32,7 +32,7 @@ spec:
         MM_GITLABSETTINGS_TOKENENDPOINT: "http://keycloak-http.keycloak.svc.cluster.local:8080/realms/uds/protocol/openid-connect/token"
         MM_GITLABSETTINGS_USERAPIENDPOINT: "https://sso.{{ .Values.domain }}/realms/uds/protocol/openid-connect/userinfo"
         {{ end }}
-        {{ if or (eq .Values.sso.protocol "openid_connect") (eq .Values.sso.protocol "openid-connect") }}
+        {{ if eq .Values.sso.protocol "openid_connect" }}
         MM_OPENIDSETTINGS_ENABLE: "{{ .Values.sso.enabled | toString }}"
         MM_OPENIDSETTINGS_BUTTONTEXT: "{{ .Values.sso.login_button_text }}"
         MM_OPENIDSETTINGS_BUTTONCOLOR: "{{ .Values.sso.login_button_color }}"
