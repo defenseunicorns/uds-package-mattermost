@@ -1,6 +1,6 @@
 # 🏭 UDS Mattermost Package
 
-[<img alt="Made for UDS" src="./.images/made-for-uds.svg" height="20px"/>](https://github.com/defenseunicorns/uds-core)
+[<img alt="Made for UDS" src="https://raw.githubusercontent.com/defenseunicorns/uds-common/main/docs/made-for-uds.svg" height="20px"/>](https://github.com/defenseunicorns/uds-core)
 [![Latest Release](https://img.shields.io/github/v/release/defenseunicorns/uds-package-mattermost)](https://github.com/defenseunicorns/uds-package-mattermost/releases)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/defenseunicorns/uds-package-mattermost/tag-and-release.yaml)](https://github.com/defenseunicorns/uds-package-mattermost/actions/workflows/tag-and-release.yaml)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/defenseunicorns/uds-package-mattermost/badge)](https://api.securityscorecards.dev/projects/github.com/defenseunicorns/uds-package-mattermost)
