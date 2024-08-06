@@ -32,3 +32,10 @@ components:
                 name: mattermost
                 namespace: mattermost
                 condition: "'{.status.phase}'=Ready"
+          - description: Mattermost to be Healthy
+            wait:
+              cluster:
+                kind: Deployment
+                name: mattermost-enterprise-edition
+                namespace: mattermost
+                condition: Available
