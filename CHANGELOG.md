@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [9.10.1-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.10.1-uds.0...v9.10.1-uds.1) (2024-08-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove egress anywhere for SSO ([#121](https://github.com/defenseunicorns/uds-package-mattermost/issues/121))
+
+### Features
+
+* support a unicorn flavor for Mattermost ([#129](https://github.com/defenseunicorns/uds-package-mattermost/issues/129)) ([a20b6ae](https://github.com/defenseunicorns/uds-package-mattermost/commit/a20b6ae713b5402b16c6ed7bffb03abafdd4fb95))
+
+
+### Miscellaneous
+
+* change the Made for UDS ref to point to 'uds-common' ([#126](https://github.com/defenseunicorns/uds-package-mattermost/issues/126)) ([e0952e1](https://github.com/defenseunicorns/uds-package-mattermost/commit/e0952e16990f29a5c1d9e6ae45e556562d10452f))
+* **deps:** update mattermost support dependencies ([#120](https://github.com/defenseunicorns/uds-package-mattermost/issues/120)) ([e967bf2](https://github.com/defenseunicorns/uds-package-mattermost/commit/e967bf2768432603f69812f7378a8783ddb889a6))
+* **deps:** update mattermost support dependencies ([#123](https://github.com/defenseunicorns/uds-package-mattermost/issues/123)) ([551e4e2](https://github.com/defenseunicorns/uds-package-mattermost/commit/551e4e2fc9938f002cc3a29a561b18f98a8eea50))
+* remove egress anywhere for SSO ([#121](https://github.com/defenseunicorns/uds-package-mattermost/issues/121)) ([f06a174](https://github.com/defenseunicorns/uds-package-mattermost/commit/f06a17452112018e17c33967429e862b45114629))
+* swap to `openid-connect` instead of `_` ([#124](https://github.com/defenseunicorns/uds-package-mattermost/issues/124)) ([88dde96](https://github.com/defenseunicorns/uds-package-mattermost/commit/88dde9625b7c36d59be4a6eca49f628a6105b4a9))
+
 ## [9.10.1-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v9.9.1-uds.0...v9.10.1-uds.0) (2024-07-23)
 
 
