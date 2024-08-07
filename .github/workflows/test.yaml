@@ -35,7 +35,7 @@ permissions:
 jobs:
   run-test:
     name: ${{ matrix.type }} ${{ matrix.flavor }}
-    runs-on: ${{ matrix.flavor == 'registry1' && 'uds-swf-ubuntu-big-boy-4-core' || 'ubuntu-latest' }}
+    runs-on: 'uds-swf-ubuntu-big-boy-4-core'
     timeout-minutes: 20
     strategy:
       matrix:
