@@ -16,4 +16,4 @@ components:
       onCreate:
         before:
           - cmd: |
-              docker buildx build --load . -t uds-package-mattermost/mattermost-extra-plugins:latest --platform linux/###ZARF_PKG_ARCH###
+              docker buildx build --load . -t ghcr.io/defenseunicorns/uds-package-mattermost/mattermost-extra-plugins:latest --platform linux/###ZARF_PKG_ARCH###
