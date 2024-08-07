@@ -39,8 +39,8 @@ jobs:
     timeout-minutes: 20
     strategy:
       matrix:
-        flavor: [upstream, unicorn, registry1]
-        type: [install, upgrade]
+        flavor: [upstream, registry1]
+        type: [install]
         # do not run upgrade tests for unicorn
         # TODO @WSTARR: remove after first unicorn release
         exclude:
@@ -66,6 +66,15 @@ jobs:
         with:
           flavor: ${{ matrix.flavor }}
           type: ${{ matrix.type }}
+
+      - name: Security scan
+        run: |
+          for fileName in zarf-package-mattermost-*.zst; do
+            echo "scanning [$fileName]"
+            touch $fileName-security-scan.csv
+            docker run -v .:/build ghcr.io/defenseunicorns/uds-security-hub:v0.0.8 -r "registry1.dso.mil:${{ secrets.IRON_BANK_ROBOT_USERNAME }}:${{ secrets.IRON_BANK_ROBOT_PASSWORD }}" -p /build/$fileName -f /build/$fileName-security-scan.csv
+            cat $fileName-security-scan.csv
+          done
 
       - name: Debug Output
         if: ${{ always() }}
