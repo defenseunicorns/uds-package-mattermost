@@ -69,11 +69,12 @@ jobs:
 
       - name: Security scan
         run: |
-          touch security-scan.csv
-          fileName=$(find . -name zarf-package-mattermost-amd64*.zst -printf "%f\n")
-          echo "scanning $fileName"
-          docker run -v .:/build ghcr.io/defenseunicorns/uds-security-hub:v0.0.8 -r "registry1.dso.mil:${{ secrets.IRON_BANK_ROBOT_USERNAME }}:${{ secrets.IRON_BANK_ROBOT_PASSWORD }}" -p /build/$fileName -f /build/security-scan.csv
-          cat security-scan.csv
+          for fileName in zarf-package-mattermost-*.zst; do
+            echo "scanning $fileName"
+            touch $filename-security-scan.csv
+            docker run -v .:/build ghcr.io/defenseunicorns/uds-security-hub:v0.0.8 -r "registry1.dso.mil:${{ secrets.IRON_BANK_ROBOT_USERNAME }}:${{ secrets.IRON_BANK_ROBOT_PASSWORD }}" -p /build/$fileName -f /build/$filename-security-scan.csv
+            cat $fileName-security-scan.csv
+          done
 
       - name: Debug Output
         if: ${{ always() }}
