@@ -69,7 +69,7 @@ jobs:
 
       - name: Security scan
         run: |
-          rm security-scan.csv && touch security-scan.csv
+          touch security-scan.csv
           fileName=$(find . -name zarf-package-mattermost-amd64*.zst -printf "%f\n")
           echo "scanning $fileName"
           docker run -v .:/build ghcr.io/defenseunicorns/uds-security-hub:v0.0.8 -p /build/$fileName -f /build/security-scan.csv
