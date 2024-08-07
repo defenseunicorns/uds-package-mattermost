@@ -63,6 +63,11 @@ jobs:
       - name: Publish Package
         run: uds run -f tasks/publish.yaml publish-package --set FLAVOR=${{ matrix.flavor }} --no-progress
 
+      # Only publish one version of the plugin package since it is "flavorless"
+      - name: Publish Plugin Package
+        if: ${{ matrix.flavor == 'upstream' }}
+        run: uds run -f tasks/publish.yaml publish-plugin-package --set FLAVOR=${{ matrix.flavor }} --no-progress
+
       - name: Debug Output
         if: ${{ always() }}
         uses: defenseunicorns/uds-common/.github/actions/debug-output@76287d41ec5f06ecbdd0a6453877a78675aceffe # v0.11.2
