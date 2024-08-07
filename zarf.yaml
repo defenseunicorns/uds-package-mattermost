@@ -36,7 +36,7 @@ components:
         valuesFiles:
           - values/upstream-values.yaml
     images:
-      - appropriate/curl:latest
+      - curlimages/curl:8.9.1
       - mattermost/mattermost-enterprise-edition:9.10.1
 
   - name: mattermost
@@ -55,3 +55,18 @@ components:
     images:
       - registry1.dso.mil/ironbank/redhat/ubi/ubi9-minimal:9.4
       - registry1.dso.mil/ironbank/opensource/mattermost/mattermost:9.10.1
+
+  - name: mattermost
+    required: true
+    description: "Deploy Mattermost"
+    import:
+      path: common
+    only:
+      flavor: unicorn
+    charts:
+      - name: mattermost-enterprise-edition
+        valuesFiles:
+          - values/unicorn-values.yaml
+    images:
+      - cgr.dev/du-uds-defenseunicorns/curl-fips:8.9.1
+      - cgr.dev/du-uds-defenseunicorns/mattermost:9.10.1

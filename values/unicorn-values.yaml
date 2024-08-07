@@ -1,0 +1,7 @@
+mattermostApp:
+  image:
+    repository: cgr.dev/du-uds-defenseunicorns/mattermost
+    tag: 9.10.1
+initContainerImage:
+  repository: cgr.dev/du-uds-defenseunicorns/curl-fips
+  tag: 8.9.1

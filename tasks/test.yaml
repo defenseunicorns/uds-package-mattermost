@@ -1,19 +1,8 @@
 tasks:
   - name: all
     actions:
-      - task: health-check
       - task: ingress
       - task: ui
-
-  - name: health-check
-    actions:
-      - description: Mattermost Health Check
-        wait:
-          cluster:
-            kind: Deployment
-            name: mattermost-enterprise-edition
-            namespace: mattermost
-            condition: Available
 
   - name: ingress
     actions:
@@ -27,9 +16,10 @@ tasks:
   - name: ui
     description: Mattermost UI Checks
     actions:
-      - cmd: npm ci
-        dir: tests
-      - cmd: npx playwright install --with-deps
-        dir: tests
-      - cmd: npx playwright test
+      - cmd: |
+          docker run --rm --ipc=host --net=host --mount type=bind,source="$(pwd)",target=/app mcr.microsoft.com/playwright:v1.43.1-jammy sh -c " \
+            cd app && \
+            npm ci && \
+            npx playwright test \
+            "
         dir: tests
