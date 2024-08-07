@@ -67,6 +67,14 @@ jobs:
           flavor: ${{ matrix.flavor }}
           type: ${{ matrix.type }}
 
+      - name: Security scan
+        run: |
+          rm security-scan.csv && touch security-scan.csv
+          fileName=$(find . -name zarf-package-mattermost-amd64*.zst -printf "%f\n")
+          echo "scanning $fileName"
+          docker run -v .:/build ghcr.io/defenseunicorns/uds-security-hub:v0.0.8 -p /build/$fileName -f /build/security-scan.csv
+          cat security-scan.csv
+
       - name: Debug Output
         if: ${{ always() }}
         uses: defenseunicorns/uds-common/.github/actions/debug-output@2536a06363d50a160421105b2df86aacf69388c1 # v0.11.1
