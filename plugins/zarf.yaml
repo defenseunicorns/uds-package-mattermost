@@ -11,9 +11,9 @@ components:
   - name: mattermost-plugins
     required: true
     images:
-      - uds-package-mattermost/mattermost-extra-plugins:latest
+      - ghcr.io/defenseunicorns/uds-package-mattermost/mattermost-plugins:latest
     actions:
       onCreate:
         before:
           - cmd: |
-              docker buildx build --load . -t ghcr.io/defenseunicorns/uds-package-mattermost/mattermost-extra-plugins:latest --platform linux/###ZARF_PKG_ARCH###
+              docker buildx build --load . -t ghcr.io/defenseunicorns/uds-package-mattermost/mattermost-plugins:latest --platform linux/###ZARF_PKG_ARCH###
