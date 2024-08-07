@@ -39,7 +39,7 @@ jobs:
     timeout-minutes: 20
     strategy:
       matrix:
-        flavor: [upstream]
+        flavor: [upstream, unicorn, registry1]
         type: [install]
         # do not run upgrade tests for unicorn
         # TODO @WSTARR: remove after first unicorn release
