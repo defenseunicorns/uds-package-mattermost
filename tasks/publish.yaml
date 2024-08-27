@@ -32,7 +32,7 @@ tasks:
       - task: publish:package
         with:
           # x-release-please-start-version
-          version: "9.10.1-uds.1"
+          version: "9.11.0-uds.0"
           # x-release-please-end
 
   - name: publish-plugin-package
@@ -41,6 +41,6 @@ tasks:
       - task: publish:package
         with:
           # x-release-please-start-version
-          version: "9.10.1-uds.1"
+          version: "9.11.0-uds.0"
           # x-release-please-end
           name: mattermost-plugins
