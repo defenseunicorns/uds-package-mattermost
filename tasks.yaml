@@ -8,6 +8,7 @@ includes:
   - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.0.0/tasks/deploy.yaml
   - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.0.0/tasks/setup.yaml
   - actions: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.0.0/tasks/actions.yaml
+  - badge: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.0.0/tasks/badge.yaml
 
 tasks:
   - name: default
