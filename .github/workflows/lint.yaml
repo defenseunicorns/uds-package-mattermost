@@ -9,6 +9,6 @@ on:
   workflow_call:
 
 jobs:
-  run:
+  validate:
     uses: defenseunicorns/uds-common/.github/workflows/callable-lint.yaml@0780ed64a7b76920526046b8c3b8c7251a4bf2f0 # v1.0.0
     secrets: inherit
