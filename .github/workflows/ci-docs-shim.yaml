@@ -6,15 +6,13 @@ on:
     types: [milestoned, opened, synchronize]
 
 jobs:
-  run-test:
-    name: ${{ matrix.type }} ${{ matrix.flavor }}
-    runs-on: "ubuntu-latest"
-    timeout-minutes: 20
+  validate:
     strategy:
       matrix:
-        flavor: [upstream, registry1]
         type: [install, upgrade]
-    steps:
-      - name: Shim for ${{ matrix.type }} ${{ matrix.flavor }}
-        run: |
-          echo "Documentation-only change detected; marking ${{ matrix.type }} ${{ matrix.flavor }} as successful."
+        flavor: [upstream, registry1, unicorn]
+    uses: defenseunicorns/uds-common/.github/workflows/callable-ci-docs-shim.yaml@0780ed64a7b76920526046b8c3b8c7251a4bf2f0 # v1.0.0
+    with:
+      flavor: ${{ matrix.flavor }}
+      type: ${{ matrix.type }}
+    secrets: inherit # Inherits all secrets from the parent workflow.
