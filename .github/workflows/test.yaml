@@ -59,4 +59,5 @@ jobs:
       upgrade-flavors: ${{ needs.check-flavor.outputs.upgrade-flavors }}
       flavor: ${{ matrix.flavor }}
       type: ${{ matrix.type }}
+      reports-path: "tests/.playwright/reports/"
     secrets: inherit # Inherits all secrets from the parent workflow.
