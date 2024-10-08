@@ -48,7 +48,7 @@ tasks:
       - task: create:test-bundle
       - task: deploy:test-bundle
 
-# CI will execute the following (via uds-common/.github/workflows/callable-test.yaml) so they need to be here with these names
+# CI will execute the following (via uds-common/.github/workflows/callable-[test|publish].yaml) so they need to be here with these names
 
   - name: test-package
     description: Test deploying the current branch to a new cluster
@@ -63,7 +63,7 @@ tasks:
     actions:
       - task: upgrade:create-latest-tag-bundle
         with:
-          # TODO remove zarf package create on next release
+          # TODO: (@ZMILLER) remove zarf package create on next release
           dep_commands: "./uds run dependencies:create && ./uds zarf package create plugins/ --confirm --no-progress"
       - task: setup:k3d-test-cluster
       - task: deploy:test-bundle
