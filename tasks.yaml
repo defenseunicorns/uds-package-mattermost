@@ -36,20 +36,8 @@ tasks:
       - task: dependencies:create
       - task: create:test-bundle
       - task: deploy:test-bundle
+      - task: setup:create-doug-user
       - task: test:all
-
-  # - name: create-mm-latest-release-bundle
-  #   description: Create UDS Mattermost bundle based on the latest release
-  #   actions:
-  #     - task: create:package
-  #       with:
-  #         path: ./plugins
-  #         options: "--skip-sbom --flavor ''"
-  #     - task: pull:latest-package-release
-  #       with:
-  #         spoof_release: "true"
-  #     - task: dependencies:create
-  #     - task: create:test-bundle
 
   - name: dev
     description: Create and deploy the bundle on an existing cluster (for iteration/dev speed)
@@ -66,8 +54,6 @@ tasks:
       - task: create-dev-package
       - task: setup:k3d-test-cluster
       - task: create-deploy-test-bundle
-      - task: setup:create-doug-user
-      - task: test:all
       - task: compliance:validate
 
   - name: test-upgrade
@@ -77,9 +63,7 @@ tasks:
       - task: setup:k3d-test-cluster
       - task: deploy:test-bundle
       - task: compliance:validate
-      - task: setup:create-doug-user
       - task: create-deploy-test-bundle
-      - task: test:all
       - task: compliance:validate
       - task: compliance:evaluate
 
@@ -87,6 +71,7 @@ tasks:
     description: Build and publish the packages
     actions:
       - task: publish:build-package
-      - task: publish:test-package
+      - task: create-deploy-test-bundle
+        if: ${{ and (eq variables.FLAVOR "upstream") (eq variables.ARCH "arm64") }}
       - task: publish:publish-package
       - task: publish:publish-plugin-package

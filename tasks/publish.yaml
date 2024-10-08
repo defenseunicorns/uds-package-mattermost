@@ -16,16 +16,6 @@ tasks:
           path: ./plugins
           options: "--flavor ''"
 
-  - name: test-package
-    description: Test the package
-    actions:
-      - task: dependencies:create
-      - task: create:test-bundle
-      - task: setup:k3d-test-cluster
-      - task: deploy:test-bundle
-      - task: setup:create-doug-user
-      - task: test:all
-
   - name: publish-package
     description: Publish the packages
     actions:
