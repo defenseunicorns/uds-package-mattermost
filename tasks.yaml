@@ -72,6 +72,6 @@ tasks:
     actions:
       - task: publish:build-package
       - task: create-deploy-test-bundle
-        if: ${{ and (eq variables.FLAVOR "upstream") (eq variables.ARCH "arm64") }}
+        if: ${{ and (ne .variables.FLAVOR "upstream") (ne .variables.ARCH "arm64") }}
       - task: publish:publish-package
       - task: publish:publish-plugin-package
