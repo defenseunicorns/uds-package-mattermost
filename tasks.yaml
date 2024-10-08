@@ -70,6 +70,7 @@ tasks:
   - name: publish-package
     description: Build and publish the packages
     actions:
+      - task: actions:determine-arch
       - task: publish:build-package
       - task: create-deploy-test-bundle
         if: ${{ and (ne .variables.FLAVOR "upstream") (ne .variables.ARCH "arm64") }}
