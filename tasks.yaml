@@ -2,6 +2,7 @@ includes:
   - cleanup: ./tasks/cleanup.yaml
   - dependencies: ./tasks/dependencies.yaml
   - test: ./tasks/test.yaml
+  - publish: ./tasks/publish.yaml
   - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.0.0/tasks/create.yaml
   - lint: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.0.0/tasks/lint.yaml
   - pull: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.0.0/tasks/pull.yaml
@@ -67,6 +68,7 @@ tasks:
       - task: setup:k3d-test-cluster
       - task: deploy:test-bundle
       - task: compliance:validate
+      - task: create-dev-package
       - task: create-deploy-test-bundle
       - task: compliance:validate
       - task: compliance:evaluate
