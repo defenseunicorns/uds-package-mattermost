@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixes
 
+* correct publish conditional ([#145](https://github.com/defenseunicorns/uds-package-mattermost/issues/145)) ([ca805d8](https://github.com/defenseunicorns/uds-package-mattermost/commit/ca805d8dc235642735c31f196bfd029566ff333e))
 * validate package with full resource name ([#141](https://github.com/defenseunicorns/uds-package-mattermost/issues/141)) ([61b333c](https://github.com/defenseunicorns/uds-package-mattermost/commit/61b333c4f0d3d20dc57bf8e6d4dda83d5eb53dce))
 
 
