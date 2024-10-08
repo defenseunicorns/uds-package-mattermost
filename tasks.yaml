@@ -78,7 +78,9 @@ tasks:
     actions:
       - task: actions:determine-arch
       - task: publish:build-package
+      - task: setup:k3d-test-cluster
+        if: ${{ or (ne .variables.FLAVOR "upstream") (ne .variables.ARCH "arm64") }}
       - task: create-deploy-test-bundle
-        if: ${{ and (ne .variables.FLAVOR "upstream") (ne .variables.ARCH "arm64") }}
+        if: ${{ or (ne .variables.FLAVOR "upstream") (ne .variables.ARCH "arm64") }}
       - task: publish:publish-package
       - task: publish:publish-plugin-package
