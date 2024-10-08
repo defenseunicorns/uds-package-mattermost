@@ -1,10 +1,10 @@
 includes:
   - dependencies: ./dependencies.yaml
   - test: ./test.yaml
-  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.11.2/tasks/create.yaml
-  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.11.2/tasks/deploy.yaml
-  - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.11.2/tasks/publish.yaml
-  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.11.2/tasks/setup.yaml
+  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.0.0/tasks/create.yaml
+  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.0.0/tasks/deploy.yaml
+  - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.0.0/tasks/publish.yaml
+  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.0.0/tasks/setup.yaml
 
 tasks:
   - name: build-package
@@ -15,16 +15,6 @@ tasks:
         with:
           path: ./plugins
           options: "--flavor ''"
-
-  - name: test-package
-    description: Test the package
-    actions:
-      - task: dependencies:create
-      - task: create:test-bundle
-      - task: setup:k3d-test-cluster
-      - task: deploy:test-bundle
-      - task: setup:create-doug-user
-      - task: test:all
 
   - name: publish-package
     description: Publish the packages

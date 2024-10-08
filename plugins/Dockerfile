@@ -1,7 +1,7 @@
 FROM cgr.dev/chainguard/busybox:latest
 
 # renovate: datasource=github-tags depName=mattermost/mattermost-plugin-ai versioning=semver
-ENV MATTERMOST_AI_PLUGIN_VERSION=0.9.1
+ENV MATTERMOST_AI_PLUGIN_VERSION=1.0.0
 # renovate: datasource=github-tags depName=mattermost/mattermost-plugin-gitlab versioning=semver
 ENV MATTERMOST_GITLAB_PLUGIN_VERSION=1.9.1
 
