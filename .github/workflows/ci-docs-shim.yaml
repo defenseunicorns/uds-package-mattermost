@@ -1,4 +1,4 @@
-name: CI Docs Shim
+name: CI Doc Shim
 
 on:
   pull_request:
