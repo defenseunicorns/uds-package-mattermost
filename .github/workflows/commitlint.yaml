@@ -1,4 +1,4 @@
-name: Metadata
+name: PR Title Check
 
 on:
   pull_request:
