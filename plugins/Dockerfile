@@ -1,3 +1,6 @@
+# Copyright 2024 Defense Unicorns
+# SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
+
 FROM cgr.dev/chainguard/busybox:latest
 
 # renovate: datasource=github-tags depName=mattermost/mattermost-plugin-ai versioning=semver
