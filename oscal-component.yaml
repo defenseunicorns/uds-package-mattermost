@@ -1,10 +1,13 @@
+# Copyright 2024 Defense Unicorns
+# SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
+
 component-definition:
   uuid: 8a9a32e4-e847-4f59-8282-b1cbc8d4e98f
   metadata:
     title: UDS Package Mattermost
     last-modified: "2023-12-01T20:09:06Z"
     version: "20231201"
-    oscal-version: 1.1.1
+    oscal-version: 1.1.2
     parties:
       - uuid: f3cf70f8-ba44-4e55-9ea3-389ef24847d3
         type: organization
