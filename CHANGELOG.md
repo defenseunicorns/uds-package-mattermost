@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [10.0.0-uds.2](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.0.0-uds.1...v10.0.0-uds.2) (2024-10-16)
+
+
+### Bug Fixes
+
+* made for uds badge url ([#150](https://github.com/defenseunicorns/uds-package-mattermost/issues/150)) ([3915680](https://github.com/defenseunicorns/uds-package-mattermost/commit/3915680a2bed2f7b17794e3cf0b08a3f27775d61))
+
+
+### Miscellaneous
+
+* **deps:** update mattermost support dependencies ([#144](https://github.com/defenseunicorns/uds-package-mattermost/issues/144)) ([53922ab](https://github.com/defenseunicorns/uds-package-mattermost/commit/53922ab7e7c2b58042e96884ed8dcb333c4122b5))
+* fix release badge in README ([#149](https://github.com/defenseunicorns/uds-package-mattermost/issues/149)) ([adb2749](https://github.com/defenseunicorns/uds-package-mattermost/commit/adb2749ec9fc68523a9b3c3ef7ab76eb09de81ce))
+* small cleanup of repo ([#147](https://github.com/defenseunicorns/uds-package-mattermost/issues/147)) ([445b0dd](https://github.com/defenseunicorns/uds-package-mattermost/commit/445b0dd55f303b7d706b19eb66ea729d4fdaf58b))
+
 ## [10.0.0-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.0.0-uds.0...v10.0.0-uds.1) (2024-10-08)
 
 
