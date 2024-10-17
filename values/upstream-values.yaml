@@ -4,7 +4,7 @@
 mattermostApp:
   image:
     repository: mattermost/mattermost-enterprise-edition
-    tag: 10.0.0
+    tag: 10.1.1
 initContainerImage:
   repository: curlimages/curl
   tag: 8.10.1
