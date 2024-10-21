@@ -4,8 +4,8 @@
 includes:
   - dependencies: ./tasks/dependencies.yaml
   - test: ./tasks/test.yaml
-  - publish: ./tasks/publish.yaml
   - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.1.1/tasks/create.yaml
+  - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.1.1/tasks/publish.yaml
   - lint: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.1.1/tasks/lint.yaml
   - pull: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.1.1/tasks/pull.yaml
   - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.1.1/tasks/deploy.yaml
@@ -52,7 +52,7 @@ tasks:
 
 # CI will execute the following (via uds-common/.github/workflows/callable-[test|publish].yaml) so they need to be here with these names
 
-  - name: test-package
+  - name: test-install
     description: Test deploying the current branch to a new cluster
     actions:
       - task: create-dev-package
@@ -75,14 +75,30 @@ tasks:
       - task: compliance:validate
       - task: compliance:evaluate
 
-  - name: publish-package
+  - name: publish-release
     description: Build and publish the packages
     actions:
       - task: actions:determine-arch
-      - task: publish:build-package
+      - task: create:package
+      - task: create:package
+        with:
+          path: ./plugins
+          options: "--flavor ''"
+
       - task: setup:k3d-test-cluster
         if: ${{ or (ne .variables.FLAVOR "upstream") (ne .variables.ARCH "arm64") }}
       - task: create-deploy-test-bundle
         if: ${{ or (ne .variables.FLAVOR "upstream") (ne .variables.ARCH "arm64") }}
-      - task: publish:publish-package
-      - task: publish:publish-plugin-package
+
+      - task: publish:package
+        with:
+          # x-release-please-start-version
+          version: "10.0.0-uds.1"
+          # x-release-please-end
+
+      - task: publish:package
+        with:
+          # x-release-please-start-version
+          version: "10.0.0-uds.1"
+          # x-release-please-end
+          name: mattermost-plugins
