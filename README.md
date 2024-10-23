@@ -24,57 +24,12 @@ This package is designed for use as part of a [UDS Software Factory](https://git
 
 ## Prerequisites
 
-Mattermost requires two dependencies, postgres and s3 compatible object storage. Wiring Mattermost to your dependencies is done primarily via helm values, which will require the use of a bundle created with uds-cli.
-
-### Postgres
-
-Postgres configuration is setup in the `uds-mattermost-config` chart and should be done via bundle overrides (variables or values) like the below:
-```yaml
-    overrides:
-      mattermost:
-        uds-mattermost-config:
-          values:
-            - path: "postgres.host"
-              value: "postgresql.dev-postgres.svc.cluster.local"
-```
-
-The full list of override config can be found in the values under `postgres` [here](./chart/values.yaml). In addition a zarf var is exposed for `DB_PASSWORD` for convenience if using import/exports in your bundle.
-
-### S3 Compatible Object Storage
-
-Object storage configuration is setup in the `uds-mattermost-config` chart and should be done via bundle overrides (variables or values) like the below:
-```yaml
-    overrides:
-      mattermost:
-        uds-mattermost-config:
-          values:
-            - path: "objectStorage.endpoint"
-              value: "minio.dev-minio.svc.cluster.local:9000"
-```
-
-The full list of override config can be found in the values under `objectStorage` [here](./chart/values.yaml). In addition zarf vars are exposed for `ACCESS_KEY` and `SECRET_KEY` for convenience if using import/exports in your bundle.
-
-To use IRSA make sure to NOT set the two key variables and add the appropriate role ARN annotation to the service account via an override to `serviceAccount.annotations`. As an example:
-```yaml
-    overrides:
-      mattermost:
-        mattermost-enterprise-edition:
-          values:
-            - path: "serviceAccount.annotations.irsa/role-arn"
-              value: "arn:aws:iam::123456789:role/mattermost-role"
-```
+Mattermost requires two dependencies, postgres and s3 compatible object storage. Wiring Mattermost to your dependencies is done primarily via helm values and you can learn more about configuring these and other options in the [configuration documentation](./docs/configuration.md).
 
 ### Monitoring
 
 > [!IMPORTANT]
 > Mattermost supports emitting metrics to feed into Prometheus, but _only_ if you have a license. This package configures the necessary service monitor to enable metrics, but only when a license has been provided via the `MM_LICENSE` var. By default (no license), it does not provision the Service Monitor as it will show unhealthy because metrics is not enabled via the license.
-
-## Flavors
-
-| Flavor | Description | Example Creation |
-| ------ | ----------- | ---------------- |
-| upstream | Uses upstream images within the package. | `zarf package create . -f upstream` |
-| registry1 | Uses images from registry1.dso.mil within the package. | `zarf package create . -f registry1` |
 
 ## Releases
 
@@ -92,4 +47,4 @@ Please see the [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ## Development
 
-When developing this package it is ideal to utilize the json schemas for UDS Bundles, Zarf Packages and Maru Tasks. This involves configuring your IDE to provide schema validation for the respective files used by each application. For guidance on how to set up this schema validation, please refer to the [guide](https://github.com/defenseunicorns/uds-common/blob/main/docs/development-ide-configuration.md) in uds-common.
+When developing this package it is ideal to utilize the json schemas for UDS Bundles, Zarf Packages and Maru Tasks. This involves configuring your IDE to provide schema validation for the respective files used by each application. For guidance on how to set up this schema validation, please refer to the [guide](https://github.com/defenseunicorns/uds-common/blob/main/docs/uds-packages/development/development-ide-configuration.md) in uds-common.
