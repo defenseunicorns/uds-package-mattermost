@@ -43,7 +43,7 @@ The Software Factory team has not yet tested IRSA with AWS RDS - there is an ope
 https://github.com/defenseunicorns/uds-software-factory/issues/45
 
 
-### Object Storage
+## Object Storage
 
 > [!NOTE]
 > This section is subject to change / improvement once [`uds-package-minio-operator`](https://github.com/defenseunicorns/uds-package-minio-operator) is fully ready for production use cases.
