@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [10.1.1-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.0.0-uds.1...v10.1.1-uds.0) (2024-10-25)
+
+
+### Bug Fixes
+
+* made for uds badge url ([#150](https://github.com/defenseunicorns/uds-package-mattermost/issues/150)) ([3915680](https://github.com/defenseunicorns/uds-package-mattermost/commit/3915680a2bed2f7b17794e3cf0b08a3f27775d61))
+
+
+### Miscellaneous
+
+* add pull request permissions to commitlint ([#156](https://github.com/defenseunicorns/uds-package-mattermost/issues/156)) ([0c6ee82](https://github.com/defenseunicorns/uds-package-mattermost/commit/0c6ee82e31c89b6283e96d3ea6094474e2326eff))
+* **deps:** update mattermost package dependencies to 10.1.1 ([#142](https://github.com/defenseunicorns/uds-package-mattermost/issues/142)) ([941e4e5](https://github.com/defenseunicorns/uds-package-mattermost/commit/941e4e5d75c2f68c61325e1ed071666f6fe1f562))
+* **deps:** update mattermost support dependencies ([#144](https://github.com/defenseunicorns/uds-package-mattermost/issues/144)) ([53922ab](https://github.com/defenseunicorns/uds-package-mattermost/commit/53922ab7e7c2b58042e96884ed8dcb333c4122b5))
+* **deps:** update support-deps to v1.1.1 ([#151](https://github.com/defenseunicorns/uds-package-mattermost/issues/151)) ([2b74b27](https://github.com/defenseunicorns/uds-package-mattermost/commit/2b74b270f2c582318324a6bd6941d3c365c2536f))
+* **deps:** update support-deps to v1.1.2 ([#153](https://github.com/defenseunicorns/uds-package-mattermost/issues/153)) ([404358c](https://github.com/defenseunicorns/uds-package-mattermost/commit/404358c172adb63328c464629578f3e685a8ea06))
+* fix release badge in README ([#149](https://github.com/defenseunicorns/uds-package-mattermost/issues/149)) ([adb2749](https://github.com/defenseunicorns/uds-package-mattermost/commit/adb2749ec9fc68523a9b3c3ef7ab76eb09de81ce))
+* set fail-fast to true on test matrix ([#158](https://github.com/defenseunicorns/uds-package-mattermost/issues/158)) ([12061d8](https://github.com/defenseunicorns/uds-package-mattermost/commit/12061d80fe6c6db0c107647651f6ed8863c51b51))
+* small cleanup of repo ([#147](https://github.com/defenseunicorns/uds-package-mattermost/issues/147)) ([445b0dd](https://github.com/defenseunicorns/uds-package-mattermost/commit/445b0dd55f303b7d706b19eb66ea729d4fdaf58b))
+* streamline README/config docs and add permissions to CI ([#155](https://github.com/defenseunicorns/uds-package-mattermost/issues/155)) ([b643140](https://github.com/defenseunicorns/uds-package-mattermost/commit/b643140882075a03d81fd44bfe79fe0490c39697))
+
 ## [10.0.0-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.0.0-uds.0...v10.0.0-uds.1) (2024-10-08)
 
 
