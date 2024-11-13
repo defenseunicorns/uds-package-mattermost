@@ -36,6 +36,9 @@ sso:
   protocol: "gitlab"
   secretName: mattermost-sso
 
+  # This will replace the current list of default client scopes.
+  defaultClientScopes: {}
+
   # These should typically be disabled if SSO is enabled
   enable_sign_up_with_email: false
   enable_sign_in_with_email: false

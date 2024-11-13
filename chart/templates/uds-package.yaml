@@ -14,6 +14,11 @@ spec:
       redirectUris:
         - "https://{{ .Values.subdomain }}.{{ .Values.domain }}/*"
       defaultClientScopes:
+      {{- if .Values.sso.defaultClientScopes }}
+        {{- range .Values.sso.defaultClientScopes }}
+          - "{{ . }}"
+        {{- end }}
+      {{- else }}
         - "openid"
         {{ if eq .Values.sso.protocol "gitlab" }}
         - "mapper-oidc-username-username"
@@ -24,6 +29,7 @@ spec:
         - "profile"
         - "email"
         {{ end }}
+      {{- end }}
 
       secretName: {{ .Values.sso.secretName }}
       secretTemplate:
