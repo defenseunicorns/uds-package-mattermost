@@ -37,7 +37,7 @@ sso:
   secretName: mattermost-sso
 
   # This will replace the current list of default client scopes.
-  defaultClientScopes: {}
+  defaultClientScopes: []
 
   # These should typically be disabled if SSO is enabled
   enable_sign_up_with_email: false
