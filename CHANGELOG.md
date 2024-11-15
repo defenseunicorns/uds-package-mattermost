@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [10.1.2-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.1.2-uds.0...v10.1.2-uds.1) (2024-11-15)
+
+
+### Features
+
+* configurable defaultClientScopes ([#164](https://github.com/defenseunicorns/uds-package-mattermost/issues/164)) ([f1670f9](https://github.com/defenseunicorns/uds-package-mattermost/commit/f1670f99a03a09e1cf10a852c9016cf5a7a4c2ae))
+
+
+### Bug Fixes
+
+* correct defaultClientScope default value ([#166](https://github.com/defenseunicorns/uds-package-mattermost/issues/166)) ([2b85633](https://github.com/defenseunicorns/uds-package-mattermost/commit/2b856335a7b421234577aa8c296381d1102d68a1))
+
+
+### Miscellaneous
+
+* fix codewners base pattern ([#165](https://github.com/defenseunicorns/uds-package-mattermost/issues/165)) ([22c8962](https://github.com/defenseunicorns/uds-package-mattermost/commit/22c896214f770f31c8d19235b241ab9e2f03e888))
+* update README.md ([#162](https://github.com/defenseunicorns/uds-package-mattermost/issues/162)) ([aae3f61](https://github.com/defenseunicorns/uds-package-mattermost/commit/aae3f613bb58f57b44dee4234beb518dafbfe16e))
+
 ## [10.1.2-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.1.1-uds.0...v10.1.2-uds.0) (2024-10-29)
 
 
