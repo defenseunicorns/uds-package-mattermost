@@ -62,5 +62,5 @@ jobs:
       flavor: ${{ matrix.flavor }}
       type: ${{ matrix.type }}
       reports-path: "tests/.playwright/reports/"
-      runsOn: "uds-swf-ubuntu-big-boy-4-core"
+      runsOn: "uds-swf-ubuntu-big-boy-8-core"
     secrets: inherit # Inherits all secrets from the parent workflow.
