@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [10.1.3-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.1.2-uds.1...v10.1.3-uds.0) (2024-11-19)
+
+
+### Features
+
+* add ability to set user groups for access ([#169](https://github.com/defenseunicorns/uds-package-mattermost/issues/169)) ([07934c8](https://github.com/defenseunicorns/uds-package-mattermost/commit/07934c896b86045912247b977295fff25142a71f))
+
+
+### Miscellaneous
+
+* **deps:** update mattermost package dependencies to 10.1.3 ([#161](https://github.com/defenseunicorns/uds-package-mattermost/issues/161)) ([43edccd](https://github.com/defenseunicorns/uds-package-mattermost/commit/43edccdd82810cc6c159d242470f8e581cb6c699))
+* **deps:** update support-deps to v1.3.0 ([#167](https://github.com/defenseunicorns/uds-package-mattermost/issues/167)) ([6e31cae](https://github.com/defenseunicorns/uds-package-mattermost/commit/6e31caee1690f054f7409dceb6596a17683b22e0))
+
 ## [10.1.2-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.1.2-uds.0...v10.1.2-uds.1) (2024-11-15)
 
 
