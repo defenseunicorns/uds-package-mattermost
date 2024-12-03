@@ -26,8 +26,8 @@ stringData:
   {{- end }}
   MM_FILESETTINGS_DRIVERNAME: amazons3
   MM_FILESETTINGS_AMAZONS3SSL: "{{ .Values.objectStorage.secure | toString }}"
-  MM_FILESETTINGS_AMAZONS3ACCESSKEYID: {{ $awsSecretKey }}
-  MM_FILESETTINGS_AMAZONS3SECRETACCESSKEY: {{ $awsAccessKey }}
+  MM_FILESETTINGS_AMAZONS3ACCESSKEYID: {{ $awsAccessKey }}
+  MM_FILESETTINGS_AMAZONS3SECRETACCESSKEY: {{ $awsSecretKey }}
   MM_FILESETTINGS_AMAZONS3BUCKET: "{{ .Values.objectStorage.bucket }}"
   MM_FILESETTINGS_AMAZONS3ENDPOINT: "{{ .Values.objectStorage.endpoint }}"
   MM_FILESETTINGS_AMAZONS3REGION: "{{ .Values.objectStorage.region }}"
