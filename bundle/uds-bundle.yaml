@@ -12,7 +12,7 @@ metadata:
 packages:
   - name: minio-operator
     repository: ghcr.io/defenseunicorns/packages/uds/minio-operator
-    ref: 6.0.4-uds.2-upstream
+    ref: 6.0.4-uds.1-upstream
     overrides:
       minio-operator:
         uds-minio-config:
@@ -52,10 +52,6 @@ packages:
                 version: "14"
                 ingress:
                   - remoteNamespace: mattermost
-
-  - name: dev-secrets
-    path: ../
-    ref: 0.1.0
 
   - name: mattermost-plugins
     path: ../
