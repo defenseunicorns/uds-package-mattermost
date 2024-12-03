@@ -30,6 +30,13 @@ spec:
         - "email"
         {{ end }}
       {{- end }}
+      groups:
+        anyOf:
+        {{- if .Values.sso.requiredGroups }}
+          {{- range .Values.sso.requiredGroups }}
+            - "{{ . }}"
+          {{- end }}
+        {{- end }}
 
       secretName: {{ .Values.sso.secretName }}
       secretTemplate:

@@ -6,7 +6,7 @@ metadata:
   name: mattermost-test
   description: A UDS bundle for deploying Mattermost and it's dependencies on a development cluster
   # x-release-please-start-version
-  version: 10.1.2-uds.1
+  version: 10.2.0-uds.0
   # x-release-please-end
 
 packages:
@@ -33,7 +33,7 @@ packages:
 
   - name: postgres-operator
     repository: ghcr.io/defenseunicorns/packages/uds/postgres-operator
-    ref: 1.13.0-uds.3-upstream
+    ref: 1.13.0-uds.4-upstream
     overrides:
       postgres-operator:
         uds-postgres-config:
@@ -60,13 +60,13 @@ packages:
   - name: mattermost-plugins
     path: ../
     # x-release-please-start-version
-    ref: 10.1.2-uds.1
+    ref: 10.2.0-uds.0
     # x-release-please-end
 
   - name: mattermost
     path: ../
     # x-release-please-start-version
-    ref: 10.1.2-uds.1
+    ref: 10.2.0-uds.0
     # x-release-please-end
     overrides:
       mattermost:

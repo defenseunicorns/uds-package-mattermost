@@ -41,9 +41,9 @@ jobs:
         exclude:
           - flavor: registry1
             architecture: arm64
-    uses: defenseunicorns/uds-common/.github/workflows/callable-publish.yaml@d59b1c601730bfa7ab76439643242358e529603e # v1.2.2
+    uses: defenseunicorns/uds-common/.github/workflows/callable-publish.yaml@5b91b1e0809cc34b397cf3914cda81e32ccb85b2 # v1.4.0
     with:
       flavor: ${{ matrix.flavor }}
-      runsOn: ${{ matrix.architecture == 'arm64' && 'uds-swf-ubuntu-arm64-4-core' || 'uds-swf-ubuntu-big-boy-4-core' }}
+      runsOn: ${{ matrix.architecture == 'arm64' && 'uds-swf-ubuntu-arm64-8-core' || 'uds-swf-ubuntu-big-boy-8-core' }}
       reports-path: "tests/.playwright/reports/"
     secrets: inherit # Inherits all secrets from the parent workflow.
