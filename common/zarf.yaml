@@ -35,6 +35,9 @@ components:
                 name: mattermost
                 namespace: mattermost
                 condition: "'{.status.phase}'=Ready"
+          - cmd: ./zarf tools kubectl -n mattermost rollout restart deployment
+            description: Restart Mattermost Deployment so pods cycle on upgrades
+          - cmd: ./zarf tools kubectl -n mattermost rollout status deploy
           - description: Mattermost to be Healthy
             wait:
               cluster:

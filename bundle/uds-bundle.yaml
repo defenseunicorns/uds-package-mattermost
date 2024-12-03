@@ -10,13 +10,26 @@ metadata:
   # x-release-please-end
 
 packages:
-  - name: dev-namespace
-    path: ../
-    ref: 0.1.0
-
-  - name: dev-minio
-    repository: ghcr.io/defenseunicorns/packages/uds/dev-minio
-    ref: 0.0.2
+  - name: minio-operator
+    repository: ghcr.io/defenseunicorns/packages/uds/minio-operator
+    ref: 6.0.4-uds.1-upstream
+    overrides:
+      minio-operator:
+        uds-minio-config:
+          values:
+            # Test helm overrides to provision app specific buckets, policies and creds
+            - path: apps
+              value:
+                - name: mattermost
+                  namespace: mattermost
+                  bucketNames:
+                    - uds-mattermost-dev
+                  policy: ""
+                  copyPassword:
+                    enabled: true
+                    secretName: "mattermost-minio"
+                    secretIDKey: "access_key"
+                    secretPasswordKey: "secret_key"
 
   - name: postgres-operator
     repository: ghcr.io/defenseunicorns/packages/uds/postgres-operator
@@ -43,9 +56,6 @@ packages:
   - name: dev-secrets
     path: ../
     ref: 0.1.0
-    exports:
-      - name: ACCESS_KEY
-      - name: SECRET_KEY
 
   - name: mattermost-plugins
     path: ../
@@ -58,11 +68,6 @@ packages:
     # x-release-please-start-version
     ref: 10.1.2-uds.1
     # x-release-please-end
-    imports:
-      - name: ACCESS_KEY
-        package: dev-secrets
-      - name: SECRET_KEY
-        package: dev-secrets
     overrides:
       mattermost:
         uds-mattermost-config:
@@ -70,7 +75,7 @@ packages:
             - path: "objectStorage.secure"
               value: "false"
             - path: "objectStorage.endpoint"
-              value: "minio.dev-minio.svc.cluster.local:9000"
+              value: "uds-minio-hl.minio.svc.cluster.local:9000"
             - path: "objectStorage.bucket"
               value: "uds-mattermost-dev"
         mattermost-enterprise-edition:

@@ -8,6 +8,22 @@ metadata:
   namespace: {{ .Release.Namespace }}
 type: Opaque
 stringData:
+
+  {{- $awsAccessKey := "" }}
+  {{- $awsSecretKey := "" }}
+
+  {{- $secret := lookup "v1" "Secret" .Values.objectStorage.secretRef.secretNamespace .Values.objectStorage.secretRef.secretName }}
+  {{- if and $secret (index $secret.data .Values.objectStorage.secretRef.secretIDKey) }}
+    {{- $awsAccessKey = (index $secret.data .Values.objectStorage.secretRef.secretIDKey | b64dec) }}
+  {{- else }}
+    {{- $awsAccessKey = .Values.objectStorage.accessKey | quote }}
+  {{- end }}
+  
+  {{- if and $secret (index $secret.data .Values.objectStorage.secretRef.secretPasswordKey) }}
+    {{- $awsSecretKey = (index $secret.data .Values.objectStorage.secretRef.secretPasswordKey | b64dec) }}
+  {{- else }}
+    {{- $awsSecretKey = .Values.objectStorage.secretKey | quote }}
+  {{- end }}
   MM_FILESETTINGS_DRIVERNAME: amazons3
   MM_FILESETTINGS_AMAZONS3SSL: "{{ .Values.objectStorage.secure | toString }}"
   MM_FILESETTINGS_AMAZONS3ACCESSKEYID: "{{ .Values.objectStorage.accessKey }}"
