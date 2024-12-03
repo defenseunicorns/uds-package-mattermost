@@ -9,3 +9,4 @@ zarf-sbom
 # Tests
 node_modules/
 .playwright/
+bundle/uds-config-previous.yaml
