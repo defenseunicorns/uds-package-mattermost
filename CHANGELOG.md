@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [10.2.0-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.2.0-uds.0...v10.2.0-uds.1) (2024-12-04)
+
+
+### Features
+
+* switch to minio operator, add lookup to object store secret ([#175](https://github.com/defenseunicorns/uds-package-mattermost/issues/175)) ([242616d](https://github.com/defenseunicorns/uds-package-mattermost/commit/242616d99088afdca52eb476018a0b6d6ed18184))
+
+
+### Miscellaneous
+
+* **deps:** update package-deps to v1.13.0-uds.5-upstream ([#176](https://github.com/defenseunicorns/uds-package-mattermost/issues/176)) ([c51210b](https://github.com/defenseunicorns/uds-package-mattermost/commit/c51210ba4d916221086b8f450da47658ab9899fd))
+* **deps:** update support-deps to v1.4.0 ([#172](https://github.com/defenseunicorns/uds-package-mattermost/issues/172)) ([87ad711](https://github.com/defenseunicorns/uds-package-mattermost/commit/87ad71137cb3f77900e38273e0f455d902a3b218))
+
 ## [10.2.0-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.1.3-uds.0...v10.2.0-uds.0) (2024-12-02)
 
 
