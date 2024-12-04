@@ -5,7 +5,9 @@ build/
 .DS_Store
 *.tar.zst
 zarf-sbom
+oscal-assessment-results.yaml
 
 # Tests
 node_modules/
 .playwright/
+bundle/uds-config-previous.yaml
