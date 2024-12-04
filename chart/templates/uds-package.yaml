@@ -105,11 +105,11 @@ spec:
       - direction: Egress
         selector:
           app.kubernetes.io/name: mattermost-enterprise-edition
-        {{- if .Values.objectStorage.internal }}
-        remoteNamespace: {{ .Values.objectStorage.namespace | quote }}
+        {{- if .Values.storage.internal }}
+        remoteNamespace: {{ .Values.storage.namespace | quote }}
         remoteSelector:
-          {{ .Values.objectStorage.selector | toYaml | nindent 10 }}
-        port: {{ .Values.objectStorage.port }}
+          {{ .Values.storage.selector | toYaml | nindent 10 }}
+        port: {{ .Values.storage.port }}
         {{- else }}
         remoteGenerated: Anywhere
         {{- end }}

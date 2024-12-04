@@ -4,11 +4,6 @@
 domain: "###ZARF_VAR_DOMAIN###"
 
 objectStorage:
-  internal: true
-  selector:
-    app: minio
-  namespace: minio
-  port: 9000
   secure: true
   accessKey: ""
   secretKey: ""
@@ -70,13 +65,13 @@ config:
 # Additional environment variables for Mattermost
 extraEnv: {}
 
-# storage:
-#   # Set to false to use external storage
-#   internal: true
-#   selector:
-#     app: minio
-#   namespace: dev-minio
-#   port: 9000
+storage:
+  # Set to false to use external storage
+  internal: true
+  selector:
+    app: minio
+  namespace: minio
+  port: 9000
 
 # custom:
 #    # Notice no `remoteGenerated` field here on custom internal rule
