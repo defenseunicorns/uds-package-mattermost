@@ -73,7 +73,7 @@ storage:
   namespace: minio
   port: 9000
 
-# custom:
+# additionalNetworkAllow:
 #    # Notice no `remoteGenerated` field here on custom internal rule
 #   - direction: Ingress
 #     selector:
