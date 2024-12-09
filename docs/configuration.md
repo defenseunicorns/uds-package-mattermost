@@ -9,7 +9,7 @@ Network policies are controlled via the `uds-mattermost-config` chart in accorda
 
 - `postgres`: sets network policies for accessing a Postgres database from the Mattermost pod
 - `storage`: sets network policies for accessing S3-compatible object storage from the Mattermost pod
-- `custom`: sets custom network policies for the Mattermost namespace - this allows for custom integrations with other services
+- `additionalNetworkAllow`: sets custom network policies for the Mattermost namespace - this allows for custom integrations with other services
 
 ## Database
 
