@@ -15,25 +15,11 @@ permissions:
   id-token: write
 
 jobs:
-  tag-new-version:
-    permissions: write-all
-    runs-on: ubuntu-latest
-    outputs:
-      release_created: ${{ steps.release-flag.outputs.release_created }}
-    steps:
-      - name: Create Release Tag
-        id: tag
-        uses: googleapis/release-please-action@7987652d64b4581673a76e33ad5e98e3dd56832f # v4.1.3
-      - id: release-flag
-        run: echo "release_created=${{ steps.tag.outputs.release_created || false }}" >> "$GITHUB_OUTPUT"
-
   publish:
     permissions:
-      contents: read # Allows reading the content of the repository.
-      packages: write # Allows reading the content of the repository's packages.
+      contents: write # Allows writing the content of the repository.
+      packages: write # Allows writing the content of the repository's packages.
       id-token: write
-    needs: tag-new-version
-    if: ${{ needs.tag-new-version.outputs.release_created == 'true' }}
     strategy:
       matrix:
         flavor: [upstream, registry1, unicorn]
@@ -41,9 +27,10 @@ jobs:
         exclude:
           - flavor: registry1
             architecture: arm64
-    uses: defenseunicorns/uds-common/.github/workflows/callable-publish.yaml@5b91b1e0809cc34b397cf3914cda81e32ccb85b2 # v1.4.0
+    uses: defenseunicorns/uds-common/.github/workflows/callable-publish.yaml@a94be6798ba20e2d23fe16afc6578e442e55fb0a # v1.5.1
     with:
       flavor: ${{ matrix.flavor }}
       runsOn: ${{ matrix.architecture == 'arm64' && 'uds-swf-ubuntu-arm64-8-core' || 'uds-swf-ubuntu-big-boy-8-core' }}
       reports-path: "tests/.playwright/reports/"
+      uds-releaser: true
     secrets: inherit # Inherits all secrets from the parent workflow.
