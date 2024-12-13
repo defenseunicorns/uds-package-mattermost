@@ -1,0 +1,13 @@
+# Copyright 2024 Defense Unicorns
+# SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
+
+flavors:
+  - name: upstream
+    # renovate-uds: datasource=docker depName=mattermost/mattermost-enterprise-edition
+    version: 10.2.0-uds.2
+  - name: registry1
+    # renovate-uds: datasource=docker depName=registry1.dso.mil/ironbank/opensource/mattermost/mattermost
+    version: 10.2.0-uds.2
+  - name: unicorn
+    # renovate-uds: datasource=docker depName=cgr.dev/du-uds-defenseunicorns/mattermost
+    version: 10.2.0-uds.2

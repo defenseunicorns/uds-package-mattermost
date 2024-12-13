@@ -91,15 +91,10 @@ tasks:
       - task: create-deploy-test-bundle
         if: ${{ or (ne .variables.FLAVOR "upstream") (ne .variables.ARCH "arm64") }}
 
+      # Publish the main package
       - task: publish:package
-        with:
-          # x-release-please-start-version
-          version: "10.2.0-uds.1"
-          # x-release-please-end
 
+      # Publish the plugins package
       - task: publish:package
         with:
-          # x-release-please-start-version
-          version: "10.2.0-uds.1"
-          # x-release-please-end
           name: mattermost-plugins
