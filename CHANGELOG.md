@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [11.0.0-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.2.0-uds.1...v11.0.0-uds.1) (2024-12-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* update custom network properties key ([#178](https://github.com/defenseunicorns/uds-package-mattermost/issues/178))
+
+### Miscellaneous
+
+* update custom network properties key ([#178](https://github.com/defenseunicorns/uds-package-mattermost/issues/178)) ([6ecf5b2](https://github.com/defenseunicorns/uds-package-mattermost/commit/6ecf5b243b1c3b42bb48cf1642bf3f84c25f488b))
+
 ## [10.2.0-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.2.0-uds.0...v10.2.0-uds.1) (2024-12-04)
 
 
