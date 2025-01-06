@@ -55,12 +55,12 @@ jobs:
       fail-fast: true
       matrix:
         type: [install, upgrade]
-        flavor: [upstream, unicorn, registry1]
+        flavor: [upstream, registry1]
     uses: defenseunicorns/uds-common/.github/workflows/callable-test.yaml@5b91b1e0809cc34b397cf3914cda81e32ccb85b2 # v1.4.0
     with:
       upgrade-flavors: ${{ needs.check-flavor.outputs.upgrade-flavors }}
       flavor: ${{ matrix.flavor }}
       type: ${{ matrix.type }}
       reports-path: "tests/.playwright/reports/"
-      runsOn: "uds-swf-ubuntu-big-boy-16-core"
+      runsOn: "uds-swf-ubuntu-big-boy-8-core"
     secrets: inherit # Inherits all secrets from the parent workflow.
