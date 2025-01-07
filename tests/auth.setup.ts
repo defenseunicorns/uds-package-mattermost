@@ -27,6 +27,8 @@ setup('authenticate', async ({ page, context, baseURL }) => {
 
   await page.context().storageState({ path: authFile });
 
+  console.log('Current URL:', await page.url());
+
   await page.waitForURL(url =>
     url.pathname === '/' ||
     url.pathname === '/preparing-workspace' ||
