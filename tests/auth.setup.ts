@@ -27,7 +27,7 @@ setup('authenticate', async ({ page, context, baseURL }) => {
 
   await page.context().storageState({ path: authFile });
 
-  await page.waitForLoadState("networkidle")
+  await page.waitForLoadState("domcontentloaded")
 
   console.log('Current URL:', page.url());
 
@@ -35,7 +35,7 @@ setup('authenticate', async ({ page, context, baseURL }) => {
     url.pathname === '/' ||
     url.pathname === '/preparing-workspace' ||
     url.pathname === '/unicorns/channels/town-square'
-  , { waitUntil: 'networkidle' });
+  , { waitUntil: 'domcontentloaded' });
 
   // one-time workspace setup (when login redirects to "/preparing-workspace")
   if (page.url().endsWith('/preparing-workspace')) {
