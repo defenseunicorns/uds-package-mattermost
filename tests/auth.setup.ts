@@ -28,10 +28,9 @@ setup('authenticate', async ({ page, context, baseURL }) => {
   await page.context().storageState({ path: authFile });
 
   await page.waitForURL(url =>
-    url.pathname === '/' ||
     url.pathname === '/preparing-workspace' ||
     url.pathname === '/unicorns/channels/town-square'
-  , { waitUntil: 'networkidle' });
+  );
 
   // one-time workspace setup (when login redirects to "/preparing-workspace")
   if (page.url().endsWith('/preparing-workspace')) {

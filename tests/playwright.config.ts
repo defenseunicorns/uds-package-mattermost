@@ -27,6 +27,7 @@ export default defineConfig({
 
   use: {
     baseURL: process.env.BASE_URL || 'https://chat.uds.dev', // for `await page.goto('/')` etc
+    screenshot: 'on', // capture screenshots for all tests
     trace: 'on-first-retry', // collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer
   },
 
