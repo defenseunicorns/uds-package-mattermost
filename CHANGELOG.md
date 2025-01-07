@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [10.3.0-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.2.0-uds.1...v10.3.0-uds.0) (2025-01-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* update custom network properties key ([#178](https://github.com/defenseunicorns/uds-package-mattermost/issues/178))
+
+### Miscellaneous
+
+* **deps:** update mattermost package dependencies ([#177](https://github.com/defenseunicorns/uds-package-mattermost/issues/177)) ([52ceb1c](https://github.com/defenseunicorns/uds-package-mattermost/commit/52ceb1c4a34c9fb2cdcdc927cd8b22e70f6b5d19))
+* **deps:** update mattermost support dependencies ([#179](https://github.com/defenseunicorns/uds-package-mattermost/issues/179)) ([b96d245](https://github.com/defenseunicorns/uds-package-mattermost/commit/b96d245c9b18b2e56bbef66db11f2cc5af874abd))
+* **deps:** update package-deps to v1.14.0-uds.0-upstream ([#181](https://github.com/defenseunicorns/uds-package-mattermost/issues/181)) ([f4b32c9](https://github.com/defenseunicorns/uds-package-mattermost/commit/f4b32c94b9bdb700633c6201e17e39a72e16580b))
+* update custom network properties key ([#178](https://github.com/defenseunicorns/uds-package-mattermost/issues/178)) ([6ecf5b2](https://github.com/defenseunicorns/uds-package-mattermost/commit/6ecf5b243b1c3b42bb48cf1642bf3f84c25f488b))
+
 ## [10.2.0-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.2.0-uds.0...v10.2.0-uds.1) (2024-12-04)
 
 
