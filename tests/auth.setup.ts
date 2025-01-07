@@ -27,7 +27,9 @@ setup('authenticate', async ({ page, context, baseURL }) => {
 
   await page.context().storageState({ path: authFile });
 
-  console.log('Current URL:', await page.url());
+  await page.waitForLoadState("networkidle")
+
+  console.log('Current URL:', page.url());
 
   await page.waitForURL(url =>
     url.pathname === '/' ||
