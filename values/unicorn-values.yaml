@@ -4,7 +4,7 @@
 mattermostApp:
   image:
     repository: cgr.dev/du-uds-defenseunicorns/mattermost
-    tag: 10.4.1
+    tag: 10.4.2
   securityContext:
     runAsUser: 65532
     runAsGroup: 65532
