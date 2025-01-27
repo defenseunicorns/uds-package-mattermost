@@ -69,7 +69,7 @@ storage:
   # Set to false to use external storage
   internal: true
   selector:
-    app: minio
+    v1.min.io/tenant: uds-minio
   namespace: minio
   port: 9000
 
