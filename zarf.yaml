@@ -39,7 +39,7 @@ components:
         valuesFiles:
           - values/upstream-values.yaml
     images:
-      - curlimages/curl:8.11.1
+      - curlimages/curl:8.12.0
       - mattermost/mattermost-enterprise-edition:10.4.2
 
   - name: mattermost
@@ -71,5 +71,5 @@ components:
         valuesFiles:
           - values/unicorn-values.yaml
     images:
-      - cgr.dev/du-uds-defenseunicorns/curl-fips:8.11.1
+      - cgr.dev/du-uds-defenseunicorns/curl-fips:8.12.0
       - cgr.dev/du-uds-defenseunicorns/mattermost:10.4.2
