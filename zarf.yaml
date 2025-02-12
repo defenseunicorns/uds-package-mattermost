@@ -40,7 +40,7 @@ components:
           - values/upstream-values.yaml
     images:
       - curlimages/curl:8.12.0
-      - mattermost/mattermost-enterprise-edition:10.5.0
+      - mattermost/mattermost-enterprise-edition:10.4.2
 
   - name: mattermost
     required: true
