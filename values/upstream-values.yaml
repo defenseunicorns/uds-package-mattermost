@@ -7,4 +7,4 @@ mattermostApp:
     tag: 10.4.2
 initContainerImage:
   repository: curlimages/curl
-  tag: 8.11.1
+  tag: 8.12.0
