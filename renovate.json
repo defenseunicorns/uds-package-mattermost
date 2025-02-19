@@ -5,7 +5,7 @@
   "extends": [
     "github>defenseunicorns/uds-common//config/renovate.json5",
     ":semanticPrefixFixDepsChoreOthers",
-    "config:base",
+    "config:recommended",
     "group:all",
     "replacements:all",
     "workarounds:all"
@@ -13,23 +13,39 @@
   "packageRules": [
     {
       "groupName": "Mattermost Support Dependencies",
-      "labels": ["support-deps"],
+      "labels": [
+        "support-deps"
+      ],
       "commitMessageTopic": "support-deps",
-      "packagePatterns": ["*"]
+      "matchPackageNames": [
+        "*"
+      ]
     },
     {
       "groupName": "Mattermost Package Dependencies",
-      "labels": ["package-deps"],
+      "labels": [
+        "package-deps"
+      ],
       "commitMessageTopic": "package-deps",
-      "matchDatasources": ["docker", "helm", "git-tags"]
+      "matchDatasources": [
+        "docker",
+        "helm",
+        "git-tags"
+      ]
     },
     {
       "groupName": "Mattermost Package Dependencies",
-      "labels": ["package-deps"],
+      "labels": [
+        "package-deps"
+      ],
       "commitMessageTopic": "package-deps",
-      "matchDatasources": ["docker"],
-      "matchPackagePatterns": ["mattermost/mattermost-enterprise-edition"],
-      "allowedVersions": "/^\\d+\\.\\d+\\.\\d+$/"
+      "matchDatasources": [
+        "docker"
+      ],
+      "allowedVersions": "/^\\d+\\.\\d+\\.\\d+$/",
+      "matchPackageNames": [
+        "/mattermost/mattermost-enterprise-edition/"
+      ]
     }
   ]
 }
