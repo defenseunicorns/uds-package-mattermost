@@ -4,10 +4,10 @@
 mattermostApp:
   image:
     repository: cgr.dev/du-uds-defenseunicorns/mattermost
-    tag: 10.4.2
+    tag: 10.4.3
   securityContext:
     runAsUser: 65532
     runAsGroup: 65532
 initContainerImage:
   repository: cgr.dev/du-uds-defenseunicorns/curl-fips
-  tag: 8.12.0
+  tag: 8.12.1
