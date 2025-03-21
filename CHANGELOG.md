@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [10.6.1-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.5.1-uds.1...v10.6.1-uds.0) (2025-03-21)
+
+
+### Miscellaneous
+
+* **deps:** update mattermost package dependencies (https://github.com/defenseunicorns/uds-package-mattermost/pull/206) ([ae85a7e](https://github.com/defenseunicorns/uds-package-mattermost/commit/ae85a7e8e4785babbdc45c19efbd5f6d32fe120a))
+* fix zarf.yaml formatting ([#207](https://github.com/defenseunicorns/uds-package-mattermost/issues/207)) ([2cc9d4e](https://github.com/defenseunicorns/uds-package-mattermost/commit/2cc9d4e39fabb8d78606415a95dadaf6ec981b81))
+
 ## [10.5.1-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.5.1-uds.0...v10.5.1-uds.1) (2025-03-11)
 
 
