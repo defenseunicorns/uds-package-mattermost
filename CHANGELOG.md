@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [10.6.1-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.6.1-uds.0...v10.6.1-uds.1) (2025-03-24)
+
+
+### Miscellaneous
+
+* **deps:** update package-deps to v7.0.1-uds.0-upstream ([#210](https://github.com/defenseunicorns/uds-package-mattermost/issues/210)) ([cb903cd](https://github.com/defenseunicorns/uds-package-mattermost/commit/cb903cdffabcda1b6f379352830a3e55383a1975))
+
 ## [10.6.1-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.5.1-uds.1...v10.6.1-uds.0) (2025-03-21)
 
 
