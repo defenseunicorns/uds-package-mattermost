@@ -80,4 +80,3 @@ components:
     images:
       - cgr.dev/du-uds-defenseunicorns/curl-fips:8.12.1
       - cgr.dev/du-uds-defenseunicorns/mattermost:10.6.1
-
