@@ -9,7 +9,7 @@ on:
     paths:
       - zarf.yaml
       - releaser.yaml
-      - release-please-config.json
+      - .release-please-manifest.json
 
 jobs:
   scan:
