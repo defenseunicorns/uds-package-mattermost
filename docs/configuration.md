@@ -108,3 +108,41 @@ UDS bundle:
                     - name: mattermost-plugins
                       mountPath: /mattermost/plugins/
 ```
+
+### Calls Plugin
+The calls plugin [requires an externally-facing ingress for TCP and UDP traffic on port 8443](https://docs.mattermost.com/configure/calls-deployment.html#network). To assist with the creation of this ingress, the following parameters can be used:
+
+- `rtcService.enabled` - enables rtc service for [calls plugin rtc server](https://docs.mattermost.com/configure/calls-deployment.html#network) (defaults to `false`)
+- `rtcService.type` - service type (defaults to `ClusterIP`)
+- `rtcService.annotations` - service annotations (defaults to `{}`)
+- `rtcService.ports` - service port mappings, mattermost will default both udp and tcp to 8443 (defaults to `{"ports":[{"name":"udp-mattermost-rtc","port":8443,"protocol":"UDP","targetPort":8443},{"name":"tcp-mattermost-rtc","port":8443,"protocol":"TCP","targetPort":8443}]}`)
+
+For example, an internet facing load balancer on AWS that uses port 8443 for UDP and port 8444 for TCP:
+```yaml
+    overrides:
+      mattermost:
+        uds-mattermost-config:
+          values:
+            - path: rtcService
+              value:
+                enabled: true
+                type: LoadBalancer
+                annotations:
+                  service.beta.kubernetes.io/aws-load-balancer-attributes: load_balancing.cross_zone.enabled=true
+                  service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
+                  service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+                  service.beta.kubernetes.io/aws-load-balancer-type: external
+                  service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "32527"
+                  service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol: tcp
+                ports:
+                  - name: udp-mattermost-rtc
+                    port: 8443
+                    protocol: UDP
+                    targetPort: 8443
+                  - name: tcp-mattermost-rtc
+                    port: 8444
+                    nodePort: 32527
+                    protocol: TCP
+                    targetPort: 8444
+```
+For the above example, there is an [EC2 Load Balancer limitation](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/target-group-health-checks.html) where UDP health checks are not permitted. To overcome this, a healthcheck port and protocol override is provided as an annotation, configuring AWS to always use the TCP ingress as a healthcheck probe. The port number used in `service.beta.kubernetes.io/aws-load-balancer-healthcheck-port` and `nodePort` of `tcp-mattermost-rtc` must match for the healthcheck to be healthy.

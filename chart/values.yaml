@@ -73,6 +73,20 @@ storage:
   namespace: minio
   port: 9000
 
+rtcService:
+  enabled: false
+  type: ClusterIP
+  annotations: {}
+  ports:
+    - name: udp-mattermost-rtc
+      port: 8443
+      protocol: UDP
+      targetPort: 8443
+    - name: tcp-mattermost-rtc
+      port: 8443
+      protocol: TCP
+      targetPort: 8443
+
 # additionalNetworkAllow:
 #    # Notice no `remoteGenerated` field here on custom internal rule
 #   - direction: Ingress
