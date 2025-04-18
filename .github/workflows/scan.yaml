@@ -18,5 +18,5 @@ jobs:
       packages: read # Allows reading the content of the repository's packages.
       id-token: write # Allows authentication to Chainguard via OIDC.
       pull-requests: write # Allows writing the scan results comment to the pull request.
-    uses: defenseunicorns/uds-common/.github/workflows/callable-scan.yaml@9eee942c5962211539d6ad3bc0df54669690f595 # v1.12.0
+    uses: defenseunicorns/uds-common/.github/workflows/callable-scan.yaml@e84f5624ec53b7e126166ae4d9f1144ba8afeac6 # v1.14.1
     secrets: inherit # Inherits all secrets from the parent workflow.
