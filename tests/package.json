@@ -2,7 +2,7 @@
   "name": "uds-package-mattermost",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@playwright/test": "^1.51.0",
+    "@playwright/test": "^1.52.0",
     "@types/node": "^20.12.12",
     "typescript": "^5.4.5"
   }
