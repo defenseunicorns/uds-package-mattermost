@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [10.7.0-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.6.1-uds.0...v10.7.0-uds.0) (2025-04-22)
+
+
+### Features
+
+* create service for calls plugin rtc server ([#218](https://github.com/defenseunicorns/uds-package-mattermost/issues/218))  ([8dd5422](https://github.com/defenseunicorns/uds-package-mattermost/commit/8dd5422cf1ce5b929e8adb5209ad1419c1f3fae8))
+
+
+### Bug Fixes
+
+* update paths on scan workflow ([#213](https://github.com/defenseunicorns/uds-package-mattermost/issues/213)) ([a8e6dab](https://github.com/defenseunicorns/uds-package-mattermost/commit/a8e6dabd8a22087d1699788539642ee36ed33d86))
+
+
+### Miscellaneous
+
+* **deps:** update package-deps to v7.0.1-uds.0-upstream ([#210](https://github.com/defenseunicorns/uds-package-mattermost/issues/210)) ([cb903cd](https://github.com/defenseunicorns/uds-package-mattermost/commit/cb903cdffabcda1b6f379352830a3e55383a1975))
+* **deps:** update support-deps to v1.11.2 ([#212](https://github.com/defenseunicorns/uds-package-mattermost/issues/212)) ([8ff31eb](https://github.com/defenseunicorns/uds-package-mattermost/commit/8ff31eb0097b64708fc04bc98cc57071936a1440))
+* **deps:** update support-deps to v1.12.0 ([#216](https://github.com/defenseunicorns/uds-package-mattermost/issues/216)) ([d6cb170](https://github.com/defenseunicorns/uds-package-mattermost/commit/d6cb170cc5c620fec27ec76de02511c3f4e116e3))
+* **deps:** update support-deps to v1.14.1 ([#217](https://github.com/defenseunicorns/uds-package-mattermost/issues/217)) ([cfcce05](https://github.com/defenseunicorns/uds-package-mattermost/commit/cfcce05ad2f1145c6b761e3d15395067598f0793))
+
 ## [10.6.1-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.5.1-uds.1...v10.6.1-uds.0) (2025-03-21)
 
 
