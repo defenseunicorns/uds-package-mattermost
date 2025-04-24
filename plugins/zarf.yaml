@@ -7,7 +7,7 @@ metadata:
   name: mattermost-plugins
   description: "UDS Mattermost Plugins Package"
   # x-release-please-start-version
-  version: "10.7.0-uds.0"
+  version: "10.7.0-uds.1"
   # x-release-please-end
 
 components:
