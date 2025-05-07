@@ -69,6 +69,8 @@ spec:
       description: Metrics
   {{- end }}
   network:
+    serviceMesh:
+      mode: ambient
     expose:
       - service: mattermost-enterprise-edition
         selector:
