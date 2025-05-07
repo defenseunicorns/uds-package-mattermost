@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [10.7.1-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.7.1-uds.0...v10.7.1-uds.1) (2025-05-07)
+
+
+### Features
+
+* update mattermost to use istio ambient mode ([#226](https://github.com/defenseunicorns/uds-package-mattermost/issues/226)) ([041a1f3](https://github.com/defenseunicorns/uds-package-mattermost/commit/041a1f34acab8f1c33c739987a516bb92fc04f92))
+
+
+### Miscellaneous
+
+* **deps:** update support-deps to v1.14.2 ([#220](https://github.com/defenseunicorns/uds-package-mattermost/issues/220)) ([4b1d4dd](https://github.com/defenseunicorns/uds-package-mattermost/commit/4b1d4dd8b13731a6aef118db2a631c8f12e1b18f))
+
 ## [10.7.1-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.7.0-uds.1...v10.7.1-uds.0) (2025-04-30)
 
 
