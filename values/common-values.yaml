@@ -37,7 +37,7 @@ serviceAccount:
 global:
   siteUrl: "https://###ZARF_VAR_SUBDOMAIN###.###ZARF_VAR_DOMAIN###"
   # Default unlicensed deployment
-  mattermostLicense: ""
+  mattermostLicense: "###ZARF_VAR_MM_LICENSE###"
 
   features:
     database:
