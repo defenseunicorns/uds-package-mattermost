@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [10.8.1-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.8.1-uds.0...v10.8.1-uds.1) (2025-05-27)
+
+
+### Bug Fixes
+
+* reference zarf variable for licenses in an common values ([#230](https://github.com/defenseunicorns/uds-package-mattermost/issues/230)) ([a14224f](https://github.com/defenseunicorns/uds-package-mattermost/commit/a14224fa4894fab4f06c349aaf1e35ca37cd055d))
+
 ## [10.8.1-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.7.1-uds.1...v10.8.1-uds.0) (2025-05-22)
 
 
