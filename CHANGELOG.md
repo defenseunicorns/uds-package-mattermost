@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [10.8.1-uds.2](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.8.1-uds.1...v10.8.1-uds.2) (2025-06-12)
+
+
+### Bug Fixes
+
+* remove playwright image from package deps ([#234](https://github.com/defenseunicorns/uds-package-mattermost/issues/234)) ([115eead](https://github.com/defenseunicorns/uds-package-mattermost/commit/115eead9aa85f8cfcb68e1964023a048f272aa13))
+* renovate.json extends ([#236](https://github.com/defenseunicorns/uds-package-mattermost/issues/236)) ([4c95c70](https://github.com/defenseunicorns/uds-package-mattermost/commit/4c95c70172d6e56eecfaa6091862e088690e18a9))
+
 ## [10.8.1-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.8.1-uds.0...v10.8.1-uds.1) (2025-05-27)
 
 
