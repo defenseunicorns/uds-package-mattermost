@@ -3,11 +3,8 @@
 
 mattermostApp:
   image:
-    repository: cgr.dev/du-uds-defenseunicorns/mattermost
+    repository: registry1.dso.mil/ironbank/opensource/mattermost/mattermost
     tag: 10.8.1
-  securityContext:
-    runAsUser: 65532
-    runAsGroup: 65532
 initContainerImage:
-  repository: cgr.dev/du-uds-defenseunicorns/curl-fips
-  tag: 8.13.0
+  repository: registry1.dso.mil/ironbank/redhat/ubi/ubi9-minimal
+  tag: 9.6
