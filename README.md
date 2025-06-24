@@ -34,6 +34,7 @@ Mattermost requires two dependencies, postgres and s3 compatible object storage.
 | --------- | ---------------------------------------------------------------- | ------------------------------------ |
 | upstream  | Uses images from docker.io within the package.                   | `zarf package create . -f upstream`  |
 | registry1 | Uses images from registry1.dso.mil within the package.           | `zarf package create . -f registry1` |
+| unicorn   | Uses images from chainguard.           | `zarf package create . -f unicorn`   |
 
 ### Monitoring
 
