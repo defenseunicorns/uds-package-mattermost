@@ -28,14 +28,6 @@ This package is designed for use as part of a [UDS Software Factory](https://git
 
 Mattermost requires two dependencies, postgres and s3 compatible object storage. Wiring Mattermost to your dependencies is done primarily via helm values and you can learn more about configuring these and other options in the [configuration documentation](./docs/configuration.md).
 
-## Flavors
-
-| Flavor    | Description                                                      | Example Creation                     |
-| --------- | ---------------------------------------------------------------- | ------------------------------------ |
-| upstream  | Uses images from docker.io within the package.                   | `zarf package create . -f upstream`  |
-| registry1 | Uses images from registry1.dso.mil within the package.           | `zarf package create . -f registry1` |
-| unicorn   | Uses images from chainguard.           | `zarf package create . -f unicorn`   |
-
 ### Monitoring
 
 > [!IMPORTANT]
