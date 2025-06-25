@@ -92,12 +92,12 @@ tasks:
       - task: publish:package
         with:
           # x-release-please-start-version
-          version: "10.8.1-uds.1"
+          version: "10.9.1-uds.0"
           # x-release-please-end
 
       - task: publish:package
         with:
           # x-release-please-start-version
-          version: "10.8.1-uds.1"
+          version: "10.9.1-uds.0"
           # x-release-please-end
           name: mattermost-plugins

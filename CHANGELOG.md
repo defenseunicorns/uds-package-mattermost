@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [10.9.1-uds.0](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.8.1-uds.1...v10.9.1-uds.0) (2025-06-25)
+
+
+### Bug Fixes
+
+* remove playwright image from package deps ([#234](https://github.com/defenseunicorns/uds-package-mattermost/issues/234)) ([115eead](https://github.com/defenseunicorns/uds-package-mattermost/commit/115eead9aa85f8cfcb68e1964023a048f272aa13))
+* renovate.json extends ([#236](https://github.com/defenseunicorns/uds-package-mattermost/issues/236)) ([4c95c70](https://github.com/defenseunicorns/uds-package-mattermost/commit/4c95c70172d6e56eecfaa6091862e088690e18a9))
+
+
+### Miscellaneous
+
+* **deps:** update mattermost package dependencies ([#232](https://github.com/defenseunicorns/uds-package-mattermost/issues/232)) ([730adf6](https://github.com/defenseunicorns/uds-package-mattermost/commit/730adf62791bcc376c5e522d5f0167b7dc73abfa))
+* **deps:** update mattermost support dependencies ([#233](https://github.com/defenseunicorns/uds-package-mattermost/issues/233)) ([3981a25](https://github.com/defenseunicorns/uds-package-mattermost/commit/3981a25ee08c293ee796959c71bc52ac1abaa1c8))
+* **deps:** update mattermost support dependencies ([#238](https://github.com/defenseunicorns/uds-package-mattermost/issues/238)) ([b05cfc5](https://github.com/defenseunicorns/uds-package-mattermost/commit/b05cfc57adc8db8ef0416a82683365b5c85ee2b7))
+* fix tagline ([#237](https://github.com/defenseunicorns/uds-package-mattermost/issues/237)) ([5b8a9aa](https://github.com/defenseunicorns/uds-package-mattermost/commit/5b8a9aaa1d530924c9bd82487acec990ee2420df))
+
 ## [10.8.1-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.8.1-uds.0...v10.8.1-uds.1) (2025-05-27)
 
 
