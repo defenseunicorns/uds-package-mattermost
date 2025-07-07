@@ -3,16 +3,16 @@
 
 FROM cgr.dev/chainguard/busybox:latest
 
-# renovate: datasource=github-tags depName=mattermost/mattermost-plugin-ai versioning=semver
-ENV MATTERMOST_AI_PLUGIN_VERSION=1.1.1
+# renovate: datasource=github-tags depName=mattermost/mattermost-plugin-agents versioning=semver
+ENV MATTERMOST_AI_PLUGIN_VERSION=1.2.4
 # renovate: datasource=github-tags depName=mattermost/mattermost-plugin-gitlab versioning=semver
 ENV MATTERMOST_GITLAB_PLUGIN_VERSION=1.10.0
 
 USER root
 
 # We build this as a multi-arch image so that it can be used more easily across architectures (i.e. under faux86 paradigms like Rosetta)
-ADD https://github.com/mattermost/mattermost-plugin-ai/releases/download/v$MATTERMOST_AI_PLUGIN_VERSION/mattermost-plugin-ai-v$MATTERMOST_AI_PLUGIN_VERSION-linux-amd64.tar.gz /extra-plugins/
-ADD https://github.com/mattermost/mattermost-plugin-ai/releases/download/v$MATTERMOST_AI_PLUGIN_VERSION/mattermost-plugin-ai-v$MATTERMOST_AI_PLUGIN_VERSION-linux-arm64.tar.gz /extra-plugins/
+ADD https://github.com/mattermost/mattermost-plugin-agents/releases/download/v$MATTERMOST_AI_PLUGIN_VERSION/mattermost-plugin-agents-v$MATTERMOST_AI_PLUGIN_VERSION-linux-amd64.tar.gz /extra-plugins/
+ADD https://github.com/mattermost/mattermost-plugin-agents/releases/download/v$MATTERMOST_AI_PLUGIN_VERSION/mattermost-plugin-agents-v$MATTERMOST_AI_PLUGIN_VERSION-linux-arm64.tar.gz /extra-plugins/
 ADD https://github.com/mattermost/mattermost-plugin-gitlab/releases/download/v$MATTERMOST_GITLAB_PLUGIN_VERSION/mattermost-plugin-gitlab-v$MATTERMOST_GITLAB_PLUGIN_VERSION-linux-amd64.tar.gz /extra-plugins/
 ADD https://github.com/mattermost/mattermost-plugin-gitlab/releases/download/v$MATTERMOST_GITLAB_PLUGIN_VERSION/mattermost-plugin-gitlab-v$MATTERMOST_GITLAB_PLUGIN_VERSION-linux-arm64.tar.gz /extra-plugins/
 
