@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [10.9.1-uds.2](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.9.1-uds.1...v10.9.1-uds.2) (2025-08-12)
+
+
+### Miscellaneous
+
+* **deps:** update mattermost support dependencies ([#242](https://github.com/defenseunicorns/uds-package-mattermost/issues/242)) ([fed2e14](https://github.com/defenseunicorns/uds-package-mattermost/commit/fed2e145e51c8d6d2d4d4c1e1ff9bc280854e66d))
+* **deps:** update mattermost support dependencies ([#244](https://github.com/defenseunicorns/uds-package-mattermost/issues/244)) ([9d0a108](https://github.com/defenseunicorns/uds-package-mattermost/commit/9d0a10886c2f731e7d32b12dc4d8bb92b7c30848))
+* **deps:** update mattermost support dependencies ([#245](https://github.com/defenseunicorns/uds-package-mattermost/issues/245)) ([251adc3](https://github.com/defenseunicorns/uds-package-mattermost/commit/251adc36a00eb86d5012837b8101e884e4bfa43a))
+
 ## [10.9.1-uds.1](https://github.com/defenseunicorns/uds-package-mattermost/compare/v10.9.1-uds.0...v10.9.1-uds.1) (2025-07-07)
 
 
