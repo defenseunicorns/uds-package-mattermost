@@ -6,7 +6,7 @@ metadata:
   name: mattermost-test
   description: A UDS bundle for deploying Mattermost and it's dependencies on a development cluster
   # x-release-please-start-version
-  version: 10.11.2-uds.0
+  version: 10.12.0-uds.0
   # x-release-please-end
 
 packages:
@@ -56,13 +56,13 @@ packages:
   - name: mattermost-plugins
     path: ../
     # x-release-please-start-version
-    ref: 10.11.2-uds.0
+    ref: 10.12.0-uds.0
     # x-release-please-end
 
   - name: mattermost
     path: ../
     # x-release-please-start-version
-    ref: 10.11.2-uds.0
+    ref: 10.12.0-uds.0
     # x-release-please-end
     overrides:
       mattermost:
