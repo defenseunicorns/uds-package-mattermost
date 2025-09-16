@@ -7,7 +7,7 @@ metadata:
   name: mattermost
   description: "Mattermost is a secure, open-source collaboration platform designed for teams who prioritize data control and privacy. This self-hosted messaging system offers a robust alternative to cloud-based chat services, allowing organizations to maintain full ownership of their communication data. Mattermost is ideal for organizations that require a reliable, secure, and customizable team communication solution without compromising on data sovereignty. It's particularly well-suited for development teams, security-conscious DoD teams, and missions looking to enhance internal collaboration while maintaining control over their infrastructure."
   # x-release-please-start-version
-  version: "10.11.2-uds.0"
+  version: "10.12.0-uds.0"
   # x-release-please-end
   annotations:
     dev.uds.title: Mattermost
